@@ -12,6 +12,7 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import Header from "./components/Header";
 import { ThemeProvider } from "@mui/material";
 import theme from "./theme";
+import RightNavbar from "./components/RightNavbar";
 
 firebase.initializeApp({
 	apiKey: process.env.FB_KEY,
@@ -36,6 +37,7 @@ function App() {
 						{/* <Route path="contact" element={ <Contact/> } /> */}
 					</Routes>
 				</div>
+				<RightNavbar />
 			</div>
 		</ThemeProvider>
 	);

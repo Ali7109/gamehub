@@ -5,7 +5,7 @@ import { IconButton, Typography } from '@mui/material'
 
 const VerticalNavbar = () => {
   return (
-    <div className=' h-4/5 bg-gray-dark w-1/9 p-3 rounded-xl flex flex-col'>
+    <div className='h-4/5 bg-gray-dark w-1/9 p-3 rounded-xl flex flex-col'>
         <div className="bg-orange h-10 w-10 rounded-full m-auto ">
             <Typography >Logo</Typography>
         </div> 
