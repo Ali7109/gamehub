@@ -4,3 +4,30 @@
     background-color: black;
 }
 
+/* Styling vertical scrollbar */
+::-webkit-scrollbar {
+    width: 5px; /* Width of the scrollbar */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: #000000; /* Track color */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: rgb(66, 65, 65); /* Scroll color */
+    border-radius: 5px; /* Scroll thumb border radius */
+  }
+  
+  /* Styling horizontal scrollbar */
+  ::-webkit-scrollbar.horizontal {
+    display: hidden;
+}
+  
+  ::-webkit-scrollbar-track.horizontal {
+    background-color: #f1f1f1; /* Track color */
+  }
+  
+  ::-webkit-scrollbar-thumb.horizontal {
+    background-color: #0a0a0a; /* Scroll color */
+    border-radius: 5px; /* Scroll thumb border radius */
+  }

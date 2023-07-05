@@ -27,7 +27,7 @@ firebase.initializeApp({
 function App() {
 	return (
 		<ThemeProvider theme={theme}>
-			<div className="App flex p-5 space-x-10">
+			<div className="App flex p-5 md:space-x-10">
 				<VerticalNavbar />
 				<div className=" flex flex-col gap-10 w-full">
 					<Header />
