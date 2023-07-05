@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import "./App.css";
-import Dashboard from "./pages/Dashboard";
-import VerticalNavbar from "./components/VerticalNavbar";
+import "./frontend-view/App.css";
+import Dashboard from "./frontend-view/pages/Dashboard";
+import VerticalNavbar from "./frontend-view/components/VerticalNavbar";
 
 import firebase from "firebase/compat/app";
 import "firebase/firestore";
@@ -9,10 +9,10 @@ import "firebase/auth";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import Header from "./components/Header";
+import Header from "./frontend-view/components/Header";
 import { ThemeProvider } from "@mui/material";
-import theme from "./theme";
-import RightNavbar from "./components/RightNavbar";
+import theme from "./frontend-view/theme";
+import RightNavbar from "./frontend-view/components/RightNavbar";
 
 firebase.initializeApp({
 	apiKey: process.env.FB_KEY,

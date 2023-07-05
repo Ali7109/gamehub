@@ -17,8 +17,9 @@ module.exports = {
 				black: "#000000",
 			},
 			backgroundImage: {
-				"dash-backdrop": "url('/src/images/gamingBackdrop.jpg')",
-				"gh-logo": "url('/src/images/ghlogo.png')",
+				"dash-backdrop":
+					"url('/src/frontend-view/images/gamingBackdrop.jpg')",
+				"gh-logo": "url('/src/frontend-view/images/ghlogo.png')",
 			},
 		},
 	},
