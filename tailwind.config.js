@@ -18,6 +18,7 @@ module.exports = {
 			},
 			backgroundImage: {
 				"dash-backdrop": "url('/src/images/gamingBackdrop.jpg')",
+				"gh-logo": "url('/src/images/ghlogo.png')",
 			},
 		},
 	},

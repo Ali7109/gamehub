@@ -7,7 +7,7 @@ const VerticalNavbar = () => {
   return (
     <div className='hidden md:flex items-center justify-around h-4/5 bg-gray-dark w-1/9 p-3 rounded-xl flex-col'>
 
-        <div className="bg-orange h-10 w-10 rounded-full ">
+        <div className="bg-gh-logo bg-cover bg-center h-20 w-20 border-4 border-black rounded-full ">
             
         </div> 
         <div className="flex flex-col justify-around overflow-auto" >
