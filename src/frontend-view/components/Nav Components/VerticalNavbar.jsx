@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComments, faHouse, faMagnifyingGlass, faShoppingCart} from '@fortawesome/free-solid-svg-icons'
 import React from 'react'
-import { IconButton, Typography } from '@mui/material'
+import { IconButton } from '@mui/material'
 
 const VerticalNavbar = () => {
   return (
