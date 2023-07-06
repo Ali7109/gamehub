@@ -1,33 +1,18 @@
-import React from 'react'
+const FetchGameData = async () => {
+  try {
+    const cache = localStorage.getItem('gameData');
+    if (cache) {
+      return JSON.parse(cache);
+    } else {
+      const response = await fetch(`https://api.rawg.io/api/games?key=${process.env.REACT_APP_API_KEY}`);
+      const jsonData = await response.json();
+      localStorage.setItem('gameData', JSON.stringify(jsonData));
+      return jsonData;
+    }
+  } catch (error) {
+    console.error('Error occurred:', error);
+    return null;
+  }
+};
 
-const FetchGameData = () => {
-  return (
-    <div>FetchGameData</div>
-  )
-}
-
-export default FetchGameData
-
-
-// import { useEffect } from 'react';
-
-// const FetchGameData = (url, options, onDataFetched, onError) => {
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const response = await fetch(url, options);
-//         if (!response.ok) {
-//           throw new Error('Failed to fetch data');
-//         }
-//         const data = await response.json();
-//         onDataFetched(data);
-//       } catch (error) {
-//         onError(error);
-//       }
-//     };
-
-//     fetchData();
-//   }, [url, options, onDataFetched, onError]);
-// };
-
-// export default FetchGameData;
+export default FetchGameData;
