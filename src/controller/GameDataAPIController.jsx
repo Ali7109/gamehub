@@ -1,8 +1,8 @@
 import FetchGameData from "../backend-model/FetchGameData";
 
-const GameDataAPIController = async () => {
+const GameDataAPIController = async (type) => {
   try {
-    const data = await FetchGameData();
+    const data = await FetchGameData(type);
     return data;
   } catch (error) {
     console.error('Error occurred:', error);
