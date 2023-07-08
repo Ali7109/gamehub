@@ -18,7 +18,7 @@ import theme from "./frontend-view/theme";
 import GameDataAPIController from "./controller/GameDataAPIController";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setData } from "./StateManagement/actions";
+import { setData, setPublishers } from "./StateManagement/actions";
 
 firebase.initializeApp({
 	apiKey: process.env.FB_KEY,
@@ -31,19 +31,16 @@ firebase.initializeApp({
 });
 
 function App() {
-	const [gameCount, setGameCount] = useState(0);
-
 	const dispatch = useDispatch();
-	const data = useSelector((state) => state.data);
 
 	useEffect(() => {
 		const fetch = async () => {
 			try {
-				const data = await GameDataAPIController();
-				// if (data) {
-				// 	setGameCount(data.count);
-				// }
+				const data = await GameDataAPIController("games");
+				const publishers = await GameDataAPIController("publishers");
+
 				dispatch(setData(data));
+				dispatch(setPublishers(publishers));
 			} catch (error) {
 				console.error(error);
 			}

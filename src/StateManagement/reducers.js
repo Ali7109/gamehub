@@ -1,6 +1,7 @@
 // reducers.js
 const initialState = {
 	data: {},
+	publishers: {},
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -9,6 +10,11 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				data: action.data,
+			};
+		case "SET_PUBLISHERS":
+			return {
+				...state,
+				publishers: action.data,
 			};
 		default:
 			return state;
