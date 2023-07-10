@@ -57,7 +57,7 @@ const StatsPanel = () => {
                           <CircularProgress color='warning' />
                           : 
                     <>
-                        <h1 className='transition-opacity font-bold text-orange tracking-wide hover:scale-125 hover:tracking-widest duration-300 ease-in-out'>{count.toLocaleString("en-US")}+</h1> 
+                        <h1 className='transition font-bold text-orange tracking-wide hover:scale-125 hover:tracking-widest '>{count.toLocaleString("en-US")}+</h1> 
                         <h2>Titles</h2> 
                     </>
                 }

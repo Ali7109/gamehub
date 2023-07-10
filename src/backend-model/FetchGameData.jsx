@@ -1,13 +1,24 @@
 
-const FetchGameData = async (type) => {
+const FetchGameData = async (type, parameters="") => {
   try {
-    const cache = localStorage.getItem(`${type}Data`);
+    let cache = "";
+    if(parameters === ""){
+      cache = localStorage.getItem(`${type}Data`);
+    } else {
+      cache = localStorage.getItem(`highRated${type}Data`);
+    }
+     
     if (cache) {
       return JSON.parse(cache);
     } else {
-      const response = await fetch(`https://api.rawg.io/api/${type}?key=${process.env.REACT_APP_API_KEY}`);
+      console.log("----- FETCHING FRESH DATA -----")
+      const response = await fetch(`https://api.rawg.io/api/${type}?key=${process.env.REACT_APP_API_KEY}${parameters}`);
       const jsonData = await response.json();
-      localStorage.setItem(`${type}Data`, JSON.stringify(jsonData));
+      if(parameters === ""){
+        localStorage.setItem(`${type}Data`, JSON.stringify(jsonData));
+      } else {
+        localStorage.setItem(`highRated${type}Data`, JSON.stringify(jsonData));
+      }
       return jsonData;
     }
   } catch (error) {

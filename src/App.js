@@ -16,9 +16,13 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import { ThemeProvider } from "@mui/material";
 import theme from "./frontend-view/theme";
 import GameDataAPIController from "./controller/GameDataAPIController";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setData, setPublishers } from "./StateManagement/actions";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import {
+	setData,
+	setHighestRatedGames,
+	setPublishers,
+} from "./StateManagement/actions";
 
 firebase.initializeApp({
 	apiKey: process.env.FB_KEY,
@@ -38,9 +42,13 @@ function App() {
 			try {
 				const data = await GameDataAPIController("games");
 				const publishers = await GameDataAPIController("publishers");
-
+				const highRatedGames = await GameDataAPIController(
+					"games",
+					"&page=1&page_size=10&metacritic=80,100"
+				);
 				dispatch(setData(data));
 				dispatch(setPublishers(publishers));
+				dispatch(setHighestRatedGames(highRatedGames));
 			} catch (error) {
 				console.error(error);
 			}

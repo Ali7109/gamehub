@@ -7,3 +7,7 @@ export const setPublishers = (data) => ({
 	type: "SET_PUBLISHERS",
 	data,
 });
+export const setHighestRatedGames = (data) => ({
+	type: "SET_HIGHEST_RATED",
+	data,
+});

@@ -16,8 +16,15 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				publishers: action.data,
 			};
+		case "SET_HIGHEST_RATED":
+			return {
+				...state,
+				highestRated: action.data,
+			};
 		default:
-			return state;
+			return {
+				...state,
+			};
 	}
 };
 
