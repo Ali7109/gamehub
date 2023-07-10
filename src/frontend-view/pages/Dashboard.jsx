@@ -6,7 +6,8 @@ const Dashboard = () => {
     <div className="space-y-20 pt-10 w-full">
       <Backdrop />
       <StatsPanel />
-      <HighestRatedGameShowcase /> 
+        <HighestRatedGameShowcase /> 
+        <div className=" h-64"></div>
     </div>
   )
 }
