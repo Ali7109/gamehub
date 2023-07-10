@@ -8,8 +8,8 @@ const StatsPanel = () => {
 
     const [trigger, setTrigger] = useState(false);
 
-    const countOfTitles = data.count;
-    const countOfPublishers = publishers.count;
+    const countOfTitles = data.count - 10000;
+    const countOfPublishers = publishers.count - 1000;
     const platforms = 50;
 
     const [count, setCount] = useState(0);
@@ -19,10 +19,6 @@ const StatsPanel = () => {
     window.addEventListener('scroll', () => {
         setTrigger(window.scrollY > 200);
     })
-
-    const floorToNearest10000 = (number, factor) => {
-      return Math.floor(number / factor) * factor;
-    };
 
     useEffect(() => {
       const incCount = (i,inc, maxNum, duration, flag) => {
@@ -61,7 +57,7 @@ const StatsPanel = () => {
                           <CircularProgress color='warning' />
                           : 
                     <>
-                        <h1 className='transition-opacity font-bold text-orange tracking-wide hover:scale-125 hover:tracking-widest duration-300 ease-in-out'>{floorToNearest10000(count, 100000).toLocaleString("en-US")}+</h1> 
+                        <h1 className='transition-opacity font-bold text-orange tracking-wide hover:scale-125 hover:tracking-widest duration-300 ease-in-out'>{count.toLocaleString("en-US")}+</h1> 
                         <h2>Titles</h2> 
                     </>
                 }
@@ -74,7 +70,7 @@ const StatsPanel = () => {
                           <CircularProgress color='warning' />
                           : 
                     <>
-                        <h1 className='font-bold text-orange tracking-wide hover:scale-125 hover:tracking-widest duration-300 ease-in-out'>{floorToNearest10000(publishersCount, 10000).toLocaleString("en-US")}+</h1> 
+                        <h1 className='font-bold text-orange tracking-wide hover:scale-125 hover:tracking-widest duration-300 ease-in-out'>{publishersCount.toLocaleString("en-US")}+</h1> 
                         <h2>Publishers</h2> 
                     </>
                 }
