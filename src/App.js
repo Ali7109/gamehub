@@ -23,6 +23,7 @@ import {
 	setHighestRatedGames,
 	setPublishers,
 } from "./StateManagement/actions";
+import BackToTop from "./frontend-view/components/BackToTop";
 
 firebase.initializeApp({
 	apiKey: process.env.FB_KEY,
@@ -70,6 +71,7 @@ function App() {
 				</div>
 				<RightNavbar />
 			</div>
+			<BackToTop />
 		</ThemeProvider>
 	);
 }

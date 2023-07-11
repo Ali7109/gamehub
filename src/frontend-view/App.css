@@ -2,8 +2,11 @@
     width: 100%;
     background-color: black;
 }
-*{
+/* *{
   border: solid 1px red;
+} */
+.font-yb{
+  font-family: 'Ysabeau SC', sans-serif;
 }
 
 .metr-cont * {
