@@ -16,7 +16,7 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import { ThemeProvider } from "@mui/material";
 import theme from "./frontend-view/theme";
 import GameDataAPIController from "./controller/GameDataAPIController";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
 	setData,
@@ -37,6 +37,7 @@ firebase.initializeApp({
 
 function App() {
 	const dispatch = useDispatch();
+	const [triggerUpButton, setTriggerUpButton] = useState(false);
 
 	useEffect(() => {
 		const fetch = async () => {
@@ -57,6 +58,14 @@ function App() {
 		fetch();
 	}, []);
 
+	window.addEventListener("scroll", () => {
+		if (window.scrollY > 150) {
+			setTriggerUpButton(true);
+		} else {
+			setTriggerUpButton(false);
+		}
+	});
+
 	return (
 		<ThemeProvider theme={theme}>
 			<div className="App flex p-5 justify-center">
@@ -71,7 +80,7 @@ function App() {
 				</div>
 				<RightNavbar />
 			</div>
-			<BackToTop />
+			{triggerUpButton && <BackToTop />}
 		</ThemeProvider>
 	);
 }
