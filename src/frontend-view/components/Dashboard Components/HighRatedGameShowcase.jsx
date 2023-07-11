@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import { useSelector } from 'react-redux';
 import '@splidejs/react-splide/css';
+import { AutoScroll } from '@splidejs/splide-extension-auto-scroll';
 
 const HighRatedGameShowcase = () => {
   const highestRated = useSelector((state) => state.highestRated);
@@ -12,7 +13,7 @@ const HighRatedGameShowcase = () => {
   }, []);
   const image = require('../../images/Metacritic.png');
   return (
-    <div className="splide-wrapper">
+    <div className=" w-full">
       <Splide
         className='p-5 bg-gray-dark rounded-xl'
         options={{
@@ -23,16 +24,17 @@ const HighRatedGameShowcase = () => {
           pauseOnFocus: false,
           gap: '10px',
         }}
+        extensions={AutoScroll}
         aria-label="Sliding showcase for high rated games"
       >
         {resArr.current.map((game, index) => (
-          <SplideSlide className='h-64 rounded-xl' key={index}>
+          <SplideSlide className='h-64 rounded-xl w-full' key={index}>
             <div className="flex items-center w-full h-full ">
-                <div className="w-full max-w-full flex justify-around items-center h-full bg-cover" style={{
+                <div className="w-full max-w-full flex justify-around items-center h-full bg-cover bg-center md:bg-top" style={{
                 backgroundImage: `url(${game.background_image})`}}>
                     <div className="flex justify-center  items-center w-full h-full bg-black bg-opacity-70">
                         <div className="w-1/2 max-w-full">
-                            <h1 className="text-orange font-bold">{game.name}</h1>
+                            <h1 className="text-orange font-bold sm:text-2xl  md:text-4xl mb-2">{game.name}</h1>
                             <h4 className=" bg-white bg-opacity-20 text-white font-bold rounded-xl p-2">
                                 <a className='flex items-center hover:text-orange transition' href={`https://www.metacritic.com/game/pc/${game.slug}`} target='_blank' rel="noopener noreferrer">
                                 <img src={image} alt="metacritic-icon" className="mr-2 h-6 w-6" />

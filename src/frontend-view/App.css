@@ -2,7 +2,13 @@
     width: 100%;
     background-color: black;
 }
+*{
+  border: solid 1px red;
+}
 
+.metr-cont * {
+  margin: auto;
+} 
 /* Styling vertical scrollbar */
 ::-webkit-scrollbar {
     width: 5px; /* Width of the scrollbar */

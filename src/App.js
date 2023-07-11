@@ -58,9 +58,9 @@ function App() {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<div className="App flex p-5 md:space-x-10">
+			<div className="App flex p-5 justify-center">
 				<VerticalNavbar />
-				<div className=" flex flex-col gap-10 w-full">
+				<div className="flex flex-col  items-center p-5 gap-10 w-10/12">
 					<Header />
 					<Routes>
 						<Route path="/" element={<Dashboard />} />

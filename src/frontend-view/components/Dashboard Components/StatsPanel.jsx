@@ -50,8 +50,9 @@ const StatsPanel = () => {
 
     
     return (
-        <div className="flex gap-20 w-full justify-center ">
-            <div className="drop-shadow-xl flex w-60 h-60 font-mono text-3xl bg-gray-dark rounded-xl p-5 text-center  text-white">
+        <div className="metr-cont space-y-16 md:space-y-0 md:flex gap-20 p-5 w-full justify-center items-center ">
+
+            <div className=" drop-shadow-xl flex w-60 h-60 font-mono text-3xl bg-gray-dark rounded-xl p-5 text-center  text-white">
                 <div className="m-auto">
                 {countOfTitles <= 0 || !countOfTitles ? 
                           <CircularProgress color='warning' />
