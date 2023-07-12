@@ -4,6 +4,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Link } from 'react-router-dom';
 
 const HeaderMenu = ({onLogout}) => {
 
@@ -43,8 +44,8 @@ const HeaderMenu = ({onLogout}) => {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+        <MenuItem onClick={handleClose}><Link to={"/profile"}>ProfilePage</Link></MenuItem>
+        <MenuItem onClick={handleLogout}><Link to={"/"}>Logout</Link></MenuItem>
       </Menu>
     </div>
   );

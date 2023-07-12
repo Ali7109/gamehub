@@ -10,7 +10,8 @@ const HighRatedGameShowcase = () => {
   const resArr = useRef([]);
 
   useEffect(() => {
-    resArr.current = highestRated.results;
+    // resArr.current = highestRated.results;
+    resArr.current = [];
   }, []);
   const image = require('../../images/Metacritic.png');
   return (

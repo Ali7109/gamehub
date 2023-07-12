@@ -20,6 +20,10 @@ module.exports = {
 				"dash-backdrop":
 					"url('/src/frontend-view/images/gamingBackdrop.jpg')",
 				"gh-logo": "url('/src/frontend-view/images/ghlogo.png')",
+				"stock-profpic":
+					"url('/src/frontend-view/images/StockImages/stockProfPic.jpg')",
+				"stock-coverphoto":
+					"url('/src/frontend-view/images/StockImages/stockCoverPic.jpg')",
 			},
 		},
 	},

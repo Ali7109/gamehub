@@ -24,6 +24,7 @@ import {
 	setPublishers,
 } from "./StateManagement/actions";
 import BackToTop from "./frontend-view/components/BackToTop";
+import ProfilePage from "./frontend-view/components/ProfilePage Components/ProfilePage";
 
 firebase.initializeApp({
 	apiKey: process.env.FB_KEY,
@@ -74,7 +75,7 @@ function App() {
 					<Header />
 					<Routes>
 						<Route path="/" element={<Dashboard />} />
-						{/* <Route path="services" element={ <Services/> } /> */}
+						<Route path="/profile" element={<ProfilePage />} />
 						{/* <Route path="contact" element={ <Contact/> } /> */}
 					</Routes>
 				</div>
