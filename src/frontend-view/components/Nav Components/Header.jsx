@@ -46,9 +46,9 @@ const Header = () => {
               {signedIn ? 
               <FontAwesomeIcon className='p-2 rounded-xl text-lg text-black bg-orange  transition hover:scale-110 hover:text-white' icon={faUser} />
             : (loading ? 
-              <CircularProgress color='warning'/>
+                <CircularProgress color='warning' size={25}/>
             :
-            <button onClick={toggleSignState} className='p-2 rounded-xl text-lg text-black mb-1 cursor-pointer bg-orange  transition hover:scale-110 hover:text-white'>Sign In</button>)
+            <button onClick={toggleSignState} className='p-2 rounded-xl text-base text-black mb-1 cursor-pointer bg-orange  transition hover:scale-110 hover:text-white'>Sign In</button>)
             }
               <FontAwesomeIcon className=' p-2 ml-3 rounded-xl text-lg text-gray-light transition hover:text-black hover:bg-orange' icon={faGear} />
           </div>
