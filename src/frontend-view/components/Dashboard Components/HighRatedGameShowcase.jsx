@@ -55,7 +55,7 @@ const HighRatedGameShowcase = () => {
                               <h4 className="mr-2 bg-white bg-opacity-20 text-white font-bold rounded-xl p-2">
                                   <a className='flex items-center max-w-fit hover:text-orange transition' href={`https://www.metacritic.com/game/pc/${game.slug}`} target='_blank' rel="noopener noreferrer">
                                     <img src={image} alt="metacritic-icon" className="mr-2 h-6 w-6" />
-                                    {game.metacritic}
+                                    {game.metacritic}%
                                   </a>
                               </h4>
                               <h4 className="mr-2 bg-black bg-opacity-20 text-white font-bold rounded-xl p-2">
