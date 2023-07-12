@@ -4,18 +4,25 @@ import { CircularProgress, TextField } from '@mui/material'
 import React, { useState } from 'react'
 import Lottie from "lottie-react";
 import animationData from "../../assets/animation_ljyucfqa.json";
+import HeaderMenu from './HeaderMenu';
 
 const Header = () => {
   const [signedIn, setSignedIn] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const toggleSignState = () => {
-    
+  const handleLogin = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      setSignedIn(!signedIn);
+      setSignedIn(true);
   }, 4000);
+  }
+  const handleLogout = () => {
+    setLoading(true);
+    setSignedIn(false);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   }
 
   return (
@@ -44,11 +51,11 @@ const Header = () => {
           </div> */}
           <div className='flex flex-col md:flex-row justify-around md:justify-end items-center p-2 w-full '>
               {signedIn ? 
-              <FontAwesomeIcon className='p-2 rounded-xl text-lg text-black bg-orange  transition hover:scale-110 hover:text-white' icon={faUser} />
+              <HeaderMenu onLogout={handleLogout}/>
             : (loading ? 
                 <CircularProgress color='warning' className='mr-3' size={25}/>
             :
-            <button onClick={toggleSignState} className='p-2 rounded-xl text-base text-black mb-1 cursor-pointer bg-orange  transition hover:scale-110 hover:text-white'>Sign In</button>)
+            <button onClick={handleLogin} className='p-2 rounded-xl text-base text-black mb-1 cursor-pointer bg-orange  transition hover:scale-110 hover:text-white'>Sign In</button>)
             }
               <FontAwesomeIcon className=' p-2 ml-3 rounded-xl text-lg text-gray-light transition hover:text-black hover:bg-orange' icon={faGear} />
           </div>
