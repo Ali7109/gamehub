@@ -6,13 +6,6 @@ import {
 	VerticalNavbar,
 	RightNavbar,
 } from "./frontend-view/components/Nav Components/NavComponents";
-
-import firebase from "firebase/compat/app";
-import "firebase/firestore";
-import "firebase/auth";
-
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollectionData } from "react-firebase-hooks/firestore";
 import { ThemeProvider } from "@mui/material";
 import theme from "./frontend-view/theme";
 import GameDataAPIController from "./controller/GameDataAPIController";
@@ -22,19 +15,10 @@ import {
 	setData,
 	setHighestRatedGames,
 	setPublishers,
+	setUser,
 } from "./StateManagement/actions";
 import BackToTop from "./frontend-view/components/BackToTop";
 import ProfilePage from "./frontend-view/components/ProfilePage Components/ProfilePage";
-
-firebase.initializeApp({
-	apiKey: process.env.FB_KEY,
-	authDomain: "gamehub-dbb2b.firebaseapp.com",
-	projectId: "gamehub-dbb2b",
-	storageBucket: "gamehub-dbb2b.appspot.com",
-	messagingSenderId: "26190038291",
-	appId: "1:26190038291:web:9316c6a914159ba5d206e6",
-	measurementId: "G-6B7C5KJ51P",
-});
 
 function App() {
 	const dispatch = useDispatch();
@@ -49,6 +33,12 @@ function App() {
 					"games",
 					"&page=1&page_size=10&metacritic=80,100"
 				);
+				// const user = {
+				// 	name: "Jeff Bezos",
+				// 	id: crypto.randomUUID(),
+				// 	rating: 2.3,
+				// };
+				// dispatch(setUser(user));
 				dispatch(setData(data));
 				dispatch(setPublishers(publishers));
 				dispatch(setHighestRatedGames(highRatedGames));

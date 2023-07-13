@@ -21,6 +21,11 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				highestRated: action.data,
 			};
+		case "SET_USER":
+			return {
+				...state,
+				user: action.data,
+			};
 		default:
 			return {
 				...state,
