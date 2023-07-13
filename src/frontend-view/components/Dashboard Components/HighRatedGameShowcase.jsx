@@ -15,8 +15,8 @@ const HighRatedGameShowcase = () => {
   }, []);
   const image = require('../../images/Metacritic.png');
   return (
-    <div className=" w-full">
-      <h1 className='text-white text-3xl font-yb rounded-t-3xl font-bold p-6 text-center bg-gray-dark max-w-fit'>Highest Rated Titles</h1>
+    <div className=" w-full flex-col">
+      <h1 className='text-white text-3xl font-yb rounded-t-3xl font-bold p-6 text-center bg-gray-dark '>Highest Rated Titles</h1>
       <Splide
        hasTrack={ false }
         className=' bg-gray-dark rounded-xl'

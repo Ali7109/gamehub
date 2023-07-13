@@ -60,7 +60,7 @@ const ProfilePage = () => {
                 </div>
                 <div className="flex-col p-10 space-y-3 text-white"> 
                     <div className="w-full flex justify-around">
-                        <h1 className='text-2xl bg-black p-2 rounded-xl'>It appears you aren't signed in, let's change that &#10145;</h1>
+                        <h1 className='text-xl bg-black p-2 rounded-xl'>It appears you aren't signed in, let's change that &#10145;</h1>
                         {loading ? 
                         <CircularProgress color='warning' className='mr-3' size={25}/>
                         : 

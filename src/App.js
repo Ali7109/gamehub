@@ -19,6 +19,7 @@ import {
 } from "./StateManagement/actions";
 import BackToTop from "./frontend-view/components/BackToTop";
 import ProfilePage from "./frontend-view/components/ProfilePage Components/ProfilePage";
+import Footer from "./frontend-view/components/Footer Components/Footer";
 
 function App() {
 	const dispatch = useDispatch();
@@ -61,7 +62,7 @@ function App() {
 		<ThemeProvider theme={theme}>
 			<div className="App flex p-5 justify-center">
 				<VerticalNavbar />
-				<div className="flex flex-col  items-center p-5 gap-10 w-10/12">
+				<div className="flex flex-col  items-center md:p-5 gap-10 w-11/12 md:w-10/12">
 					<Header />
 					<Routes>
 						<Route path="/" element={<Dashboard />} />
@@ -71,6 +72,7 @@ function App() {
 				</div>
 				<RightNavbar />
 			</div>
+			<Footer />
 			{triggerUpButton && <BackToTop />}
 		</ThemeProvider>
 	);
