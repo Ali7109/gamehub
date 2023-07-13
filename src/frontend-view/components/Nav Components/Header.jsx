@@ -6,24 +6,65 @@ import Lottie from "lottie-react";
 import animationData from "../../assets/animation_ljyucfqa.json";
 import HeaderMenu from './HeaderMenu';
 
+import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../../StateManagement/actions';
+import { auth, provider } from '../../../Firebase/Firebase';
+
 const Header = () => {
   const [signedIn, setSignedIn] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const [value, setValue] = useState({});
+  const dispatch = useDispatch();
+
+  auth.onAuthStateChanged(function(user) {
+    if (user) {
+      setSignedIn(true);
+      dispatch(setUser(user))
+    }
+  });
+
   const handleLogin = () => {
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setSignedIn(true);
-  }, 4000);
-  }
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        dispatch(setUser(user));
+        setSignedIn(true);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+      });
+  };
+  //   setLoading(true);
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //     setSignedIn(true);
+  // }, 4000);
+
   const handleLogout = () => {
     setLoading(true);
-    setSignedIn(false);
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }
+    signOut(auth)
+      .then(() => {
+        dispatch(setUser(null));
+        setSignedIn(false);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+      });
+  };
+  // const handleLogout = () => {
+  //   setLoading(true);
+  //   setSignedIn(false);
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 2000);
+  // }
 
   return (
     <div className='flex justify-around items-center w-full p-3 rounded-xl  bg-gray-dark'>
