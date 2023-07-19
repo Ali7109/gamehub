@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="rounded-full h-16 w-16">
             <img src={require('../../images/ghlogo.png')} alt='Game hub logo'  className='rounded-full border border-black'/>
         </div>
-        <div className="">&copy;GameHub 2023. All rights reserved.</div>
+        <div className="">&copy;GameHub {new Date().getFullYear()}. All rights reserved.</div>
         <div className="text-base">
             <PageList />
         </div>
