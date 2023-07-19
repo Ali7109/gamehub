@@ -20,6 +20,7 @@ import {
 import BackToTop from "./frontend-view/components/BackToTop";
 import ProfilePage from "./frontend-view/components/ProfilePage Components/ProfilePage";
 import Footer from "./frontend-view/components/Footer Components/Footer";
+import About from "./frontend-view/components/AboutPage Components/About";
 
 function App() {
 	const dispatch = useDispatch();
@@ -67,7 +68,7 @@ function App() {
 					<Routes>
 						<Route path="/" element={<Dashboard />} />
 						<Route path="/profile" element={<ProfilePage />} />
-						{/* <Route path="contact" element={ <Contact/> } /> */}
+						<Route path="/about" element={<About />} />
 					</Routes>
 				</div>
 				<RightNavbar />
