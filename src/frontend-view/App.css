@@ -9,6 +9,18 @@
   font-family: 'Ysabeau SC', sans-serif;
 }
 
+.text-bgtrans{
+  background: -webkit-linear-gradient(#FF7849, #e55f33);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sh {
+  box-shadow: black 5px 5px 40px 5px;
+}
+.sh-white{
+  box-shadow: rgb(60, 60, 60) 0px 0px 50px 5px;
+}
 .metr-cont * {
   margin: auto;
 } 
