@@ -7,7 +7,7 @@ const SearchCard = ({title}) => {
         url(${title.background_image})`
     }
   return (
-    <div className='h-48 bg-white rounded-xl p-8 bg-cover bg-center transition hover:scale-95 card' style={searchCardStyle}>
+    <div className='h-48 bg-white rounded-xl p-8 bg-cover bg-center transition hover:scale-95 card cursor-pointer' style={searchCardStyle}>
         <h1 className='font-bold font-yb text-white text-2xl'>{title.name}</h1>
     </div>
   )

@@ -10,6 +10,8 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const Search = () => {
 
+    const [loading, setloading] = useState(false);
+
     const [genres, setGenres] = useState([]);
     const [selectedGenres, setSelectedGenres] = useState([]);
     const [shownTitles, setShownTitles] = useState({results : []});
@@ -34,9 +36,13 @@ const Search = () => {
     }
 
     const handleSearchFilter = () => {
+      setloading(true)
       let parameters = createParameters(selectedGenres);
-      console.log(parameters)
+      console.log(search)
+      if(search.length !== 0) parameters += "&search=" +  search;
       fetchFilteredSelection(parameters)
+      setloading(false)
+      setSearch("")
     }
 
     const fetchFilteredSelection = async (genres) => {
@@ -63,6 +69,7 @@ const Search = () => {
 		};
         fetchGenres()
     }, [])
+  
     
   return (
     <div className='rounded-xl w-full bg-gray-dark p-10 custom-scroll'>
@@ -72,7 +79,9 @@ const Search = () => {
                 startAdornment: (
                   <FontAwesomeIcon className='text-lg mr-3 text-gray-light' icon={faMagnifyingGlass} />
                 ),
-              }}faMagnifyingGlass
+              }}
+              value={search}
+              onChange={e => {setSearch(e.target.value)}}
               label="Search here!"
               variant="standard"
               color="warning"
@@ -85,7 +94,8 @@ const Search = () => {
           <CircularProgress color='warning' className=' h-20'/>
         }
 
-      {shownTitles.results.length !== 0 ? (
+      {!loading ? 
+        shownTitles.results.length !== 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 p-3 h-96 overflow-scroll custom-scroll rounded-xl m-2 mt-10">
          {shownTitles.results.map(title => (
               <SearchCard title={title} key={title.id} />
@@ -96,7 +106,12 @@ const Search = () => {
             <div className="h-56 flex">
               <h1 className='m-auto bg-gray text-white font-bold p-3 rounded-xl'>Search will show here</h1>
             </div>
-          )}
+          )
+          :
+          <div className="h-56 flex transition">
+            <CircularProgress color='warning' className='m-auto h-20'/>
+          </div>
+          }
          
     </div>
   )
