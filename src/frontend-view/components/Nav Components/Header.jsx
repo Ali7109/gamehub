@@ -68,19 +68,8 @@ const Header = () => {
 
   return (
     <div className='flex justify-around items-center w-full p-3 rounded-xl  bg-gray-dark'>
-        <div className="w-2/6">
-          <TextField
-              InputProps={{
-                startAdornment: (
-                  <FontAwesomeIcon className='text-lg mr-3 text-gray-light' icon={faMagnifyingGlass} />
-                ),
-              }}faMagnifyingGlass
-              label="Search here!"
-              variant="standard"
-              color="warning"
-          />
-        </div>
-        <div className="w-3/6 md:w-1/6 flex justify-around max-h-fit">
+      
+        <div className="w-5/6 md:w-1/6 flex justify-around max-h-fit">
 						<div className="w-16 md:w-20">
 							<Lottie animationData={animationData} />
 						</div>

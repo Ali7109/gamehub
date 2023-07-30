@@ -5,7 +5,8 @@ const FetchGameData = async (type, parameters="") => {
     if(parameters === ""){
       cache = localStorage.getItem(`${type}Data`);
     } else {
-      cache = localStorage.getItem(`highRated${type}Data`);
+      if(!parameters.includes("&genres"))
+        cache = localStorage.getItem(`${parameters.substring(20, parameters.length - 1)}${type}Data`);
     }
      
     if (cache) {
@@ -17,7 +18,8 @@ const FetchGameData = async (type, parameters="") => {
       if(parameters === ""){
         localStorage.setItem(`${type}Data`, JSON.stringify(jsonData));
       } else {
-        localStorage.setItem(`highRated${type}Data`, JSON.stringify(jsonData));
+        if(!parameters.includes("&genres"))
+          localStorage.setItem(`${parameters.substring(20, parameters.length - 1)}${type}Data`, JSON.stringify(jsonData));
       }
       return jsonData;
     }
