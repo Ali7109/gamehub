@@ -51,3 +51,22 @@
     background-color: #0a0a0a; /* Scroll color */
     border-radius: 5px; /* Scroll thumb border radius */
   }
+
+
+
+
+  .custom-scroll ::-webkit-scrollbar {
+    height: 6px;
+  }
+
+    
+  .custom-scroll ::-webkit-scrollbar-track {
+    background-color: #f6f6f600; /* Track color */
+  }
+  
+  .custom-scroll ::-webkit-scrollbar-thumb {
+   background-color: #e55f33;
+    border-radius: 20px; /* Scroll thumb border radius */
+  }
+
+  
