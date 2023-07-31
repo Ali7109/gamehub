@@ -73,11 +73,11 @@
   .genre-button {
     height: 60px;
     background-size: cover;
+    min-width: 100px;
     background-position: center;
     border-radius: 10px;
     color: white;
     font-weight: bold;
-    padding: 10px;
     transition: opacity 0.3s ease-in-out; 
   }
   
