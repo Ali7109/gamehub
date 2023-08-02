@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import '@splidejs/react-splide/css';
 import { AutoScroll } from '@splidejs/splide-extension-auto-scroll';
 import { CircularProgress } from '@mui/material';
+import DetailFooter from '../GameDetail Components/DetailFooter';
 
 const HighRatedGameShowcase = () => {
   const highestRated = useSelector((state) => state.highestRated);
@@ -13,7 +14,6 @@ const HighRatedGameShowcase = () => {
     // resArr.current = highestRated.results;
     resArr.current = [];
   }, []);
-  const image = require('../../images/Metacritic.png');
   return (
     <div className=" w-full flex-col">
       <h1 className='text-white text-3xl font-yb rounded-t-3xl font-bold p-6 text-center bg-gray-dark '>Highest Rated Titles</h1>
@@ -52,23 +52,7 @@ const HighRatedGameShowcase = () => {
                         <div className="w-1/2 max-w-full">
                             <h1 className="text-orange text-center font-bold sm:text-2xl  md:text-4xl mb-2">{game.name}</h1>
                            
-                           <div className="xs:flex-col md:flex w-full justify-between">
-                              <h4 className="mr-2 bg-white bg-opacity-20 text-white font-bold rounded-xl p-2">
-                                  <a className='flex items-center max-w-fit hover:text-orange transition' href={`https://www.metacritic.com/game/pc/${game.slug}`} target='_blank' rel="noopener noreferrer">
-                                    <img src={image} alt="metacritic-icon" className="mr-2 h-6 w-6" />
-                                    {game.metacritic}
-                                  </a>
-                              </h4>
-                              <h4 className="mr-2 bg-black bg-opacity-20 text-white font-bold rounded-xl p-2">
-                                    {game.genres.map((genre, index) => {
-                                      let hyphen = " - ";
-                                      if(index+1 === game.genres.length) hyphen = "";
-                                      return (
-                                      <React.Fragment key={index}>{genre.name}{hyphen}</React.Fragment>
-                                      )
-})}
-                              </h4>
-                            </div>
+                          <DetailFooter game={game} />
                         </div>
                     </div>
                 </div>

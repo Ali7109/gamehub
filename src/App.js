@@ -22,6 +22,7 @@ import ProfilePage from "./frontend-view/components/ProfilePage Components/Profi
 import Footer from "./frontend-view/components/Footer Components/Footer";
 import About from "./frontend-view/components/AboutPage Components/About";
 import Search from "./frontend-view/pages/Search";
+import GameDetailsPage from "./frontend-view/pages/GameDetailsPage";
 
 function App() {
 	const dispatch = useDispatch();
@@ -71,6 +72,11 @@ function App() {
 						<Route path="/profile" element={<ProfilePage />} />
 						<Route path="/about" element={<About />} />
 						<Route path="/search" element={<Search />} />
+						<Route
+							exact
+							path="/search/:id"
+							element={<GameDetailsPage />}
+						/>
 					</Routes>
 				</div>
 				<RightNavbar />

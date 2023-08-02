@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import SearchCard from '../components/SearchPage Components/SearchCard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 const Search = () => {
 
@@ -43,6 +44,10 @@ const Search = () => {
       fetchFilteredSelection(parameters)
       setloading(false)
       setSearch("")
+      window.scrollTo({
+        top: 200,
+        behavior: 'smooth',
+      });
     }
 
     const fetchFilteredSelection = async (genres) => {
@@ -67,6 +72,10 @@ const Search = () => {
 				console.error(error);
 			}
 		};
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
         fetchGenres()
     }, [])
   
@@ -97,8 +106,10 @@ const Search = () => {
       {!loading ? 
         shownTitles.results.length !== 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 p-3 h-96 overflow-scroll custom-scroll rounded-xl m-2 mt-10">
-         {shownTitles.results.map(title => (
-              <SearchCard title={title} key={title.id} />
+          {shownTitles.results.map(title => (
+            <Link to={`/search/${title.id}`} key={title.id}>
+              <SearchCard title={title}/>
+            </Link>
             ))}
         </div> 
             
