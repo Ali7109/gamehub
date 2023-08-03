@@ -11,8 +11,8 @@ const HighRatedGameShowcase = () => {
   const resArr = useRef([]);
 
   useEffect(() => {
-    // resArr.current = highestRated.results;
-    resArr.current = [];
+    resArr.current = highestRated.results;
+    // resArr.current = [];
   }, []);
   return (
     <div className=" w-full flex-col">
@@ -51,7 +51,6 @@ const HighRatedGameShowcase = () => {
                     <div className="flex justify-center  items-center w-full h-full bg-black bg-opacity-70">
                         <div className="w-1/2 max-w-full">
                             <h1 className="text-orange text-center font-bold sm:text-2xl  md:text-4xl mb-2">{game.name}</h1>
-                           
                           <DetailFooter game={game} />
                         </div>
                     </div>

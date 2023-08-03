@@ -1,17 +1,32 @@
-import React from 'react'
+import React, 
+{useEffect, useState} from 'react'
 
 const DetailFooter = ({game}) => {
-  const image = require('../../images/Metacritic.png');
+  const metacriticImage = require('../../images/Metacritic.png');
+  const redditImage = require('../../images/reddit.png');
+  
+  const [showReddit, setShowReddit] = useState(false);
+
+  useEffect(() => {
+    setShowReddit(window.location.pathname !== "/");
+  }, [])
   
   return (
     <div className="xs:flex-col md:flex w-full justify-between">
-    <h4 className="mr-2 bg-white bg-opacity-20 text-white font-bold rounded-xl p-2">
-        <a className='flex items-center max-w-fit hover:text-orange transition' href={`https://www.metacritic.com/game/pc/${game.slug}`} target='_blank' rel="noopener noreferrer">
-          <img src={image} alt="metacritic-icon" className="mr-2 h-6 w-6" />
-          {game.metacritic}
-        </a>
-    </h4>
-    <h4 className="mr-2 bg-black bg-opacity-20 text-white font-bold rounded-xl p-2">
+    <div className="flex mr-10 gap-2 md:w-1/3">
+      <h4 className="m-auto bg-white bg-opacity-20 text-white font-bold rounded-xl p-2">
+          <a className='flex items-center max-w-fit  hover:text-orange transition' href={`https://www.metacritic.com/game/pc/${game.slug}`} target='_blank' rel="noopener noreferrer">
+            <img src={metacriticImage} alt="metacritic-icon" className="mr-2 h-6 w-6" />
+            {game.metacritic}
+          </a>
+      </h4>
+      {showReddit &&
+          <a className="cursor-pointer reddit m-auto bg-white bg-opacity-20 bg-red font-bold w-12 rounded-xl p-2 transition" href={game.reddit_url} target='_blank' rel="noopener noreferrer">
+            <img src={redditImage} alt="reddit-icon" className="m-auto h-6 w-6" />
+          </a>
+      }
+    </div>
+    <h4 className="mr-2 max-w-2/3 bg-black bg-opacity-20 text-white font-bold rounded-xl p-2">
           {game.genres.map((genre, index) => {
             let hyphen = " - ";
             if(index+1 === game.genres.length) hyphen = "";
