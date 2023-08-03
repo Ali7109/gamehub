@@ -9,6 +9,10 @@
   font-family: 'Ysabeau SC', sans-serif;
 }
 
+.bg-metayellow:hover {
+  background-color: #FFCE2C;
+}
+
 .text-bgtrans{
   background: -webkit-linear-gradient(#FF7849, #e55f33);
   -webkit-background-clip: text;
@@ -61,7 +65,9 @@
   .custom-scroll ::-webkit-scrollbar {
     height: 3px;
   }
-
+  .custom-scroll:hover ::-webkit-scrollbar {
+    height: 10px; 
+  }
     
   .custom-scroll ::-webkit-scrollbar-track {
     background-color: #f6f6f600; /* Track color */

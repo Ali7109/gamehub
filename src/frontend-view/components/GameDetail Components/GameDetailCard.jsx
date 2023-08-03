@@ -2,11 +2,19 @@ import React from 'react'
 import DetailFooter from './DetailFooter'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBackward } from '@fortawesome/free-solid-svg-icons'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import PlatformCard from './PlatformCard'
 
 const GameDetailCard = ({gameDetails}) => {
     const nav = useNavigate();
-
+    function compare(a,b) {
+        if (a.name < b.name)
+           return -1;
+        if (a.name > b.name)
+          return 1;
+        return 0;
+      }
+      
   return (
     <div className="bg-black border-l-2 border-r-2 border-orange w-full rounded-xl p-10 text-black">
         <button onClick={() => {
@@ -29,7 +37,22 @@ const GameDetailCard = ({gameDetails}) => {
                 <DetailFooter game={gameDetails}/>
             </div>
         </div>
-        <div className=""></div>
+        <div className="w-full text-white">
+            <div className='gap-5 flex items-baseline'>Developed by: {
+                gameDetails.developers.map((developer, index) => (
+                    <h2 as={Link} className='cursor-pointer font-bold hover:bg-orange transition hover:text-black mt-2 max-w-fit bg-white bg-opacity-20 p-2 rounded-xl'>{developer.name}</h2>
+                ))
+                }</div>
+        </div>
+        <div className="w-full text-white pb-2 mb-2 custom-scroll transition flex items-baseline">
+            <h1 className='mr-5'>Platforms: </h1>
+            <div className='overflow-auto pb-2 gap-5 flex items-baseline'>{
+               gameDetails.platforms.sort(compare).map((platform) => {
+                   return <PlatformCard platform={platform.platform} />
+                })
+                }
+            </div>
+        </div>
     </div>
   )
 }
