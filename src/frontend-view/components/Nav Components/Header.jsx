@@ -39,11 +39,7 @@ const Header = () => {
         setLoading(false);
       });
   };
-  //   setLoading(true);
-  //   setTimeout(() => {
-  //     setLoading(false);
-  //     setSignedIn(true);
-  // }, 4000);
+
 
   const handleLogout = () => {
     setLoading(true);
@@ -58,28 +54,30 @@ const Header = () => {
         setLoading(false);
       });
   };
-  // const handleLogout = () => {
-  //   setLoading(true);
-  //   setSignedIn(false);
-  //   setTimeout(() => {
-  //     setLoading(false);
-  //   }, 2000);
-  // }
 
   return (
-    <div className='flex justify-around items-center w-full p-3 rounded-xl  bg-gray-dark'>
+    <div className='flex justify-around md:justify-between items-center w-full p-3 rounded-xl  bg-gray-dark'>
       
-        <div className="w-5/6 md:w-1/6 flex justify-around max-h-fit">
+      <div className="md:hidden">
+        {signedIn ? 
+              <HeaderMenu onLogout={handleLogout}/>
+            : (loading ? 
+                <CircularProgress color='warning' className='mr-3' size={25}/>
+            :
+            <button onClick={handleLogin} className='p-2 rounded-xl text-base text-black mb-1 cursor-pointer bg-orange  transition hover:scale-110 hover:text-white'>Sign In</button>)
+            }
+      </div>
+        <div className=" md:w-1/6 flex justify-around max-h-fit">
 						<div className="w-16 md:w-20">
 							<Lottie animationData={animationData} />
 						</div>
-					</div>
-        <div className="flex items-center  w-2/6">
+				</div>
+        <div className="md:hidden">
+          <FontAwesomeIcon className=' p-2 ml-3 rounded-xl text-lg text-gray-light transition hover:text-black hover:bg-orange' icon={faGear} />
+        </div>
+        <div className="hidden md:flex items-center  w-2/6">
         
-          {/* <div className="md:hidden w-full flex justify-center">
-              <img src={require('../../images/ghlogo.png')} alt="Logo" className=' border-black h-16 w-16 rounded-full'/>
-          </div> */}
-          <div className='flex flex-col md:flex-row justify-around md:justify-end items-center p-2 w-full '>
+          <div className=' md:flex flex-col md:flex-row justify-around md:justify-end items-center p-2 w-full '>
               {signedIn ? 
               <HeaderMenu onLogout={handleLogout}/>
             : (loading ? 
