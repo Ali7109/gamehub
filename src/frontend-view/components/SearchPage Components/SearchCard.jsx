@@ -3,7 +3,7 @@ import React from 'react'
 
 const SearchCard = ({title}) => {
     const searchCardStyle = {
-        backgroundImage: `linear-gradient(to left, rgba(245, 246, 252, 0.52), rgba(0, 0, 0, 0.73)),
+        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.3)),
         url(${title.background_image})`
     }
   return (
