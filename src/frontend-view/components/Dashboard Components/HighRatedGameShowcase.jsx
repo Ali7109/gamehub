@@ -12,7 +12,6 @@ const HighRatedGameShowcase = () => {
 
   useEffect(() => {
     resArr.current = highestRated?.results || []; // Optional chaining operator to handle undefined state
-    console.log(resArr.current)
   }, [highestRated]);
   return (
     <div className=" w-full flex-col">
