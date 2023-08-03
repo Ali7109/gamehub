@@ -52,8 +52,14 @@ const Search = () => {
 
     const fetchFilteredSelection = async (genres) => {
       try {
-          const selections = await GameDataAPIController("games",
+        let selections = "";
+        if(genres.substring(0, 1) === "&"){
+           selections = await GameDataAPIController("games",
+					`&page=1&page_size=20${genres}`)
+        } else {
+           selections = await GameDataAPIController("games",
 					`&page=1&page_size=20&genres=${genres}`)
+        }
           setShownTitles(selections)
           console.log(shownTitles)
       } catch (error) {

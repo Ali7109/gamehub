@@ -7,7 +7,7 @@ const Dashboard = () => {
       <Backdrop />
       <StatsPanel />
       <HighestRatedGameShowcase /> 
-      <div className=" h-64"></div>
+      <div className=" h-20"></div>
     </div>
   )
 }
