@@ -7,13 +7,13 @@ import { CircularProgress } from '@mui/material';
 import DetailFooter from '../GameDetail Components/DetailFooter';
 
 const HighRatedGameShowcase = () => {
-  const highestRated = useSelector((state) => state.highestRated);
+  const highestRated = useSelector( (state) =>  state.highestRated);
   const resArr = useRef([]);
 
   useEffect(() => {
-    resArr.current = highestRated.results;
-    // resArr.current = [];
-  }, []);
+    resArr.current = highestRated?.results || []; // Optional chaining operator to handle undefined state
+    console.log(resArr.current)
+  }, [highestRated]);
   return (
     <div className=" w-full flex-col">
       <h1 className='text-white text-3xl font-yb rounded-t-3xl font-bold p-6 text-center bg-gray-dark '>Highest Rated Titles</h1>
@@ -42,7 +42,7 @@ const HighRatedGameShowcase = () => {
           <div className="splide__progress__bar" />
       </div>
         <SplideTrack>
-        {resArr ?
+        {resArr.current ?
         resArr.current.map((game, index) => (
           <SplideSlide className='h-64 rounded-xl w-full' key={index}>
             <div className="flex items-center w-full h-full ">
@@ -67,49 +67,3 @@ const HighRatedGameShowcase = () => {
 };
 
 export default HighRatedGameShowcase;
-
-// import React, { useEffect, useRef, useState } from 'react'
-// import { Splide, SplideSlide } from '@splidejs/react-splide';
-// import { useSelector } from 'react-redux';
-// import '@splidejs/react-splide/css';
-
-// const HighRatedGameShowcase = () => {
-//     const highestRated = useSelector(state => state.highestRated);
-//     const resArr = useRef([]);
-
-//     useEffect(() => {
-//         resArr.current = highestRated.results; // Assign the value to resArr.current instead of resArr
-//       }, []);
-    
-//     return (
-//     <Splide 
-//     className=' p-5 bg-gray-dark rounded-xl'
-//         options={{
-//             type   : 'loop',
-//             focus  : 'center',
-//             perPage: 1,
-//             pauseOnHover: false,
-//             pauseOnFocus: false,
-//             gap: '10px'
-//         }}
-//         aria-label="Sliding showcase for high rated games">
-           
-//         {resArr.current.map((game, index) => (
-//             <SplideSlide className='flex h-64 bg-black rounded-xl' key={index}>
-//                 <div className="flex-1 rounded-r-full w-1/2">
-//                     <img className="rounded-r-full w-full" src={game.background_image} alt="WDADS 1"/>
-//                 </div>
-//                 <div className="w-1/2 flex">
-//                     <div className="m-auto text-white">
-//                         <h1 className='text-orange text-4xl font-bold'>{game.name}</h1>
-//                         <h3>MetaCritic: {game.metacritic}</h3>
-//                     </div>
-                    
-//                 </div>
-//             </SplideSlide>
-//         ))}
-//     </Splide>
-//   )
-// }
-
-// export default HighRatedGameShowcase
