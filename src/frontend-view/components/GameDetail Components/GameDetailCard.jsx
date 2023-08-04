@@ -39,8 +39,8 @@ const GameDetailCard = ({gameDetails}) => {
         </div>
         <div className="w-full text-white mb-5">
             <div className='gap-5 flex items-baseline'>Developed by: {
-                gameDetails.developers.map((developer, index) => (
-                    <h2 as={Link} className='cursor-pointer font-bold hover:bg-orange transition hover:text-black mt-2 max-w-fit bg-white bg-opacity-20 p-2 rounded-xl'>{developer.name}</h2>
+                gameDetails.developers.map((developer) => (
+                    <Link key={developer.id} to={`/developers/${developer.id}`} className='cursor-pointer font-bold hover:bg-orange transition hover:text-black mt-2 max-w-fit bg-white bg-opacity-20 p-2 rounded-xl'>{developer.name}</Link>
                 ))
                 }</div>
         </div>

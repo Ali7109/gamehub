@@ -23,6 +23,7 @@ import Footer from "./frontend-view/components/Footer Components/Footer";
 import About from "./frontend-view/components/AboutPage Components/About";
 import Search from "./frontend-view/pages/Search";
 import GameDetailsPage from "./frontend-view/pages/GameDetailsPage";
+import DevDetailsPage from "./frontend-view/pages/DevDetailsPage";
 
 function App() {
 	const dispatch = useDispatch();
@@ -76,6 +77,11 @@ function App() {
 							exact
 							path="/search/:id"
 							element={<GameDetailsPage />}
+						/>
+						<Route
+							exact
+							path="/developers/:id"
+							element={<DevDetailsPage />}
 						/>
 					</Routes>
 				</div>
