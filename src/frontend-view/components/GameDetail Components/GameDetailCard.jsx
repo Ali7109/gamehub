@@ -37,16 +37,16 @@ const GameDetailCard = ({gameDetails}) => {
                 <DetailFooter game={gameDetails}/>
             </div>
         </div>
-        <div className="w-full text-white">
+        <div className="w-full text-white mb-5">
             <div className='gap-5 flex items-baseline'>Developed by: {
                 gameDetails.developers.map((developer, index) => (
                     <h2 as={Link} className='cursor-pointer font-bold hover:bg-orange transition hover:text-black mt-2 max-w-fit bg-white bg-opacity-20 p-2 rounded-xl'>{developer.name}</h2>
                 ))
                 }</div>
         </div>
-        <div className="w-full text-white pb-2 mb-2 custom-scroll transition flex items-baseline">
+        <div className="w-full text-white  custom-scroll transition flex items-baseline">
             <h1 className='mr-5'>Platforms: </h1>
-            <div className='overflow-auto pb-2 gap-5 flex items-baseline'>{
+            <div className='overflow-auto transition gap-5 flex items-center'>{
                gameDetails.platforms.sort(compare).map((platform) => {
                    return <PlatformCard platform={platform.platform} />
                 })
