@@ -15,7 +15,9 @@
 .bg-metayellow:hover {
   background-color: #FFCE2C;
 }
-
+.or {
+color: #FF7849;
+}
 .text-bgtrans{
   background: -webkit-linear-gradient(#FF7849, #e55f33);
   -webkit-background-clip: text;

@@ -72,11 +72,13 @@ const Header = () => {
 							<Lottie animationData={animationData} />
 						</div>
 				</div>
+        <div className="text-3xl md:text-5xl">
+          <h1 className="font-prism text-white">GAME<span className='or'>HUB</span></h1>
+        </div>
         <div className="md:hidden">
           <FontAwesomeIcon className=' p-2 ml-3 rounded-xl text-lg text-gray-light transition hover:text-black hover:bg-orange' icon={faGear} />
         </div>
-        <div className="hidden md:flex items-center  w-2/6">
-        
+        <div className="hidden md:flex items-center  w-1/6">
           <div className=' md:flex flex-col md:flex-row justify-around md:justify-end items-center p-2 w-full '>
               {signedIn ? 
               <HeaderMenu onLogout={handleLogout}/>
