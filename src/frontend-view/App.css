@@ -8,6 +8,9 @@
 .font-yb{
   font-family: 'Ysabeau SC', sans-serif;
 }
+.font-prism{
+  font-family: 'Tilt Prism', cursive;
+}
 
 .bg-metayellow:hover {
   background-color: #FFCE2C;
