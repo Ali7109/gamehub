@@ -15,7 +15,6 @@ import {
 	setData,
 	setHighestRatedGames,
 	setPublishers,
-	setUser,
 } from "./StateManagement/actions";
 import BackToTop from "./frontend-view/components/BackToTop";
 import ProfilePage from "./frontend-view/components/ProfilePage Components/ProfilePage";

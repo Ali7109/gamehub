@@ -6,7 +6,7 @@ import Lottie from "lottie-react";
 import animationData from "../../assets/animation_ljyucfqa.json";
 import HeaderMenu from './HeaderMenu';
 
-import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
+import { signInWithPopup, signOut } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../../StateManagement/actions';
 import { auth, provider } from '../../../Firebase/Firebase';
@@ -14,13 +14,18 @@ import { auth, provider } from '../../../Firebase/Firebase';
 const Header = () => {
   const [signedIn, setSignedIn] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [userName, setUserName] = useState("");
 
-  const [value, setValue] = useState({});
   const dispatch = useDispatch();
 
   auth.onAuthStateChanged(function(user) {
     if (user) {
       setSignedIn(true);
+      let name = user.displayName.split(" ");
+      let len = name.length;
+      let fullName = len === 1 ? name[0] : name[0] + " " + name[len-1];
+
+      setUserName(fullName)
       dispatch(setUser(user))
     }
   });
@@ -81,7 +86,7 @@ const Header = () => {
         <div className="hidden md:flex items-center  w-1/6">
           <div className=' md:flex flex-col md:flex-row justify-around md:justify-end items-center p-2 w-full '>
               {signedIn ? 
-              <HeaderMenu onLogout={handleLogout}/>
+              <HeaderMenu userName={userName} onLogout={handleLogout}/>
             : (loading ? 
                 <CircularProgress color='warning' className='mr-3' size={25}/>
             :
