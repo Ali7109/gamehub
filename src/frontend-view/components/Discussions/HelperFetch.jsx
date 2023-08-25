@@ -15,16 +15,6 @@ export async function addDiscussion(db, gameId, content, userId, userName) {
   });
 }
 
-// export async function addReply(db, gameId, discussionId, content, userId, userName) {
-//   const gameDocRef = doc(db, "discussions", "" + gameId);
-//   const discussionRef = doc(gameDocRef.collection("discussionList"), discussionId);
-  
-//   // Update the discussion document to add a reply using arrayUnion
-//   await updateDoc(discussionRef, {
-//     replies: arrayUnion({ content, userId, userName, timestamp: serverTimestamp() }),
-//   });
-// }
-
 export async function addReply(db, gameId, discussionId, content, userId, userName) {
   
   const gameDocRef = doc(db, "discussions", "" + gameId);
