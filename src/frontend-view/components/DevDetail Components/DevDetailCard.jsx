@@ -26,11 +26,20 @@ const DevDetailCard = ({devDetails}) => {
         </div>
         <div className="flex text-white w-full text-justify pl-0 pr-0 md:pl-10 md:pr-10 h-56 overflow-auto">
             {devDetails.description ? 
+            
             <p dangerouslySetInnerHTML={{ __html: devDetails.description }} />
             :
             <div className="m-auto text-center bg-white bg-opacity-10 p-5 rounded-xl ">
                 <h1 className='text-orange font-bold text-4xl mb-2'>Sorry! It's not you, it's us</h1>
                 <p className=''>Looks like we do not have more info for the developer "{devDetails.name}" at this time.<br></br>Check here again soon...</p> 
+                <p className='mt-3 flex items-center justify-center'>You can learn more about the developer 
+                <a
+                onClick={(event) => {
+                    if(!window.confirm("You will be redirected. Continue?")){
+                        event.preventDefault();
+                    }
+                }}
+                target="_blank" rel='noreferrer' href={`https://en.wikipedia.org/wiki/${devDetails.slug.replace("-", "_")}`} t className='bg-white hover:bg-orange transition rounded-xl ml-3 pl-2 pr-2 text-black font-semibold'>HERE</a></p>
             </div>
             }
         </div>
