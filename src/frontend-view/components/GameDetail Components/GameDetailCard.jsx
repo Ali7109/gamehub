@@ -79,7 +79,7 @@ const GameDetailCard = ({gameDetails}) => {
             })}</p>
         </div>
       {signedIn && user && 
-      <AddDiscussionForm gameId={gameDetails.id} userId={user.uid}/>}
+      <AddDiscussionForm gameId={gameDetails.id} userId={user.uid} user={user}/>}
     </div>
   )
 }
