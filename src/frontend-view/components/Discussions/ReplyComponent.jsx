@@ -10,7 +10,6 @@ const ReplyComponent = ({discussion, user, gameId}) => {
     const [invalidMessage, setInvalidMessage] = useState(false);
     const [isFocused, setIsFocused] = useState(false); // State to track focus
                 
-    console.log("In reply component:",user)
     const handleDiscussionChange = (e) => {
         e.preventDefault();
         const value = e.target.value;
