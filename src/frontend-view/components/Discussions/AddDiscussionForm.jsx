@@ -10,7 +10,7 @@ const AddDiscussionForm = ({ gameId, userId, user }) => {
   const [discussions, setDiscussions] = useState(null);
   // const [user, setUser] = useState(null);
   const [invalidMessage, setInvalidMessage] = useState(false);
-  console.log("AddDiscussion form has", user)
+
   const showError = () => {
     setInvalidMessage(true);
 
@@ -18,6 +18,7 @@ const AddDiscussionForm = ({ gameId, userId, user }) => {
       setInvalidMessage(false);
     }, 2000);
   };
+  
   const submitDiscussion = async () => {
     if (val.trim() === "") {
       showError()
