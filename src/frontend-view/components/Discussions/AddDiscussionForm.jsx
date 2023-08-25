@@ -51,16 +51,16 @@ const AddDiscussionForm = ({ gameId, userId, user }) => {
 
   return (
     <>
-    <div className={`bg-gray-dark rounded-lg flex transition ${isFocused ? "expanded" : "expanding"} justify-center items-center`}
+    <div className={`bg-gray-dark rounded-lg md:flex transition ${isFocused ? "expanded" : "expanding"} justify-center items-center`}
       >
       <textarea
-      className="w-full rounded-l-xl p-2 resize-none h-full"
+      className="w-full rounded-t-xl md:rounded-l-xl p-2 resize-none h-full"
       value={val}
       onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         onChange={handleDiscussionChange}
       />
-      <button className="rounded-r-xl h-full bg-orange font-bold min-w-fit p-2 text-sm" onClick={() => submitDiscussion()}>Add Discussion</button>
+      <button className="rounded-b-xl md:rounded-r-xl h-full bg-orange font-bold w-full md:min-w-fit p-2 text-sm" onClick={() => submitDiscussion()}>Start Discussion</button>
     </div>
     <div className="flex h-12 border mt-5">
       {invalidMessage &&
@@ -68,9 +68,9 @@ const AddDiscussionForm = ({ gameId, userId, user }) => {
       }
     </div>
     <div className="relative w-full">
-      <h1 className="absolute left-10 text-white font-bold text-center  text-6xl linear-ore">Discussions</h1>
+      <h1 className="absolute left-1/2 -translate-x-1/2 top-3 md:left-10 md:top-0 md:-translate-x-0 text-white font-bold text-center  text-4xl md:text-6xl linear-ore">Discussions</h1>
     </div>
-    <div className="mt-5 bg-black rounded-xl pt-5 pl-2 text-white">
+    <div className="mt-5 bg-black rounded-xl pt-5 md:pl-2 text-white">
       {!discussions ? 
       <div className="w-full flex">
         <p className="m-auto p-5 bg-white bg-opacity-20 rounded-xl">No discussions for this title yet, start one now!</p>

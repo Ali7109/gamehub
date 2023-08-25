@@ -41,10 +41,10 @@ const StatsPanel = () => {
       incCount(count, 10000, countOfTitles, 10, true);
       setTimeout(() => {
         incCount(publishersCount, 1000, countOfPublishers, 10, false);
-      }, 1000)
+      }, 500)
       setTimeout(() => {
         incCount(platformsCount, 5, platforms, 10, false);
-      }, 2000);
+      }, 1000);
       
     }, [window.scrollY]); 
 

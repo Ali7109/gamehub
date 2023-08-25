@@ -86,10 +86,8 @@ color: #FF7849;
 
 
   .custom-scroll ::-webkit-scrollbar {
-    height: 3px;
-  }
-  .custom-scroll:hover ::-webkit-scrollbar {
-    height: 10px; 
+    height: 7px;
+    transition: linear  0.1s ease-in-out;
   }
     
   .custom-scroll ::-webkit-scrollbar-track {

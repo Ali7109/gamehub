@@ -5,7 +5,7 @@ import IndividualDiscussionPanel from './SubDiscussion Components/IndividualDisc
 const DiscussionsPanel = ({discussions, user, gameId}) => {
 
   return (
-    <div className='bg-gray-dark sh border-r-4 border-b-4 border-orange w-full p-10 rounded-xl space-y-8'>
+    <div className='bg-gray-dark sh border-b-4 md:border-r-4 md:border-b-4 border-orange w-full p-5 pt-10 md:p-10 rounded-xl space-y-8'>
         {discussions.map(discussion => (
         <React.Fragment key={discussion.id}>
                 <IndividualDiscussionPanel user={user} gameId={gameId} discussion={discussion} time={formatFirestoreTimestamp(discussion.timestamp)}/>
