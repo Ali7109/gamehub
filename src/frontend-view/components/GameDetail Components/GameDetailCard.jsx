@@ -65,7 +65,13 @@ const GameDetailCard = ({gameDetails}) => {
             <div className='overflow-auto transition gap-5 flex items-center'>{
                gameDetails.stores.map((store) => 
             {
-                return <a key={store.store.id} className="cursor-pointer bg-white bg-opacity-20 bg-red font-bold rounded-xl p-2 transition hover:bg-orange hover:text-black" href={`https:${store.store.domain}`} target='_blank' rel="noopener noreferrer">
+                return <a 
+                onClick={(e) => {
+                    if(!window.confirm("You will be redirected. Continue?")){
+                        e.preventDefault();
+                    }
+                }}
+                key={store.store.id} className="cursor-pointer bg-white bg-opacity-20 bg-red font-bold rounded-xl p-2 transition hover:bg-orange hover:text-black" href={`https:${store.store.domain}`} target='_blank' rel="noopener noreferrer">
                    <h1>{store.store.name}</h1>
                  </a>
                })
