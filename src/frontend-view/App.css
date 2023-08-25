@@ -2,6 +2,16 @@
     width: 100%;
     background-color: black;
 }
+
+.expanding {
+  transition: linear 0.1s;
+  height: 40px;
+} 
+ .expanded  {
+  transition: linear 0.1s;
+  height: 60px;
+}
+
 /* *{
   border: solid 1px red;
 } */
@@ -23,6 +33,14 @@ color: #FF7849;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.linear-ore{
+  background: linear-gradient( to right, #FF7849, white);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .reddit:hover {
   background-color: none;
   background-color: #FF4520;
