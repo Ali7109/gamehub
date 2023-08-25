@@ -1,7 +1,7 @@
 // AddDiscussionForm.js
 import React, { useEffect, useState } from "react";
 import { auth, db } from "../../../Firebase/Firebase";
-import { addDiscussion, fetchDiscussions } from "./HelperFetch";
+import { addDiscussion, fetchDiscussions } from "../../../controller/HelperFetch";
 import DiscussionsPanel from "./DiscussionsPanel";
 import { cardClasses } from "@mui/material";
 
@@ -10,7 +10,7 @@ const AddDiscussionForm = ({ gameId, userId, user }) => {
   const [discussions, setDiscussions] = useState(null);
   // const [user, setUser] = useState(null);
   const [invalidMessage, setInvalidMessage] = useState(false);
-
+  console.log("AddDiscussion form has", user)
   const showError = () => {
     setInvalidMessage(true);
 

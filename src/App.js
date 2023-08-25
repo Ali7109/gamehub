@@ -38,12 +38,6 @@ function App() {
 					"games",
 					"&page=1&page_size=10&metacritic=80,100"
 				);
-				// const user = {
-				// 	name: "Jeff Bezos",
-				// 	id: crypto.randomUUID(),
-				// 	rating: 2.3,
-				// };
-				// dispatch(setUser(user));
 				dispatch(setData(data));
 				dispatch(setPublishers(publishers));
 				dispatch(setHighestRatedGames(highRatedGames));

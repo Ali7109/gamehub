@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { addReply } from './HelperFetch';
+import { addReply } from '../../../controller/HelperFetch';
 import { db } from '../../../Firebase/Firebase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faReply } from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +9,8 @@ const ReplyComponent = ({discussion, user, gameId}) => {
     const [val, setVal] = useState("");
     const [invalidMessage, setInvalidMessage] = useState(false);
     const [isFocused, setIsFocused] = useState(false); // State to track focus
-    
+                
+    console.log("In reply component:",user)
     const handleDiscussionChange = (e) => {
         e.preventDefault();
         const value = e.target.value;
@@ -32,7 +33,7 @@ const ReplyComponent = ({discussion, user, gameId}) => {
           return;
         }
         try {
-         addReply(db, gameId, discussion.id, val, discussion.userId, discussion.userName).then(() => {
+         addReply(db, gameId, discussion.id, val, user.uid, user.displayName).then(() => {
             console.log("Data written")
             setVal("");
             // fetchDiscussions(db, gameId ).then(setDiscussions);
