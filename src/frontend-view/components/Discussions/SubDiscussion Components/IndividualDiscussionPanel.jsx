@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
 
-const IndividualDiscussionPanel = ({gameId, discussion, time, user}) => {
+const IndividualDiscussionPanel = ({reFetch, gameId, discussion, time, user}) => {
     
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -21,7 +21,7 @@ const IndividualDiscussionPanel = ({gameId, discussion, time, user}) => {
         </div>   
                 
         {/* Reply component here */}
-        <ReplyComponent gameId={gameId} user={user}  discussion={discussion}/>
+        <ReplyComponent reFetch={reFetch} gameId={gameId} user={user}  discussion={discussion}/>
         <button disabled={discussion.replies.length===0} onClick={handleOpen} className=' bg-orange disabled:bg-opacity-20 mt-2 text-sm rounded-xl border-2 border-black pl-2 pr-5 flex items-center justify-between transition'><FontAwesomeIcon className='mr-2' icon={!open ? faChevronDown : faChevronUp}/>{!open ? discussion.replies.length === 0 ? "No Replies yet":"Show Replies" : "Showing Replies"} ({discussion.replies.length})</button>
         <DiscussionModal  open={open} handleClose={handleClose} time={time} discussion={discussion}/>
                       

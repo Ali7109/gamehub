@@ -4,7 +4,7 @@ import { db } from '../../../Firebase/Firebase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faReply } from '@fortawesome/free-solid-svg-icons';
 
-const ReplyComponent = ({discussion, user, gameId}) => {
+const ReplyComponent = ({reFetch, discussion, user, gameId}) => {
 
     const [val, setVal] = useState("");
     const [invalidMessage, setInvalidMessage] = useState(false);
@@ -35,6 +35,8 @@ const ReplyComponent = ({discussion, user, gameId}) => {
          addReply(db, gameId, discussion.id, val, user.uid, user.displayName).then(() => {
             console.log("Data written")
             setVal("");
+            reFetch();
+            // window.location.reload(true)
             // fetchDiscussions(db, gameId ).then(setDiscussions);
           });
         } catch (error) {

@@ -31,7 +31,7 @@ const AddDiscussionForm = ({ gameId, userId, user }) => {
       addDiscussion(db, gameId, val, userId, user.displayName).then(() => {
         console.log("Data written")
         setVal("");
-        fetchDiscussions(db, gameId ).then(setDiscussions);
+        reFetch();
       });
     } catch (error) {
       console.error("Error adding Discussion:", error);
@@ -41,6 +41,10 @@ const AddDiscussionForm = ({ gameId, userId, user }) => {
   useEffect(() => {
     fetchDiscussions(db, gameId ).then(setDiscussions)
   }, [])
+
+  const reFetch = () => {
+    fetchDiscussions(db, gameId).then(setDiscussions)
+  }
 
   const handleDiscussionChange = (e) => {
     e.preventDefault();
@@ -54,13 +58,13 @@ const AddDiscussionForm = ({ gameId, userId, user }) => {
     <div className={`bg-gray-dark rounded-lg md:flex transition ${isFocused ? "expanded" : "expanding"} justify-center items-center`}
       >
       <textarea
-      className="w-full rounded-t-xl md:rounded-l-xl p-2 resize-none h-full"
+      className="w-full rounded-t-xl md:rounded-none md:rounded-l-xl p-2 resize-none h-full"
       value={val}
       onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         onChange={handleDiscussionChange}
       />
-      <button className="rounded-b-xl md:rounded-r-xl h-full bg-orange font-bold w-full md:min-w-fit p-2 text-sm" onClick={() => submitDiscussion()}>Start Discussion</button>
+      <button className="rounded-b-xl md:rounded-none md:rounded-r-xl h-full bg-orange font-bold w-full md:min-w-fit md:w-1/2 p-2 text-sm" onClick={() => submitDiscussion()}>Start Discussion</button>
     </div>
     <div className="flex h-12 border mt-5">
       {invalidMessage &&
@@ -76,7 +80,7 @@ const AddDiscussionForm = ({ gameId, userId, user }) => {
         <p className="m-auto p-5 bg-white bg-opacity-20 rounded-xl">No discussions for this title yet, start one now!</p>
       </div>  
       : discussions.length!==0 ? 
-          <DiscussionsPanel gameId={gameId} discussions={discussions} user={user}/>
+          <DiscussionsPanel reFetch={reFetch} gameId={gameId} discussions={discussions} user={user}/>
         :
         <div className="w-full flex">
           <p className="m-auto p-5 bg-white bg-opacity-20 rounded-xl">No discussions for this title yet, start one now!</p>
