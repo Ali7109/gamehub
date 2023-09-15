@@ -17,6 +17,7 @@ export async function addDiscussion(db, gameId, content, userId, userName) {
 
 
 
+
 export async function addReply(db, gameId, discussionId, content, userId, userName) {
   
   const gameDocRef = doc(db, "discussions", "" + gameId);
@@ -50,20 +51,3 @@ export async function fetchDiscussions(db, gameId) {
 }
 
 
-// // Fetch discussions for a specific game
-// export async function fetchDiscussions(db, gameId) {
-//   const gameDocRef = doc(db, "discussions", ""+ gameId);
-//   const discussionListRef = collection(gameDocRef, "discussionList");
-  
-//   const discussionSnapshot = await getDocs(discussionListRef);
-  
-//   const discussions = [];
-//   discussionSnapshot.forEach((doc) => {
-//     discussions.push({
-//       id: doc.id,
-//       ...doc.data()
-//     });
-//   });
-
-//   return discussions;
-// }
