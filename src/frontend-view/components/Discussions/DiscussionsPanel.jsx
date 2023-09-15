@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import formatFirestoreTimestamp from '../Functions/calculationFunctions';
 import IndividualDiscussionPanel from './SubDiscussion Components/IndividualDiscussionPanel';
+import { auth } from '../../../Firebase/Firebase';
 
 const DiscussionsPanel = ({reFetch, discussions, user, gameId}) => {
+
 
   return (
     <div className='bg-gray-dark sh border-b-4 md:border-r-4 md:border-b-4 border-orange w-full p-5 pt-10 md:p-10 rounded-xl space-y-8'>

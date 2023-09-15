@@ -15,6 +15,8 @@ export async function addDiscussion(db, gameId, content, userId, userName) {
   });
 }
 
+
+
 export async function addReply(db, gameId, discussionId, content, userId, userName) {
   
   const gameDocRef = doc(db, "discussions", "" + gameId);
