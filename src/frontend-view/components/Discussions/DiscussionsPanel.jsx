@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import formatFirestoreTimestamp from '../Functions/calculationFunctions';
 import IndividualDiscussionPanel from './SubDiscussion Components/IndividualDiscussionPanel';
-import { auth } from '../../../Firebase/Firebase';
 
 const DiscussionsPanel = ({reFetch, discussions, user, gameId}) => {
 
