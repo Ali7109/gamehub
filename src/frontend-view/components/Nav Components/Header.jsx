@@ -61,7 +61,7 @@ const Header = () => {
   };
 
   return (
-    <div className='flex justify-around md:justify-between items-center w-full p-3 rounded-xl  bg-gray-dark'>
+    <div className='mt-5 md:mt-0 flex justify-around md:justify-between items-center w-full p-3 rounded-xl  bg-gray-dark'>
       
       <div className="md:hidden">
         {signedIn ? 
@@ -73,12 +73,15 @@ const Header = () => {
             }
       </div>
         <div className=" md:w-1/6 flex justify-around max-h-fit">
-						<div className="w-16 md:w-20">
+						<div className="w-16 md:w-20 mt-3">
 							<Lottie animationData={animationData} />
 						</div>
 				</div>
-        <div className="text-3xl md:text-5xl">
-          <h1 className="font-prism text-white">GAME<span className='or'>HUB</span></h1>
+        <div className="hidden md:block text-5xl">
+          <h1 className="font-prism text-white">pixel<span className='or'>verse</span></h1>
+        </div>
+        <div className="absolute left-1/2 -translate-x-1/2 top-4 bg-black pl-9 pr-9 md:hidden text-4xl rounded-xl">
+          <h1 className="font-prism text-white">pixel<span className='or'>verse</span></h1>
         </div>
         <div className="md:hidden">
           <FontAwesomeIcon className=' p-2 ml-3 rounded-xl text-lg text-gray-light transition hover:text-black hover:bg-orange' icon={faGear} />
