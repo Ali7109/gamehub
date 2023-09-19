@@ -50,7 +50,7 @@ const StatsPanel = () => {
 
     
     return (
-        <div className="metr-cont space-y-16 md:space-y-0 md:flex gap-20 p-5 w-full justify-center items-center ">
+        <div className="metr-cont space-y-16 md:space-y-0 md:flex gap-2 p-5 w-full justify-center items-center ">
 
             <div className=" drop-shadow-xl flex w-60 h-60 font-mono text-3xl bg-gray-dark rounded-xl p-5 text-center  text-white">
                 <div className="m-auto">
@@ -58,7 +58,7 @@ const StatsPanel = () => {
                           <CircularProgress color='warning' />
                           : 
                     <>
-                        <h1 className='transition font-bold text-orange tracking-wide hover:scale-125 hover:tracking-widest '>{count.toLocaleString("en-US")}+</h1> 
+                        <h1 className='transition font-bold text-orange tracking-wide hover:scale-110 '>{count.toLocaleString("en-US")}+</h1> 
                         <h2>Titles</h2> 
                     </>
                 }
@@ -71,7 +71,7 @@ const StatsPanel = () => {
                           <CircularProgress color='warning' />
                           : 
                     <>
-                        <h1 className='font-bold text-orange tracking-wide hover:scale-125 hover:tracking-widest duration-300 ease-in-out'>{publishersCount.toLocaleString("en-US")}+</h1> 
+                        <h1 className='transition font-bold text-orange tracking-wide hover:scale-110 '>{publishersCount.toLocaleString("en-US")}+</h1> 
                         <h2>Publishers</h2> 
                     </>
                 }
@@ -83,7 +83,7 @@ const StatsPanel = () => {
                           <CircularProgress color='warning' />
                           : 
                     <>
-                        <h1 className='font-bold text-orange tracking-wide hover:scale-125 hover:tracking-widest duration-300 ease-in-out'>{platformsCount}+</h1> 
+                        <h1 className='transition font-bold text-orange tracking-wide hover:scale-110 '>{platformsCount}+</h1> 
                         <h2>Platforms</h2> 
                     </>
                 }
