@@ -1,4 +1,5 @@
-import { addDoc, arrayUnion, collection, doc, getDoc, getDocs, orderBy, query, serverTimestamp, setDoc, updateDoc } from "firebase/firestore"; 
+import {  addDoc, arrayUnion, doc, orderBy, serverTimestamp,updateDoc } from "firebase/firestore"; 
+import { collection, query, where, getDocs } from "firebase/firestore";
 
 // Add a discussion to the specified game's discussionList subcollection
 
@@ -15,6 +16,28 @@ export async function addDiscussion(db, gameId, content, userId, userName) {
   });
 }
 
+//Adding users
+export async function addUser(db, user){
+  const userCollectionRef = collection(db, "users");
+  const userDocRef = await addDoc(userCollectionRef, {
+    displayName: user.displayName,
+    email: user.email,
+    id: user.uid,
+    profPhotoUrl: '/src/frontend-view/images/StockImages/stockProfPic.jpg',
+    coverPhoto:  '/src/frontend-view/images/StockImages/stockCoverPic.jpg'
+  })
+
+  console.log(userDocRef)
+
+}
+
+export async function userExists(db, userId){
+  const userCollectionRef = collection(db, "users");
+  const snap_query = query(userCollectionRef, where("userId","==",userId ));
+  const snapshot = await getDocs(snap_query);
+  console.log(snapshot.empty)
+  return !snapshot.empty;
+}
 
 
 
