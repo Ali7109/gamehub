@@ -9,7 +9,8 @@ import HeaderMenu from './HeaderMenu';
 import { signInWithPopup, signOut } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../../StateManagement/actions';
-import { auth, provider } from '../../../Firebase/Firebase';
+import { auth, db, provider } from '../../../Firebase/Firebase';
+import { addUser, userExists } from '../../../controller/HelperFetch';
 
 const Header = () => {
   const [signedIn, setSignedIn] = useState(false);
@@ -38,6 +39,12 @@ const Header = () => {
         dispatch(setUser(user));
         setSignedIn(true);
         setLoading(false);
+        console.log(user)
+        userExists(db, user.uid).then(data => {
+          if(!data){
+            addUser(db, user);
+          }
+        })
       })
       .catch((error) => {
         console.log(error);

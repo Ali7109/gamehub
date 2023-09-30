@@ -17,7 +17,7 @@ const StatsPanel = () => {
     const [publishersCount, setPublishersCount] = useState(0);
 
     window.addEventListener('scroll', () => {
-        setTrigger(window.scrollY > 200);
+        setTrigger(window.scrollY > 150);
     })
 
     useEffect(() => {
