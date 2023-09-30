@@ -23,12 +23,27 @@ export async function addUser(db, user){
     displayName: user.displayName,
     email: user.email,
     id: user.uid,
-    profPhotoUrl: '/src/frontend-view/images/StockImages/stockProfPic.jpg',
-    coverPhoto:  '/src/frontend-view/images/StockImages/stockCoverPic.jpg'
+    profPhotoUrl: '../../images/StockImages/stockProfPic.jpg',
+    coverPhoto:  '../../images/StockImages/stockCoverPic.jpg'
   })
 
   console.log(userDocRef)
 
+}
+
+export async function getUserById(db, userId) {
+  const userCollectionRef = collection(db, "users");
+  const userQuery = query(userCollectionRef, where("id", "==", userId));
+
+  const userQuerySnapshot = await getDocs(userQuery);
+  if (userQuerySnapshot.size === 0) {
+    // No user found with the given ID
+    return null;
+  }
+
+  // Assuming there's only one user with the given ID (or you can handle multiple results)
+  const userData = userQuerySnapshot.docs[0].data();
+  return userData;
 }
 
 export async function userExists(db, userId){
