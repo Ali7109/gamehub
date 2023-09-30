@@ -26,6 +26,11 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				user: action.data,
 			};
+		case "SET_USER_PROFILE":
+			return {
+				...state,
+				userProfile: action.data,
+			};
 		default:
 			return {
 				...state,

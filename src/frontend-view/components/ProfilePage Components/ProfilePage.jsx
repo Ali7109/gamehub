@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
 import { useSelector,useDispatch } from 'react-redux'
-import { onAuthStateChanged, signInWithPopup } from 'firebase/auth';
+import { signInWithPopup } from 'firebase/auth';
 import { setUser } from '../../../StateManagement/actions';
-import { auth, provider } from '../../../Firebase/Firebase';
+import { auth,provider } from '../../../Firebase/Firebase';
 import { CircularProgress } from '@mui/material';
 
 const ProfilePage = () => {
 
     const user = useSelector((state) => state.user);
+    // const userProfile = useSelector((state) => state.userProfile)
     const dispatch = useDispatch();
-    
     const [loading, setLoading] = useState(false);
-    
+   
     const handleLogin = () => {
         setLoading(true);
         signInWithPopup(auth, provider)
@@ -19,6 +19,16 @@ const ProfilePage = () => {
             const user = result.user;
             dispatch(setUser(user));
             setLoading(false);
+            // userExists(db, user.uid).then(data => {
+            //     if(!data){
+            //       addUser(db, user).then(
+            //         getUserById(db, user.uid).then(data => {
+            //           dispatch(setUserProfile(data))
+            //         })
+            //       );
+                  
+            //     }
+            //   })
           })
           .catch((error) => {
             console.log(error);
@@ -29,15 +39,17 @@ const ProfilePage = () => {
         <div className='rounded-xl w-full flex-col max-h-fit bg-gray-dark'>
             
             {user ? 
+            
             <>
                 <div className="w-full rounded-t-xl flex items-center h-52 bg-orange">
                     <div className="w-full h-44 bg-stock-coverphoto bg-center bg-cover p-5">
                         <div className="flex-1 m-5 h-24 w-24 rounded-full">
-                            {user.photoUrl ?
-                            <img className='rounded-full' src={require(user.photoUrl)} alt='Profile account DP'/>
-                            :
-                            <img className='rounded-full' src={require('../../images/StockImages/stockProfPic.jpg')} alt='error loading DP'/>
-                            }
+                        <img
+                            className='rounded-full object-cover'
+                            src={ require('../../images/StockImages/stockProfPic.jpg')}
+                            alt='Profile account DP'
+                            />
+                           
                             </div>
                     </div>
                 </div>
