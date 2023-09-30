@@ -23,6 +23,7 @@ import About from "./frontend-view/components/AboutPage Components/About";
 import Search from "./frontend-view/pages/Search";
 import GameDetailsPage from "./frontend-view/pages/GameDetailsPage";
 import DevDetailsPage from "./frontend-view/pages/DevDetailsPage";
+import Blog from "./frontend-view/components/Blog Components/Blog";
 
 function App() {
 	const dispatch = useDispatch();
@@ -66,6 +67,8 @@ function App() {
 						<Route path="/profile" element={<ProfilePage />} />
 						<Route path="/about" element={<About />} />
 						<Route path="/search" element={<Search />} />
+						<Route path="/blog" element={<Blog />} />
+
 						<Route
 							exact
 							path="/search/:id"

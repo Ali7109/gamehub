@@ -8,7 +8,7 @@ const VerticalNavbar = () => {
   return (
     <div className='hidden md:flex items-center justify-around h-4/5 bg-gray-dark w-1/12 p-3 rounded-xl flex-col'>
 
-        <div className="bg-gh-logo bg-cover bg-center h-20 w-20 border-4 border-orange rounded-full ">
+        <div className="bg-gh-logo bg-cover bg-center h-20 w-3/4 border-4 border-orange rounded-full ">
         </div> 
         <div className="flex flex-col justify-around overflow-auto mt-10" >
             <IconButton className='' as={Link} to="/">
@@ -17,7 +17,7 @@ const VerticalNavbar = () => {
             <IconButton as={Link} to="/search">
                 <FontAwesomeIcon  className='m-auto p-2 rounded-xl text-lg text-gray-light transition hover:text-black hover:bg-orange'  icon={faMagnifyingGlass} />
             </IconButton>
-            <IconButton as={Link} to="/discussions">
+            <IconButton as={Link} to="/blog">
                 <FontAwesomeIcon className='m-auto p-2 rounded-xl text-lg text-gray-light transition hover:text-black hover:bg-orange' icon={faComments} />
             </IconButton>
             <IconButton as={Link} to="/store" >
