@@ -122,3 +122,6 @@ color: #FF7849;
   .card:hover *{
     color: #FF7849;
   }
+  .bg-press-banner{
+    background-image: url('./assets/Backgrounds/press.jpg');
+  }
