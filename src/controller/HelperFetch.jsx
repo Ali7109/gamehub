@@ -1,12 +1,53 @@
 import {  addDoc, arrayUnion, doc, orderBy, serverTimestamp,updateDoc } from "firebase/firestore"; 
 import { collection, query, where, getDocs } from "firebase/firestore";
-
+import { db } from "../Firebase/Firebase";
 // Add a discussion to the specified game's discussionList subcollection
+export async function createBlog(db, user, title, content){
+  const blogCollectionRef = collection(db, "blogs");
+  const userDocRef = await addDoc(blogCollectionRef, {
+    name:user.displayName,
+    email: user.email, 
+    userId: user.uid,
+    content,
+    title,
+    timestamp: serverTimestamp(),
+  })
+}
+
+// Fetch discussions for a specific game and sort by timestamp
+export async function fetchBlogs() {
+  const blogsRef = collection(db, "blogs");
+
+  const q = query(blogsRef, orderBy("timestamp", "desc"));
+
+  const blogsSnapshot = await getDocs(q);
+
+  const blogs = [];
+  
+  
+  blogsSnapshot.forEach((blog) => {
+    let curr = blog._document.data.value.mapValue.fields
+    console.log(curr)
+    blogs.push({
+      userId: curr.userId.stringValue,
+      email: curr.email.stringValue,
+      id: curr.id.stringValue,
+      timestamp: curr.timestamp.timestampValue,
+      title: curr.title.stringValue,
+      content: curr.content.stringValue
+    })
+  });
+
+  return blogs;
+}
+
+
 
 export async function addDiscussion(db, gameId, content, userId, userName) {
   const gameDocRef = doc(db, "discussions", ""+ gameId);
   const discussionListRef = collection(gameDocRef, "discussionList");
   
+
   await addDoc(discussionListRef, {
     content,
     userId,
@@ -27,7 +68,6 @@ export async function addUser(db, user){
     coverPhoto:  '../../images/StockImages/stockCoverPic.jpg'
   })
 
-  console.log(userDocRef)
 
 }
 
