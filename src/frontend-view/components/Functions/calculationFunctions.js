@@ -18,3 +18,34 @@ export default function formatFirestoreTimestamp(timestamp) {
 		return formattedDate;
 	}
 }
+
+export function blogTimeStamp(timestampString) {
+	const timestamp = new Date(timestampString);
+	const currentYear = new Date().getFullYear();
+
+	const year =
+		timestamp.getFullYear() === currentYear ? "" : timestamp.getFullYear();
+	const monthNames = [
+		"January",
+		"February",
+		"March",
+		"April",
+		"May",
+		"June",
+		"July",
+		"August",
+		"September",
+		"October",
+		"November",
+		"December",
+	];
+	const month = monthNames[timestamp.getMonth()];
+	const day = String(timestamp.getDate()).padStart(2, "0");
+	const hours = String(timestamp.getHours()).padStart(2, "0");
+	const minutes = String(timestamp.getMinutes()).padStart(2, "0");
+
+	const formattedDate = `${year}${year ? "-" : ""}${month} ${day}`;
+	const formattedTime = `${hours}:${minutes}`;
+
+	return `${formattedDate} @ ${formattedTime}`;
+}
