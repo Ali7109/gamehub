@@ -24,12 +24,12 @@ export async function fetchBlogs() {
 
   const blogs = [];
   
-  
   blogsSnapshot.forEach((blog) => {
     let curr = blog._document.data.value.mapValue.fields
     console.log(curr)
     blogs.push({
       userId: curr.userId.stringValue,
+      name: curr.name.stringValue,
       email: curr.email.stringValue,
       id: curr.id.stringValue,
       timestamp: curr.timestamp.timestampValue,
