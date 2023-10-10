@@ -24,6 +24,7 @@ import Search from "./frontend-view/pages/Search";
 import GameDetailsPage from "./frontend-view/pages/GameDetailsPage";
 import DevDetailsPage from "./frontend-view/pages/DevDetailsPage";
 import Blog from "./frontend-view/components/Blog Components/Blog";
+import CreateBlog from "./frontend-view/components/Blog Components/CreateBlog";
 
 function App() {
 	const dispatch = useDispatch();
