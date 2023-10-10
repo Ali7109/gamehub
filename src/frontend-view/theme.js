@@ -1,33 +1,60 @@
-// theme.js
 import { createTheme } from "@mui/material/styles";
 
-const theme = createTheme({
-	components: {
-		MuiTextField: {
-			styleOverrides: {
-				root: {
-					"& .MuiInputLabel-root": {
-						color: "gray", // Label color before focus
-					},
-					"& .MuiInputBase-input": {
-						color: "gray", // Input text color
-					},
-					"& .MuiInput-underline:before": {
-						borderBottomColor: "gray", // Underline color before focus
-					},
-					"& .MuiInput-underline:hover:before": {
-						borderBottomColor: "gray", // Underline color on hover before focus
-					},
-					"& .MuiInput-underline.Mui-focused:before": {
-						borderBottomColor: "warning.main", // Underline color after focus
-					},
-					"& .MuiInput-underline.Mui-focused .MuiInputLabel-root": {
-						color: "warning.main", // Label color after focus
+// Define your light mode colors
+const lightModeColors = {
+	labelColor: "gray",
+	inputTextColor: "gray",
+	underlineColorBeforeFocus: "gray",
+	underlineColorOnHoverBeforeFocus: "gray",
+	underlineColorAfterFocus: "warning.main",
+	labelColorAfterFocus: "warning.main",
+};
+
+// Define your dark mode colors
+const darkModeColors = {
+	labelColor: "white",
+	inputTextColor: "white",
+	underlineColorBeforeFocus: "white",
+	underlineColorOnHoverBeforeFocus: "white",
+	underlineColorAfterFocus: "primary.main",
+	labelColorAfterFocus: "primary.main",
+};
+
+// Create a function that generates the theme based on the current mode
+const generateTheme = (isDarkMode) => {
+	const colors = isDarkMode ? darkModeColors : lightModeColors;
+
+	return createTheme({
+		components: {
+			MuiTextField: {
+				styleOverrides: {
+					root: {
+						"& .MuiInputLabel-root": {
+							color: colors.labelColor,
+						},
+						"& .MuiInputBase-input": {
+							color: colors.inputTextColor,
+						},
+						"& .MuiInput-underline:before": {
+							borderBottomColor: colors.underlineColorBeforeFocus,
+						},
+						"& .MuiInput-underline:hover:before": {
+							borderBottomColor:
+								colors.underlineColorOnHoverBeforeFocus,
+						},
+						"& .MuiInput-underline.Mui-focused:before": {
+							borderBottomColor: colors.underlineColorAfterFocus,
+						},
+						"& .MuiInput-underline.Mui-focused .MuiInputLabel-root":
+							{
+								color: colors.labelColorAfterFocus,
+							},
 					},
 				},
 			},
 		},
-	},
-});
+		// ...other theme configuration here
+	});
+};
 
-export default theme;
+export default generateTheme;

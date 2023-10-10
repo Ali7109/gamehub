@@ -13,10 +13,10 @@ const DetailFooter = ({game}) => {
   
   return (
     <div className="xs:flex-col md:flex w-full justify-between">
-    <div className="flex mr-10 gap-2 md:w-1/3">
-      <h4 className="transition m-auto bg-white bg-opacity-20 text-white hover:text-black bg-metayellow font-bold rounded-xl p-2 cursor-pointer">
-          <a className='flex items-center max-w-fit ' href={`https://www.metacritic.com/game/pc/${game.slug}`} target='_blank' rel="noopener noreferrer">
-            <img src={metacriticImage} alt="metacritic-icon" className="mr-2 h-6 w-6" />
+    <div className="flex mr-10 gap-2 ">
+      <h4 className="transition m-auto min-w-fit bg-white bg-opacity-20 text-white hover:text-black bg-metayellow font-bold rounded-xl p-2 cursor-pointer">
+          <a className='flex items-center ' href={`https://www.metacritic.com/game/pc/${game.slug}`} target='_blank' rel="noopener noreferrer">
+            <img src={metacriticImage} alt="metacritic-icon" className="mr-2 h-6" />
             {game.metacritic}
           </a>
       </h4>
@@ -26,7 +26,7 @@ const DetailFooter = ({game}) => {
           </a>
       }
     </div>
-    <h4 className="mr-2 max-w-2/3 bg-black bg-opacity-20 text-white font-bold rounded-xl p-2">
+    <h4 className="mr-2 w-2/3 bg-black bg-opacity-20 text-white font-bold rounded-xl p-2">
           {game.genres.map((genre, index) => {
             let hyphen = " - ";
             if(index+1 === game.genres.length) hyphen = "";

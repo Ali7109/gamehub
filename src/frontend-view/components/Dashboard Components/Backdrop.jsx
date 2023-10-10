@@ -9,7 +9,7 @@ const Backdrop = () => {
               <h3 className='font-medium'>Explore our vast collection of games, discover new favorites, and connect with fellow gamers.</h3>
             </div>
             <div className="flex-2 relative md:w-7/12">
-              <img className='w-2/3 md:w-full absolute  bottom-0 right-0 ' src={require('../../images/kratos.png')} alt="Kratos Splash"/>
+              <img className='w-2/3 md:w-full md:max-w-xl absolute  bottom-0 right-0 ' src={require('../../images/kratos.png')} alt="Kratos Splash"/>
               
             </div>
           </div>

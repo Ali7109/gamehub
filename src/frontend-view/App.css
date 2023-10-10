@@ -21,6 +21,9 @@
 .font-prism{
   font-family: 'Tilt Prism', cursive;
 }
+.font-pixel{
+  font-family: 'Press Start 2P', cursive;
+}
 
 .bg-metayellow:hover {
   background-color: #FFCE2C;
@@ -118,4 +121,7 @@ color: #FF7849;
 
   .card:hover *{
     color: #FF7849;
+  }
+  .bg-press-banner{
+    background-image: url('./assets/Backgrounds/press.jpg');
   }
