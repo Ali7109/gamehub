@@ -35,9 +35,9 @@ const handleClearSelection = () => {
             />
           ))}
       </div>
-      <div className="w-full p-4 pt-1 pb-1 justify-around flex-col md:flex">
+      <div className="w-full p-4 pt-1 pb-1 justify-around md:flex">
         <button onClick={handleSearch} className=' font-bold w-full md:w-8/12 bg-orange text-black mt-2 p-3 pt-1 pb-1 rounded-xl transition hover:scale-x-105 hover:text-white'>Search</button>
-        <button onClick={handleClearSelection} className=' w-full md:max-w-fit bg-white mt-2 p-3 pt-1 pb-1 rounded-xl transition hover:scale-x-105 hover:bg-red-800 hover:text-white'>Clear Genres</button>
+        <button onClick={handleClearSelection} className=' w-full md:1/3 md:max-w-fit bg-white mt-2 p-3 pt-1 pb-1 rounded-xl transition hover:scale-x-105 hover:bg-red-800 hover:text-white'>Clear Genres</button>
       </div>
   </div>
   )
