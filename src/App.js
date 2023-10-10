@@ -25,7 +25,6 @@ import GameDetailsPage from "./frontend-view/pages/GameDetailsPage";
 import DevDetailsPage from "./frontend-view/pages/DevDetailsPage";
 import Blog from "./frontend-view/components/Blog Components/Blog";
 import ViewBlog from "./frontend-view/components/Blog Components/ViewBlog";
-import { DarkModeProvider } from "./Context/DarkModeContext";
 
 function App() {
 	const dispatch = useDispatch();
@@ -60,38 +59,35 @@ function App() {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<DarkModeProvider>
-				<div className="App flex p-5 justify-center">
-					<VerticalNavbar />
-					<div className="flex flex-col  items-center md:p-5 gap-10 w-11/12 md:w-10/12">
-						<Header />
-						<Routes>
-							<Route path="/" element={<Dashboard />} />
-							<Route path="/profile" element={<ProfilePage />} />
-							<Route path="/about" element={<About />} />
-							<Route path="/search" element={<Search />} />
-							<Route path="/blog" element={<Blog />} />
-							<Route
-								path="/blog/view/:id"
-								element={<ViewBlog />}
-							/>
-							<Route
-								exact
-								path="/search/:id"
-								element={<GameDetailsPage />}
-							/>
-							<Route
-								exact
-								path="/developers/:id"
-								element={<DevDetailsPage />}
-							/>
-						</Routes>
-					</div>
-					<RightNavbar />
+			{/* <DarkModeProvider> */}
+			<div className="App flex p-5 justify-center">
+				<VerticalNavbar />
+				<div className="flex flex-col  items-center md:p-5 gap-10 w-11/12 md:w-10/12">
+					<Header />
+					<Routes>
+						<Route path="/" element={<Dashboard />} />
+						<Route path="/profile" element={<ProfilePage />} />
+						<Route path="/about" element={<About />} />
+						<Route path="/search" element={<Search />} />
+						<Route path="/blog" element={<Blog />} />
+						<Route path="/blog/view/:id" element={<ViewBlog />} />
+						<Route
+							exact
+							path="/search/:id"
+							element={<GameDetailsPage />}
+						/>
+						<Route
+							exact
+							path="/developers/:id"
+							element={<DevDetailsPage />}
+						/>
+					</Routes>
 				</div>
-				<Footer />
-				{triggerUpButton && <BackToTop />}
-			</DarkModeProvider>
+				<RightNavbar />
+			</div>
+			<Footer />
+			{triggerUpButton && <BackToTop />}
+			{/* </DarkModeProvider> */}
 		</ThemeProvider>
 	);
 }

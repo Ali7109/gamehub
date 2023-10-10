@@ -1,9 +1,8 @@
 // AddDiscussionForm.js
 import React, { useEffect, useState } from "react";
-import { auth, db } from "../../../Firebase/Firebase";
+import { db } from "../../../Firebase/Firebase";
 import { addDiscussion, fetchDiscussions } from "../../../controller/HelperFetch";
 import DiscussionsPanel from "./DiscussionsPanel";
-import { cardClasses } from "@mui/material";
 
 const AddDiscussionForm = ({ gameId, userId, user }) => {
   const [val, setVal] = useState("");
@@ -28,10 +27,14 @@ const AddDiscussionForm = ({ gameId, userId, user }) => {
       return;
     }
     try {
-      addDiscussion(db, gameId, val, userId, user.displayName).then(() => {
-        console.log("Data written")
-        setVal("");
-        reFetch();
+      addDiscussion(db, gameId, val, userId, user.displayName).then((data) => {
+        if(data){
+          console.log("Data written")
+          setVal("");
+          reFetch();
+        } else {
+          alert("No permissions")
+        }
       });
     } catch (error) {
       console.error("Error adding Discussion:", error);

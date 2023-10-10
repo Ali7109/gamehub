@@ -17,12 +17,12 @@ const IndividualDiscussionPanel = ({ reFetch, gameId, discussion, time, user}) =
         <DialogueHeaderComponent userName={discussion.userName} time={time}/>
         <div className="h-6 w-full"></div>
         <div className="">
-          {user.uid === discussion.userId 
+          {/* {user.uid === discussion.userId 
             && 
             <p>
               Owned
             </p>
-          }
+          } */}
 
             <h1>{discussion.content}</h1>
         </div>   

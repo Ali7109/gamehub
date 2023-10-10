@@ -70,14 +70,17 @@ export async function addDiscussion(db, gameId, content, userId, userName) {
   const gameDocRef = doc(db, "discussions", ""+ gameId);
   const discussionListRef = collection(gameDocRef, "discussionList");
   
-
-  await addDoc(discussionListRef, {
-    content,
-    userId,
-    userName,
-    timestamp: serverTimestamp(),
-    replies: []
-  });
+  try{
+    await addDoc(discussionListRef, {
+      content,
+      userId,
+      userName,
+      timestamp: serverTimestamp(),
+      replies: []
+    });
+   } catch (error){
+    console.log("whoops" + error)
+  }
 }
 
 //Adding users

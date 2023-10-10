@@ -1,7 +1,7 @@
-import { faCircle, faGear, faLightbulb, faMagnifyingGlass, faMoon, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faBurger, faCircle, faGear, faLightbulb, faMagnifyingGlass, faMoon, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { CircularProgress, TextField } from '@mui/material'
-import React, { useContext, useState } from 'react'
+import { CircularProgress } from '@mui/material'
+import React, { useContext, useEffect, useState } from 'react'
 import Lottie from "lottie-react";
 import animationData from "../../assets/animation_ljyucfqa.json";
 import HeaderMenu from './HeaderMenu';
@@ -12,6 +12,7 @@ import { setUser, setUserProfile } from '../../../StateManagement/actions';
 import { auth, db, provider } from '../../../Firebase/Firebase';
 import { addUser, getUserById, userExists } from '../../../controller/HelperFetch';
 import { DarkModeContext } from '../../../Context/DarkModeContext';
+import BurgerMenu from './BurgerMenu';
 
 const Header = () => {
   const [signedIn, setSignedIn] = useState(false);
@@ -20,7 +21,7 @@ const Header = () => {
 
   const dispatch = useDispatch();
 
-  auth.onAuthStateChanged(function(user) {
+  const unsub = auth.onAuthStateChanged(function(user) {
     if (user) {
       setSignedIn(true);
       let name = user.displayName.split(" ");
@@ -32,7 +33,10 @@ const Header = () => {
     }
   });
 
-  const {darkMode, toggleDarkMode} = useContext(DarkModeContext);
+  useEffect(() => {
+    unsub();
+  }, [])
+  // const {darkMode, toggleDarkMode} = useContext(DarkModeContext);
   
   const handleLogin = () => {
     setLoading(true);
@@ -43,17 +47,15 @@ const Header = () => {
         setSignedIn(true);
         setLoading(false);
 
-        userExists(db, user.uid).then(data => {
-          if(!data){
-            addUser(db, user).then(
-              getUserById(db, user.uid).then(data => {
-                dispatch(setUserProfile(data))
-              })
-            );
-            
-          }
-        })
-        
+        // userExists(db, user.uid).then(data => {
+        //   if(!data){
+        //     addUser(db, user).then(
+        //       getUserById(db, user.uid).then(data => {
+        //         dispatch(setUserProfile(data))
+        //       })
+        //     );
+        //   }
+        // })
       })
       .catch((error) => {
         console.log(error);
@@ -61,10 +63,10 @@ const Header = () => {
       });
   };
 
-  const handleToggleDarkMode = () => {
-    console.log("Toggle Dark Mode button clicked"); // Add this line for debugging
-    toggleDarkMode();
-  };
+  // const handleToggleDarkMode = () => {
+  //   console.log("Toggle Dark Mode button clicked"); // Add this line for debugging
+  //   toggleDarkMode();
+  // };
 
   const handleLogout = () => {
     setLoading(true);
@@ -80,9 +82,13 @@ const Header = () => {
       });
   };
 
-
+  const [collapsed, setCollapsed] = useState(true);
+  const handleCollapse = () => {
+    setCollapsed(!collapsed)
+  }
+  
   return (
-    <div className={`mt-5 md:mt-0 flex justify-around md:justify-between items-center w-full p-3 rounded-xl  ${darkMode ? 'bg-gray-dark' : 'bg-white'}`}>
+    <div className={`mt-5 md:mt-0 flex justify-around md:justify-between items-center w-full p-3 rounded-xl bg-gray-dark`}>
       
       <div className="md:hidden">
         {signedIn ? 
@@ -105,8 +111,11 @@ const Header = () => {
           <h1 className="font-prism text-white">pixel<span className='or'>verse</span></h1>
         </div>
         <div className="md:hidden">
-          <FontAwesomeIcon className=' p-2 ml-3 rounded-xl text-lg text-gray-light transition hover:text-black hover:bg-orange' icon={faGear} />
+          <button onClick={handleCollapse}>
+            <FontAwesomeIcon className=' p-2 ml-3 rounded-xl text-lg text-gray-light transition hover:text-black hover:bg-orange' icon={faBurger} />
+          </button>
         </div>
+
         <div className="hidden md:flex items-center  w-1/6">
           <div className=' md:flex flex-col md:flex-row justify-around md:justify-end items-center p-2 w-full '>
               {signedIn ? 
@@ -121,6 +130,10 @@ const Header = () => {
             </button> */}
           </div>
         </div>
+        {
+          !collapsed && 
+          <BurgerMenu setCollapsed={setCollapsed} collapsed={collapsed}/>
+        }
         
     </div>
   )
