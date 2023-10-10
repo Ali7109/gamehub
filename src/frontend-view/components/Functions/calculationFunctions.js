@@ -26,18 +26,18 @@ export function blogTimeStamp(timestampString) {
 	const year =
 		timestamp.getFullYear() === currentYear ? "" : timestamp.getFullYear();
 	const monthNames = [
-		"January",
-		"February",
-		"March",
-		"April",
+		"Jan",
+		"Feb",
+		"Mar",
+		"Apr",
 		"May",
-		"June",
-		"July",
-		"August",
-		"September",
-		"October",
-		"November",
-		"December",
+		"Jun",
+		"Jul",
+		"Aug",
+		"Sept",
+		"Oct",
+		"Nov",
+		"Dec",
 	];
 	const month = monthNames[timestamp.getMonth()];
 	const day = String(timestamp.getDate()).padStart(2, "0");

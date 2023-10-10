@@ -14,13 +14,15 @@ const Blog = () => {
 
   const [blogs, setBlogs] = useState([])
   const [createPage, setCreatePage] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect( () => {
     refetchBlogs();
   }, [])
 
   const refetchBlogs = () => {
-    fetchBlogs().then(setBlogs)
+    setLoading(true)
+    fetchBlogs().then(setBlogs).then(setLoading(false))
   }
   return (
     <>
@@ -55,8 +57,8 @@ const Blog = () => {
           </div>
           {!createPage ? 
           <>
-          {blogs ? 
-            <BlogsDisplay blogs={blogs}/> : <CircularProgress color='warning' className='h-16 w-16'/>}
+          {blogs && !loading? 
+            <BlogsDisplay blogs={blogs} loading={loading}/> : <CircularProgress color='warning' className='h-16 w-16'/>}
           </>
           : <CreateBlog setCreatePage={setCreatePage} user={user}/> }
       </div>

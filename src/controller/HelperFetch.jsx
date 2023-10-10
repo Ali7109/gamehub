@@ -1,7 +1,8 @@
-import {  addDoc, arrayUnion, doc, orderBy, serverTimestamp,updateDoc } from "firebase/firestore"; 
+import {  addDoc, arrayUnion, doc, getDoc, orderBy, serverTimestamp,updateDoc } from "firebase/firestore"; 
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../Firebase/Firebase";
 import {v4 as uuidv4} from 'uuid';
+import { useNavigate } from "react-router-dom";
 
 // Add a discussion to the specified game's discussionList subcollection
 export async function createBlog( user, title, content) {
@@ -23,7 +24,19 @@ export async function createBlog( user, title, content) {
     return false; // Blog creation failed
   }
 }
+export async function fetchBlogById(blogId){
+  const blogRef = collection(db, "blogs");
+  const userQuery = query(blogRef, where("id", "==", blogId));
 
+  const userQuerySnapshot = await getDocs(userQuery);
+  if (userQuerySnapshot.size === 0) {
+    // No user found with the given ID
+    return null;
+  }
+  // Assuming there's only one user with the given ID (or you can handle multiple results)
+  const userData = userQuerySnapshot.docs[0].data();
+  return userData;
+}
 // Fetch discussions for a specific game and sort by timestamp
 export async function fetchBlogs() {
   const blogsRef = collection(db, "blogs");
