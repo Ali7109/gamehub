@@ -1,17 +1,27 @@
 import {  addDoc, arrayUnion, doc, orderBy, serverTimestamp,updateDoc } from "firebase/firestore"; 
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../Firebase/Firebase";
+import {v4 as uuidv4} from 'uuid';
+
 // Add a discussion to the specified game's discussionList subcollection
-export async function createBlog(db, user, title, content){
-  const blogCollectionRef = collection(db, "blogs");
-  const userDocRef = await addDoc(blogCollectionRef, {
-    name:user.displayName,
-    email: user.email, 
-    userId: user.uid,
-    content,
-    title,
-    timestamp: serverTimestamp(),
-  })
+export async function createBlog( user, title, content) {
+  try {
+    const blogCollectionRef = collection(db, "blogs");
+    const userDocRef = await addDoc(blogCollectionRef, {
+      name: user.displayName,
+      email: user.email,
+      userId: user.uid,
+      id: uuidv4(),
+      content,
+      title,
+      timestamp: serverTimestamp(),
+    });
+    
+    return true; // Blog was successfully added
+  } catch (error) {
+    console.error("Error creating blog:", error);
+    return false; // Blog creation failed
+  }
 }
 
 // Fetch discussions for a specific game and sort by timestamp
@@ -26,7 +36,7 @@ export async function fetchBlogs() {
   
   blogsSnapshot.forEach((blog) => {
     let curr = blog._document.data.value.mapValue.fields
-    console.log(curr)
+    console.log(blog)
     blogs.push({
       userId: curr.userId.stringValue,
       name: curr.name.stringValue,
