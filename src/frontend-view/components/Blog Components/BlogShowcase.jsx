@@ -18,7 +18,7 @@ const BlogShowcase = ({blog}) => {
         </div>
         <div className="absolute w-56 right-2 top-2 bg-black rounded-xl text-black">
             <div className="w-full overflow-clip font-yb bg-white rounded-xl border-l-2 border-b-2 border-orange pl-2 pr-2">
-                <h2> author <FontAwesomeIcon icon={faFeather} /> {blog.name}</h2>
+                <h2> <FontAwesomeIcon icon={faFeather} /> {blog.name}</h2>
             </div>
         </div>
         <div className="absolute w-56 right-2 bg-black rounded-xl text-black">

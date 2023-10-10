@@ -58,7 +58,7 @@ const Blog = () => {
           {!createPage ? 
           <>
           {blogs && !loading? 
-            <BlogsDisplay blogs={blogs} loading={loading}/> : <CircularProgress color='warning' className='h-16 w-16'/>}
+            <BlogsDisplay refetchBlogs={refetchBlogs} blogs={blogs} loading={loading}/> : <CircularProgress color='warning' className='h-16 w-16'/>}
           </>
           : <CreateBlog setCreatePage={setCreatePage} user={user}/> }
       </div>

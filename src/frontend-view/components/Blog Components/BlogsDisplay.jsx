@@ -2,8 +2,10 @@ import React, { useEffect } from 'react'
 import BlogShowcase from './BlogShowcase'
 import { CircularProgress } from '@mui/material'
 
-const BlogsDisplay = ({blogs, loading}) => {
-
+const BlogsDisplay = ({blogs, loading, refetchBlogs}) => {
+  useEffect(() => {
+    refetchBlogs();
+  },[])
   
   return (
     <div className='w-full bg-gray-dark p-5 rounded-xl border-l-2 border-r-2 border-orange'>
