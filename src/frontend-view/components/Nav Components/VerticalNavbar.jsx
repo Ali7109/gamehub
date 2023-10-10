@@ -20,9 +20,9 @@ const VerticalNavbar = () => {
             <IconButton as={Link} to="/blog">
                 <FontAwesomeIcon className='m-auto p-2 rounded-xl text-lg text-gray-light transition hover:text-black hover:bg-orange' icon={faComments} />
             </IconButton>
-            <IconButton as={Link} to="/store" >
+            {/* <IconButton as={Link} to="/store" >
                 <FontAwesomeIcon className='m-auto p-2 rounded-xl text-lg text-gray-light transition hover:text-black hover:bg-orange' icon={faShoppingCart} />
-            </IconButton>
+            </IconButton> */}
         </div>
     </div>
   )

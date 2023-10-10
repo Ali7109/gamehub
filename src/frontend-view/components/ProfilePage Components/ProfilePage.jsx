@@ -8,7 +8,6 @@ import { CircularProgress } from '@mui/material';
 const ProfilePage = () => {
 
     const user = useSelector((state) => state.user);
-    // const userProfile = useSelector((state) => state.userProfile)
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
    
@@ -19,16 +18,6 @@ const ProfilePage = () => {
             const user = result.user;
             dispatch(setUser(user));
             setLoading(false);
-            // userExists(db, user.uid).then(data => {
-            //     if(!data){
-            //       addUser(db, user).then(
-            //         getUserById(db, user.uid).then(data => {
-            //           dispatch(setUserProfile(data))
-            //         })
-            //       );
-                  
-            //     }
-            //   })
           })
           .catch((error) => {
             console.log(error);
@@ -58,7 +47,7 @@ const ProfilePage = () => {
                         <h1 className='text-3xl'>{user.displayName}</h1>
                         <h2>{user.email}</h2>
                     </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est vitae, labore inventore unde voluptatem corporis?</p>
+                    <p className='text-center italic font-bold'>Feature under development</p>
                 </div>
             </>
             :
