@@ -25,7 +25,7 @@ const handleClearSelection = () => {
 
   return (
     <div className='w-full flex-col mt-5 pb-5'>
-      <div className='w-full xs:p-1 md:p-3 rounded-xl mb-5 flex gap-5 overflow-auto '>
+      <div className='w-full p-1 md:p-3 rounded-xl mb-5 flex gap-5 overflow-auto '>
           {genres.map((genre, index) => (
               <GenreButton
               key={index}
@@ -35,9 +35,9 @@ const handleClearSelection = () => {
             />
           ))}
       </div>
-      <div className="w-full p-4 pt-1 pb-1 justify-around flex">
-      <button onClick={handleSearch} className=' font-bold w-2/3 md:w-8/12 bg-orange text-black mt-2 p-3 pt-1 pb-1 rounded-xl transition hover:scale-x-105 hover:text-white'>Search</button>
-        <button onClick={handleClearSelection} className=' w-1/3 md:max-w-fit bg-white mt-2 p-3 pt-1 pb-1 rounded-xl transition hover:scale-x-105 hover:bg-red-800 hover:text-white'>Clear Genres</button>
+      <div className="w-full p-4 pt-1 pb-1 justify-around flex-col md:flex">
+        <button onClick={handleSearch} className=' font-bold w-full md:w-8/12 bg-orange text-black mt-2 p-3 pt-1 pb-1 rounded-xl transition hover:scale-x-105 hover:text-white'>Search</button>
+        <button onClick={handleClearSelection} className=' w-full md:max-w-fit bg-white mt-2 p-3 pt-1 pb-1 rounded-xl transition hover:scale-x-105 hover:bg-red-800 hover:text-white'>Clear Genres</button>
       </div>
   </div>
   )
