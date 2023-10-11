@@ -22,7 +22,7 @@ const GameDetailCard = ({gameDetails}) => {
       });
 
   return (
-    <div className="bg-black border-l-2 border-r-2 border-orange w-full rounded-xl p-10 text-black">
+    <div className="bg-black border-l-2 border-r-2 border-orange w-full rounded-xl pt-10 pl-3 pr-3 md:p-10 text-black">
         <button onClick={() => {
             nav(-1) 
             window.scrollTo({
@@ -43,15 +43,15 @@ const GameDetailCard = ({gameDetails}) => {
                 <DetailFooter game={gameDetails}/>
             </div>
         </div>
-        <div className="w-full text-white mb-5 custom-scroll">
+        <div className="w-full mt-10 text-white custom-scroll">
             <h1 className='mr-5 linear-ore font-bold text-4xl'>Developers </h1>
-            <div className='gap-5 flex items-baseline overflow-auto pb-2'>{
+            <div className='gap-5 flex items-baseline overflow-auto'>{
                 gameDetails.developers.map((developer) => (
                     <Link key={developer.id} to={`/developers/${developer.id}`} className='cursor-pointer font-bold hover:bg-orange transition hover:text-black mt-2 min-w-fit bg-white bg-opacity-20 p-2 rounded-xl'>{developer.name}</Link>
                 ))
                 }</div>
         </div>
-        <div className="mt-10 w-full h-16 text-white  custom-scroll transition items-baseline">
+        <div className="mt-10 w-full h-16 text-white custom-scroll transition items-baseline">
             <h1 className='mr-5 linear-ore font-bold text-4xl'>Platforms </h1>
             <div className='overflow-auto transition gap-5 flex items-baseline'>{
                gameDetails.platforms.map((platform) => {
@@ -60,7 +60,7 @@ const GameDetailCard = ({gameDetails}) => {
                 }
             </div>
         </div>
-        <div className="w-full mt-10 text-white  custom-scroll transition items-center ">
+        <div className="w-full mt-20 text-white  custom-scroll transition items-center ">
             <h1  className='mr-5 mb-2 linear-ore font-bold text-4xl'>Stores </h1>
             <div className='overflow-auto transition gap-5 flex items-center pb-2 '>{
                gameDetails.stores.map((store) => 
@@ -78,7 +78,7 @@ const GameDetailCard = ({gameDetails}) => {
                 }
             </div>
         </div>
-        <div className="text-white mt-8 mb-8">
+        <div className="text-white mt-10 mb-8">
             <h1 className='mr-5 mb-2 linear-ore font-bold text-3xl '>Relevant tags</h1>
             <p className='text-gray-light'>{gameDetails.tags.map(tag => {
                 return `#${tag.name} `
