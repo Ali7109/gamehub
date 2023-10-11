@@ -26,25 +26,24 @@ const Blog = () => {
   }
   return (
     <>
-      <div className="w-full bg-press-banner bg-center rounded-xl">
+      <div className="w-full  bg-press-banner bg-center rounded-xl">
         <div className=" w-full flex items-center justify-around bg-black bg-opacity-80 rounded-xl p-3 pl-20 pr-20 text-center">
           <div className="text-white text-5xl flex items-center justify-around">
               <FontAwesomeIcon icon={faHeadset} />
             </div>
-            <div className="">
+            <div className="m-2">
               <FontAwesomeIcon icon={faScroll} className='text-white text-5xl' />
-              <h1 className='text-orange font-mono text-6xl'>PixelPress</h1>
+              <h1 className='text-orange font-mono text-4xl md:text-6xl'>PixelPress</h1>
               <p className='text-white'>Your daily dose of the gaming industry</p>
             </div>
-            <div className="text-white text-5xl flex items-center justify-around">
+            <div className=" text-white text-5xl flex items-center justify-around">
               <FontAwesomeIcon icon={faGhost} />
             </div>
         </div>
       </div>
       
       <div className="relative w-full">
-
-        <div className="absolute end-20 top-7">
+        <div className="absolute -translate-x-1/2 left-1/2  top-7">
             <button
               disabled={!user}
               onClick={() => setCreatePage(!createPage)}

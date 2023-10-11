@@ -8,7 +8,7 @@ const BlogsDisplay = ({blogs, loading, refetchBlogs}) => {
   },[])
   
   return (
-    <div className='w-full bg-gray-dark p-5 rounded-xl border-l-2 border-r-2 border-orange'>
+    <div className='w-full bg-gray-dark pt-5 md:p-5 rounded-xl md:border-l-2 md:border-r-2 border-orange'>
         {!loading ?
           <div className=' mt-20'>
             {blogs.map(blog => (
