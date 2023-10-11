@@ -26,7 +26,7 @@ const DevDetailsPage = () => {
   }, []);
 
   return (
-    <div className='flex w-full rounded-xl m-5 p-5 bg-gray-dark'>
+    <div className='flex w-full rounded-xl m-0 p-2 md:p-5 bg-gray-dark'>
         {!loading && devDetails ? 
         <DevDetailCard devDetails={devDetails}/>
         :

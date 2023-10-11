@@ -7,7 +7,7 @@ const DevDetailCard = ({devDetails}) => {
 
     const nav = useNavigate();
   return (
-    <div className="bg-black border-l-2 border-r-2 border-orange w-full rounded-xl p-10 text-black">
+    <div className="bg-black border-l-2 border-r-2 border-orange w-full rounded-xl p-4 md:p-10 text-black">
         <button onClick={() => {
             nav(-1) 
             window.scrollTo({
@@ -16,7 +16,7 @@ const DevDetailCard = ({devDetails}) => {
               });
         }} className="p-2 text-center bg-orange rounded-xl font-bold transition hover:scale-105 hover:text-white"><FontAwesomeIcon icon={faBackward}/> Back</button>
         
-        <h2 className='text-center p-2 pl-4 pr-4 rounded-xl bg-gray-dark max-w-fit m-auto text-2xl font-bold text-orange'>Game Developers</h2>
+        <h2 className='text-center mt-5 md:mt-0 p-2 pl-4 pr-4 rounded-xl bg-gray-dark max-w-fit m-auto text-2xl font-bold text-orange'>Game Developers</h2>
         
         <div className="w-full bg-gray-dark rounded-xl mt-10 flex justify-center items-center">
             <img src={devDetails.image_background} alt={`${devDetails.name} icon`} className='h-56 w-full object-cover object-top'/>
