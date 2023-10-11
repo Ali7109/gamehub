@@ -88,7 +88,7 @@ const Header = () => {
   }
   
   return (
-    <div className={`mt-5 md:mt-0 flex justify-around md:justify-between items-center w-full p-3 rounded-xl bg-gray-dark`}>
+    <div className={` mt-10 md:mt-0 flex justify-around md:justify-between items-center w-full p-3 rounded-xl bg-gray-dark`}>
       
       <div className="md:hidden">
         {signedIn ? 
