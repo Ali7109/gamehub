@@ -37,7 +37,7 @@ const ViewBlog = () => {
     
       }, []);
   return (
-        <div className="relative bg-gray-dark md:w-4/5 p-4 border-l-2 border-r-2 border-orange rounded-lg shadow-lg">
+        <div className="relative bg-gray-dark md:w-4/5 p-2 pt-4 md:p-4 md:border-l-2 md:border-r-2 border-orange rounded-lg shadow-lg">
             <>
                 <Link to={'/blog'}>
                     <button className='bg-orange rounded-xl p-2 hover:text-orange hover:bg-black transition'><FontAwesomeIcon icon={faChevronLeft}/> back</button>
@@ -49,7 +49,7 @@ const ViewBlog = () => {
                     <div className="w-full text-center text-white pt-5 pb-5">
                         <h1 className='text-2xl font-bold'>{blog.title}</h1>
                     </div>
-                    <div className="m-auto flex md:w-4/5 border-orange border-l-2 border-b-2 justify-between text-orange bg-black rounded-lg p-2 mb-5 mt-5">
+                    <div className="m-auto md:flex md:w-4/5 border-orange border-l-2 border-b-2 justify-between text-orange bg-black rounded-lg p-2 mb-5 mt-5">
                         
                         <h2><FontAwesomeIcon icon={faFeather} /> Written by: {blog.name} </h2>
                         <h2><FontAwesomeIcon icon={faClock} /> {formatFirestoreTimestamp(blog.timestamp)}</h2>
