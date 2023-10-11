@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const BurgerMenu = ({setCollapsed}) => {
     const menu = [{path: '/', label: 'Home' },{path: '/search', label: 'Search' },{path: '/blog', label: 'Blog' }];
   return (
-    <div className="md:hidden transition absolute top-0 h-64 w-full bg-gray-dark border-b-2 border-orange rounded-b-xl">
+    <div className="md:hidden transition z-10 absolute top-0 h-64 w-full bg-gray-dark border-b-2 border-orange rounded-b-xl">
         <button onClick={() => setCollapsed(true)} className='flex absolute h-8 w-8 rounded-full bottom-5 right-5 text-white transition hover:text-orange hover:bg-slate-600 '>
             <FontAwesomeIcon className='m-auto h-6 w-6' icon={faChevronUp}/>
         </button>

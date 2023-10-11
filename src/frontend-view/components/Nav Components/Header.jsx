@@ -114,11 +114,10 @@ const Header = () => {
             !signedIn
             &&
             <div className="md:hidden">
-          
-            <button onClick={handleCollapse}>
-              <FontAwesomeIcon className=' p-2 ml-3 rounded-xl text-lg text-gray-light transition hover:text-black hover:bg-orange' icon={faBurger} />
-            </button>
-          </div>
+              <button onClick={handleCollapse}>
+                <FontAwesomeIcon className=' p-2 ml-3 rounded-xl text-lg text-gray-light transition hover:text-black hover:bg-orange' icon={faBurger} />
+              </button>
+            </div>
           }
       
 

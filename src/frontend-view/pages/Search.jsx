@@ -100,7 +100,7 @@ const Search = () => {
               label="Search here!"
               variant="standard"
               color="warning"
-              className='w-full mb-3'
+              className='z-0 w-full mb-3'
           />
         </div>
         {genres.results ? 
