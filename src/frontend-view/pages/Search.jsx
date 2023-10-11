@@ -87,7 +87,7 @@ const Search = () => {
   
     
   return (
-    <div className='rounded-xl w-full bg-gray-dark p-10 custom-scroll'>
+    <div className='rounded-xl w-full bg-gray-dark p-5 md:p-10 custom-scroll'>
         <div className="w-full">
           <TextField
               InputProps={{
