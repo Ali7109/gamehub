@@ -1,6 +1,7 @@
 import { CircularProgress } from '@mui/material';
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux';
+import { motion, stagger } from 'framer-motion';
 
 const StatsPanel = () => {
     const data = useSelector(state => state.data);
@@ -48,11 +49,26 @@ const StatsPanel = () => {
       
     }, [window.scrollY]); 
 
-    
+        
     return (
-        <div className="metr-cont space-y-16 md:space-y-0 md:flex gap-2 p-5 w-full justify-center items-center ">
+        <motion.div 
+          initial="hidden"
+          animate="show"
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: { staggerChildren: 0.5, delay: 4 }, // Stagger the children with a delay of 0.5 seconds
+            }
+          }}
+          className="metr-cont space-y-16 md:space-y-0 md:flex gap-2 p-5 w-full justify-center items-center ">
 
-            <div className=" drop-shadow-xl flex w-60 h-60 font-mono text-3xl bg-gray-dark rounded-xl p-5 text-center  text-white">
+            <motion.div 
+            variants={{
+              hidden: { opacity: 0, y: 20 }, // Initial hidden state
+              show: { opacity: 1, y: 0 }, // Final visible state
+            }}
+            className=" drop-shadow-xl flex w-60 h-60 font-mono text-3xl bg-gray-dark rounded-xl p-5 text-center  text-white">
                 <div className="m-auto">
                 {countOfTitles <= 0 || !countOfTitles ? 
                           <CircularProgress color='warning' />
@@ -63,9 +79,14 @@ const StatsPanel = () => {
                     </>
                 }
                 </div> 
-            </div>
+            </motion.div>
            
-            <div className="drop-shadow-xl flex w-60 h-60 font-mono text-3xl bg-gray-dark rounded-xl p-5 text-center  text-white">
+            <motion.div 
+            variants={{
+              hidden: { opacity: 0, y: 20 }, // Initial hidden state
+              show: { opacity: 1, y: 0 }, // Final visible state
+            }}
+            className="drop-shadow-xl flex w-60 h-60 font-mono text-3xl bg-gray-dark rounded-xl p-5 text-center  text-white">
                 <div className="m-auto">
                 {countOfPublishers <= 0 || !countOfPublishers ? 
                           <CircularProgress color='warning' />
@@ -76,8 +97,13 @@ const StatsPanel = () => {
                     </>
                 }
                 </div> 
-            </div>
-            <div className="drop-shadow-xl flex w-60 h-60 font-mono text-3xl bg-gray-dark rounded-xl p-5 text-center  text-white">
+            </motion.div>
+            <motion.div 
+            variants={{
+              hidden: { opacity: 0, y: 20 }, // Initial hidden state
+              show: { opacity: 1, y: 0 }, // Final visible state
+            }}
+            className="drop-shadow-xl flex w-60 h-60 font-mono text-3xl bg-gray-dark rounded-xl p-5 text-center  text-white">
                 <div className="m-auto">
                 {platforms <= 0 || !platforms ? 
                           <CircularProgress color='warning' />
@@ -88,8 +114,8 @@ const StatsPanel = () => {
                     </>
                 }
                 </div> 
-            </div>
-        </div>
+            </motion.div>
+        </motion.div>
         
   )
 }

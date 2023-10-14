@@ -5,7 +5,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import Lottie from "lottie-react";
 import animationData from "../../assets/animation_ljyucfqa.json";
 import HeaderMenu from './HeaderMenu';
-
+import { motion, AnimatePresence } from 'framer-motion';
 import { signInWithPopup, signOut } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 import { setUser, setUserProfile } from '../../../StateManagement/actions';
@@ -88,7 +88,12 @@ const Header = () => {
   }
   
   return (
-    <div className={` mt-10 md:mt-0 flex justify-around md:justify-between items-center w-full p-3 rounded-xl bg-gray-dark`}>
+    <AnimatePresence>
+    <motion.div 
+      initial={{y:-300, opacity: 0}}
+      animate={{y:0, opacity: 1}}
+      transition={{ease: "easeInOut", duration: 2}}
+      className={` mt-10 md:mt-0 flex justify-around md:justify-between items-center w-full p-3 rounded-xl bg-gray-dark`}>
       
       <div className="md:hidden">
         {signedIn ? 
@@ -100,47 +105,48 @@ const Header = () => {
             }
       </div>
         <div className=" md:w-1/6 flex justify-around max-h-fit">
-						<div className="w-16 md:w-20 mt-3">
-							<Lottie animationData={animationData} />
-						</div>
-				</div>
-        <div className="hidden md:block text-5xl">
-          <h1 className="font-prism text-white">pixel<span className='or'>verse</span></h1>
-        </div>
-        <div className="absolute left-1/2 -translate-x-1/2 top-4 bg-black pl-9 pr-9 md:hidden text-4xl rounded-xl">
-          <h1 className="font-prism text-white">pixel<span className='or'>verse</span></h1>
-        </div>
-        {
-            !signedIn
-            &&
-            <div className="md:hidden">
-              <button onClick={handleCollapse}>
-                <FontAwesomeIcon className=' p-2 ml-3 rounded-xl text-lg text-gray-light transition hover:text-black hover:bg-orange' icon={faBurger} />
-              </button>
-            </div>
-          }
-      
-
-        <div className="hidden md:flex items-center  w-1/6">
-          <div className=' md:flex flex-col md:flex-row justify-around md:justify-end items-center p-2 w-full '>
-              {signedIn ? 
-              <HeaderMenu userName={userName} onLogout={handleLogout}/>
-            : (loading ? 
-                <CircularProgress color='warning' className='mr-3' size={25}/>
-            :
-            <button onClick={handleLogin} className='p-2 rounded-xl text-base text-black mb-1 cursor-pointer bg-orange  transition hover:scale-110 hover:text-white'>Sign In</button>)
-            }
-            {/* <button onClick={handleToggleDarkMode} className='p-1 pl-3 pr-3 rounded-xl bg-black text-lg text-gray-light transition hover:text-yellow-400'>
-              <FontAwesomeIcon icon={darkMode ? faLightbulb : faMoon } />
-            </button> */}
+              <div className="w-16 md:w-20 mt-3">
+                <Lottie animationData={animationData} />
+              </div>
           </div>
-        </div>
-        {
-          !collapsed && 
-          <BurgerMenu setCollapsed={setCollapsed} collapsed={collapsed}/>
-        }
+          <div className="hidden md:block text-5xl">
+            <h1 className="font-prism text-white">pixel<span className='or'>verse</span></h1>
+          </div>
+          <div className="absolute left-1/2 -translate-x-1/2 top-4 bg-black pl-9 pr-9 md:hidden text-4xl rounded-xl">
+            <h1 className="font-prism text-white">pixel<span className='or'>verse</span></h1>
+          </div>
+          {
+              !signedIn
+              &&
+              <div className="md:hidden">
+                <button onClick={handleCollapse}>
+                  <FontAwesomeIcon className=' p-2 ml-3 rounded-xl text-lg text-gray-light transition hover:text-black hover:bg-orange' icon={faBurger} />
+                </button>
+              </div>
+            }
         
-    </div>
+
+          <div className="hidden md:flex items-center  w-1/6">
+            <div className=' md:flex flex-col md:flex-row justify-around md:justify-end items-center p-2 w-full '>
+                {signedIn ? 
+                <HeaderMenu userName={userName} onLogout={handleLogout}/>
+              : (loading ? 
+                  <CircularProgress color='warning' className='mr-3' size={25}/>
+              :
+              <button onClick={handleLogin} className='p-2 rounded-xl text-base text-black mb-1 cursor-pointer bg-orange  transition hover:scale-110 hover:text-white'>Sign In</button>)
+              }
+              {/* <button onClick={handleToggleDarkMode} className='p-1 pl-3 pr-3 rounded-xl bg-black text-lg text-gray-light transition hover:text-yellow-400'>
+                <FontAwesomeIcon icon={darkMode ? faLightbulb : faMoon } />
+              </button> */}
+            </div>
+          </div>
+          {
+            !collapsed && 
+            <BurgerMenu setCollapsed={setCollapsed} collapsed={collapsed}/>
+          }
+          
+      </motion.div>
+    </AnimatePresence>
   )
 }
 
