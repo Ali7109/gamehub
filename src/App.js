@@ -25,6 +25,7 @@ import GameDetailsPage from "./frontend-view/pages/GameDetailsPage";
 import DevDetailsPage from "./frontend-view/pages/DevDetailsPage";
 import Blog from "./frontend-view/components/Blog Components/Blog";
 import ViewBlog from "./frontend-view/components/Blog Components/ViewBlog";
+import { motion } from "framer-motion";
 
 function App() {
 	const dispatch = useDispatch();
