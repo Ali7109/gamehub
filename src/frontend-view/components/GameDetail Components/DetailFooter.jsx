@@ -26,7 +26,7 @@ const DetailFooter = ({game}) => {
             </a>
         }
       </div>
-      <h4 className="m-auto text-center md:max-w-fit bg-black bg-opacity-20 text-white font-bold rounded-xl p-2">
+      <h4 className=" text-center md:max-w-fit bg-black bg-opacity-20 text-white font-bold rounded-xl p-2">
             {game.genres.map((genre, index) => {
               let hyphen = " - ";
               if(index+1 === game.genres.length) hyphen = "";
