@@ -27,8 +27,8 @@ const ProfilePage = () => {
       };
   return (
         <motion.div 
-        initial={{x:-20, opacity: 0}}
-        whileInView={{x:0, opacity: 1}}
+        initial={{ opacity: 0}}
+        whileInView={{ opacity: 1}}
         transition={{duration: 1}}
         className='rounded-xl w-full flex-col bg-gray-dark'>
             
