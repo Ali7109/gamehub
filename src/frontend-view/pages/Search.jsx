@@ -3,11 +3,11 @@ import { useEffect } from 'react'
 import GameDataAPIController from '../../controller/GameDataAPIController'
 import GenreList from '../components/SearchPage Components/GenreList';
 import { CircularProgress, TextField } from '@mui/material';
-import { useSelector } from 'react-redux';
 import SearchCard from '../components/SearchPage Components/SearchCard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Search = () => {
 
@@ -87,8 +87,16 @@ const Search = () => {
   
     
   return (
-    <div className='rounded-xl w-full bg-gray-dark p-5 md:p-10 custom-scroll'>
-        <div className="w-full">
+    <motion.div
+    initial={{opacity:0}}
+    animate={{opacity: 1}}
+    transition={{duration : 1, delay: 0.5}}
+    className='rounded-xl w-full bg-gray-dark p-5 md:p-10 custom-scroll'>
+        <motion.div
+        initial={{opacity: 0, y:10}}
+        animate={{opacity: 1, y:0}}
+        transition={{duration:1 , delay: 0.8}}
+        className="w-full">
           <TextField
               InputProps={{
                 startAdornment: (
@@ -102,14 +110,14 @@ const Search = () => {
               color="warning"
               className='z-0 w-full mb-3'
           />
-        </div>
+        </motion.div>
         {genres.results ? 
           <GenreList handleSearch={handleSearchFilter} genres={genres.results} updateSelections={updatedSelections}/>
           :
           <CircularProgress color='warning' className=' h-20'/>
         }
 
-      {!loading ? 
+      {!loading ? (
         shownTitles.results.length !== 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 p-3 h-96 overflow-scroll custom-scroll rounded-xl m-2 mt-10">
           {shownTitles.results.map(title => (
@@ -118,19 +126,19 @@ const Search = () => {
             </Link>
             ))}
         </div> 
-            
+           
           ) : (
             <div className="h-56 flex">
               <h1 className='m-auto bg-gray text-white font-bold p-3 rounded-xl'>Search will show here</h1>
             </div>
-          )
+          ))
           :
           <div className="h-56 flex transition">
             <CircularProgress color='warning' className='m-auto h-20'/>
           </div>
           }
          
-    </div>
+    </motion.div>
   )
 }
 
