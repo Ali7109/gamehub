@@ -112,9 +112,13 @@ const Header = () => {
           <div className="hidden md:block text-5xl">
             <h1 className="font-prism text-white">pixel<span className='or'>verse</span></h1>
           </div>
-          <div className="absolute left-1/2 -translate-x-1/2 top-4 bg-black pl-9 pr-9 md:hidden text-4xl rounded-xl">
+          <motion.div
+          initial={{opacity:0}}
+          animate={{opacity: 1}}
+          transition={{duration: 1, delay: 2}}
+          className="absolute left-1/2 -translate-x-1/2 top-4 bg-black pl-9 pr-9 md:hidden text-4xl rounded-xl">
             <h1 className="font-prism text-white">pixel<span className='or'>verse</span></h1>
-          </div>
+          </motion.div>
           {
               !signedIn
               &&

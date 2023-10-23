@@ -4,6 +4,7 @@ import { signInWithPopup } from 'firebase/auth';
 import { setUser } from '../../../StateManagement/actions';
 import { auth,provider } from '../../../Firebase/Firebase';
 import { CircularProgress } from '@mui/material';
+import { motion } from 'framer-motion';
 
 const ProfilePage = () => {
 
@@ -25,7 +26,11 @@ const ProfilePage = () => {
           });
       };
   return (
-        <div className='rounded-xl w-full flex-col bg-gray-dark'>
+        <motion.div 
+        initial={{x:-20, opacity: 0}}
+        whileInView={{x:0, opacity: 1}}
+        transition={{duration: 1}}
+        className='rounded-xl w-full flex-col bg-gray-dark'>
             
             {user ? 
             
@@ -71,7 +76,7 @@ const ProfilePage = () => {
                 </div>
             </>
             }  
-        </div>
+        </motion.div>
   )
 }
 
