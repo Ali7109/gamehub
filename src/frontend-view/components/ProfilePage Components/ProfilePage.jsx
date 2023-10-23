@@ -25,7 +25,7 @@ const ProfilePage = () => {
           });
       };
   return (
-        <div className='rounded-xl w-full flex-col max-h-fit bg-gray-dark'>
+        <div className='rounded-xl w-full flex-col bg-gray-dark'>
             
             {user ? 
             

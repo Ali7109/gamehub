@@ -127,7 +127,7 @@ const Header = () => {
         
 
           <div className="hidden md:flex items-center  w-1/6">
-            <div className=' md:flex flex-col md:flex-row justify-around md:justify-end items-center p-2 w-full '>
+            <div className=' md:flex flex-col md:flex-row justify-around justify-center items-center p-2 w-full '>
                 {signedIn ? 
                 <HeaderMenu userName={userName} onLogout={handleLogout}/>
               : (loading ? 

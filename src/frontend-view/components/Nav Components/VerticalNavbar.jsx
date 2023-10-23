@@ -13,7 +13,7 @@ const VerticalNavbar = () => {
         opacity: 0}}
         animate={{x:0, opacity: 1}}
         transition={{ease: "easeInOut", duration: 2}}
-         className='hidden md:flex items-center justify-around h-4/5 bg-gray-dark w-1/12 p-3 rounded-xl flex-col'>
+         className='hidden md:flex items-center justify-around h-3/5 bg-gray-dark w-1/12 p-3 rounded-xl flex-col'>
             <div className="bg-gh-logo bg-cover bg-center h-20 w-3/4 border-4 border-orange rounded-full ">
             </div> 
             <div className="flex flex-col justify-around overflow-auto mt-10" >

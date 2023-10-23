@@ -13,10 +13,12 @@ const PageList = () => {
         },{
             label: "Profile",
             path: "/profile"
-        },{
-            label: "Store",
-            path: "/stores"
-        },{
+        },
+        // {
+        //     label: "Store",
+        //     path: "/stores"
+        // },
+        {
             label: "Search",
             path: "/search"
         }
