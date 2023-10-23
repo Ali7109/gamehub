@@ -5,6 +5,7 @@ import '@splidejs/react-splide/css';
 import { AutoScroll } from '@splidejs/splide-extension-auto-scroll';
 import { CircularProgress } from '@mui/material';
 import DetailFooter from '../GameDetail Components/DetailFooter';
+import { motion } from 'framer-motion';
 
 const HighRatedGameShowcase = () => {
   const highestRated = useSelector( (state) =>  state.highestRated);
@@ -14,7 +15,11 @@ const HighRatedGameShowcase = () => {
     resArr.current = highestRated?.results || []; // Optional chaining operator to handle undefined state
   }, [highestRated]);
   return (
-    <div className=" w-full flex-col">
+    <motion.div
+    initial={{ opacity: 0}}
+    whileInView={{ opacity: 1}}
+    transition={{ease: "easeInOut", duration: 1}}
+    className=" w-full flex-col">
       <h1 className='text-white text-3xl font-yb rounded-t-3xl font-bold p-6 text-center bg-gray-dark '>Highest Rated Titles</h1>
       <Splide
        hasTrack={ false }
@@ -44,7 +49,8 @@ const HighRatedGameShowcase = () => {
         {resArr.current ?
         resArr.current.map((game, index) => (
           <SplideSlide className='h-64 rounded-xl w-full' key={index}>
-            <div className="flex items-center w-full h-full ">
+            <motion.div 
+            className="flex items-center w-full h-full ">
                 <div className="w-full max-w-full flex justify-around items-center h-full bg-cover bg-center md:bg-top" style={{
                 backgroundImage: `url(${game.background_image})`}}>
                     <div className="flex justify-center  items-center w-full h-full bg-black bg-opacity-70">
@@ -54,14 +60,14 @@ const HighRatedGameShowcase = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
           </SplideSlide>
         )) : 
        <CircularProgress color='warning' />
         }
         </SplideTrack>
       </Splide>
-    </div>
+    </motion.div>
   );
 };
 

@@ -6,7 +6,7 @@ const Backdrop = () => {
       <motion.div 
         initial={{x:-20, opacity: 0}}
         animate={{x:0, opacity: 1}}
-        transition={{ease: "easeInOut", duration: 2, delay: 2}}
+        transition={{ease: "easeInOut", duration: 1, delay: 2}}
         className=" h-full max-h-72 w-full rounded-xl bg-dash-backdrop bg-center bg-cover">
             <div className="bg-black/60  flex flex-col md:flex-row h-full w-full">
               <motion.div 
