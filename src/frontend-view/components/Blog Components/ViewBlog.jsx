@@ -4,7 +4,8 @@ import { fetchBlogById } from '../../../controller/HelperFetch';
 import { CircularProgress } from '@mui/material';
 import { faChevronLeft, faClock, faFeather } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import formatFirestoreTimestamp, { blogTimeStamp } from '../Functions/calculationFunctions';
+import formatFirestoreTimestamp from '../Functions/calculationFunctions';
+import { motion } from 'framer-motion';
 
 const ViewBlog = () => {
 
@@ -37,7 +38,11 @@ const ViewBlog = () => {
     
       }, []);
   return (
-        <div className="relative bg-gray-dark md:w-4/5 p-2 pt-4 md:p-4 md:border-l-2 md:border-r-2 border-orange rounded-lg shadow-lg">
+        <motion.div
+        initial={{opacity: 0}}
+        animate={{opacity: 1}}
+        transition={{duration: 1, delay: 0.5}}
+        className="relative bg-gray-dark md:w-4/5 p-2 pt-4 md:p-4 md:border-l-2 md:border-r-2 border-orange rounded-lg shadow-lg">
             <>
                 <Link to={'/blog'}>
                     <button className='bg-orange rounded-xl p-2 hover:text-orange hover:bg-black transition'><FontAwesomeIcon icon={faChevronLeft}/> back</button>
@@ -45,28 +50,44 @@ const ViewBlog = () => {
             </>
             {!loading && blog.timestamp? 
             <>
-                <div className="w-full font-yb text-white rounded-xl min-h-80">
-                    <div className="w-full text-center text-white pt-5 pb-5">
+                <motion.div
+                initial={{opacity: 0}}
+                animate={{opacity: 1}}
+                transition={{duration:1, delay: 0.8}}
+                 className="w-full font-yb text-white rounded-xl min-h-80">
+                    <motion.div
+                    initial={{opacity: 0}}
+                    animate={{opacity: 1}}
+                    transition={{duration: 1, delay: 1}}
+                     className="w-full text-center text-white pt-5 pb-5">
                         <h1 className='text-2xl font-bold'>{blog.title}</h1>
-                    </div>
-                    <div className="m-auto md:flex md:w-4/5 border-orange border-l-2 border-b-2 justify-between text-orange bg-black rounded-lg p-2 mb-5 mt-5">
+                    </motion.div>
+                    <motion.div
+                    initial={{opacity: 0}}
+                    animate={{opacity: 1}}
+                    transition={{duration: 1, delay: 1.2}}
+                     className="m-auto md:flex md:w-4/5 border-orange border-l-2 border-b-2 justify-between text-orange bg-black rounded-lg p-2 mb-5 mt-5">
                         
                         <h2><FontAwesomeIcon icon={faFeather} /> Written by: {blog.name} </h2>
                         <h2><FontAwesomeIcon icon={faClock} /> {formatFirestoreTimestamp(blog.timestamp)}</h2>
-                    </div>
+                    </motion.div>
 
-                    <div className="font-serif rounded-xl bg-black p-2 md:m-2">
+                    <motion.div
+                    initial={{opacity: 0}}
+                    animate={{opacity: 1}}
+                    transition={{duration: 1, delay: 1.4}}
+                     className="font-serif rounded-xl bg-black p-2 md:m-2">
                         {blog.content}
-                    </div>
+                    </motion.div>
                     
-                </div>
+                </motion.div>
             </>
             :
             <React.Fragment className="flex m-auto">
                 <CircularProgress color='warning' className='h-16 w-16' />
             </React.Fragment>
             }
-        </div>
+        </motion.div>
   )
 }
 

@@ -3,13 +3,19 @@ import  { blogTimeStamp } from '../Functions/calculationFunctions'
 import { faBookOpen, faClock, faFeather } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 const BlogShowcase = ({blog}) => {
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
       }
   return (
-    <div className="bg-gradient-to-b md:bg-gradient-to-r from-orange to-black border-orange relative flex-column md:flex min-h-28 mb-10 ml-3 mr-3 md:mr-8 md:ml-8 items-center justify-between rounded-xl p-5  text-white">
+    <motion.div
+        initial={{opacity: 0, x:-20}}
+        whileInView={{opacity:1, x:0}}
+        transition={{duration: 1, delay: 2.5}}
+        whileTap={{y:10}}
+        className="bg-gradient-to-b md:bg-gradient-to-r from-orange to-black border-orange relative flex-column md:flex min-h-28 mb-10 ml-3 mr-3 md:mr-8 md:ml-8 items-center justify-between rounded-xl p-5  text-white">
         <div className="mb-6 md:mb-4">
             <div className="border-l-4 border-black pl-2 flex items-baseline overflow-hidden">
                 <h1 className='text-2xl w-80 mr-5'>{capitalizeFirstLetter(blog.title + "")}</h1>
@@ -31,7 +37,7 @@ const BlogShowcase = ({blog}) => {
                 <button className='bg-black w-full border-b-2 border-orange border-t-2 hover:text-black hover:bg-orange transition text-white rounded-lg'><FontAwesomeIcon icon={faBookOpen} /> View</button>
             </Link>
         </div>
-    </div>
+    </motion.div>
   )
 }
 

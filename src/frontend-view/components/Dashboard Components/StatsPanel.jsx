@@ -58,7 +58,7 @@ const StatsPanel = () => {
             hidden: { opacity: 0 },
             show: {
               opacity: 1,
-              transition: { staggerChildren: 0.5, delay: 4 }, // Stagger the children with a delay of 0.5 seconds
+              transition: { staggerChildren: 0.5, delay: 3 }, // Stagger the children with a delay of 0.5 seconds
             }
           }}
           className="metr-cont space-y-16 md:space-y-0 md:flex gap-2 p-5 w-full justify-center items-center ">

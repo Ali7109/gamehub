@@ -1,12 +1,12 @@
 import React, {useState,  useEffect } from 'react'
 import { fetchBlogs } from '../../../controller/HelperFetch'
-import { CircularProgress } from '@mui/material'
+import { CircularProgress, Tooltip, Zoom } from '@mui/material'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGhost, faHeadset, faScroll } from '@fortawesome/free-solid-svg-icons'
 import BlogsDisplay from './BlogsDisplay'
-import { Link } from 'react-router-dom'
 import CreateBlog from './CreateBlog'
 import { useSelector } from 'react-redux'
+import { motion } from 'framer-motion'
 
 const Blog = () => {
 
@@ -26,33 +26,56 @@ const Blog = () => {
   }
   return (
     <>
-      <div className="w-full  bg-press-banner bg-center rounded-xl">
+      <motion.div
+      initial={{opacity: 0}}
+      animate={{opacity:1}}
+      transition={{duration: 1}}
+      className="w-full  bg-press-banner bg-center rounded-xl">
         <div className=" w-full flex items-center justify-around bg-black bg-opacity-80 rounded-xl p-3 pl-20 pr-20 text-center">
-          <div className="text-white text-5xl flex items-center justify-around">
-              <FontAwesomeIcon icon={faHeadset} />
-            </div>
-            <div className="m-2">
-              <FontAwesomeIcon icon={faScroll} className='text-white text-5xl' />
-              <h1 className='text-orange font-mono text-4xl md:text-6xl'>PixelPress</h1>
-              <p className='text-white'>Your daily dose of the gaming industry</p>
-            </div>
-            <div className=" text-white text-5xl flex items-center justify-around">
+          <motion.div 
+          initial={{opacity: 0, y:-40}}
+          animate={{opacity:1, y:0}}
+          transition={{duration: 1, delay: 1.5}}
+          className="text-white text-5xl flex items-center justify-around">
+            <FontAwesomeIcon icon={faHeadset} />
+            </motion.div>
+              <motion.div
+                initial={{opacity: 0}}
+                animate={{opacity:1}}
+                transition={{duration: 1, delay: 1.5}}
+              className="m-2">
+                <FontAwesomeIcon icon={faScroll} className='text-white text-5xl' />
+                <h1 className='text-orange font-mono text-4xl md:text-6xl'>PixelPress</h1>
+                <p className='text-white'>Your daily dose of the gaming industry</p>
+              </motion.div>
+            <motion.div
+            initial={{opacity: 0, y:40}}
+            animate={{opacity:1, y:0}}
+            transition={{duration: 1, delay: 1.5}}
+             className=" text-white text-5xl flex items-center justify-around">
               <FontAwesomeIcon icon={faGhost} />
-            </div>
+            </motion.div>
         </div>
-      </div>
+      </motion.div>
       
-      <div className="relative w-full">
-        <div className="absolute -translate-x-1/2 left-1/2  top-7">
-            <button
-              disabled={!user}
-              onClick={() => setCreatePage(!createPage)}
-              className={`${
-                !user ? 'cursor-not-allowed ' : 'hover:text-orange hover:bg-black '
-              }transition w-56 bg-orange rounded-xl p-2 pl-4 pr-4`}
+      <motion.div
+       initial={{opacity: 0}}
+       animate={{opacity:1}}
+       transition={{duration: 1, delay: 2.5}}
+       className="relative w-full">
+        <div className="absolute -translate-x-1/2 left-1/2  top-4">
+            <Tooltip  TransitionComponent={Zoom} arrow title={user ? "" : "Sign In Required"}
             >
-              {!user ? "Sign in to create a post" : createPage ? "Cancel creating" : "Create a post"}
-            </button>
+              <button
+                disabled={!user}
+                onClick={() => setCreatePage(!createPage)}
+                className={`${
+                  !user ? '' : 'hover:text-orange hover:bg-black '
+                }transition cursor-pointer w-56 bg-orange rounded-xl mb-5 md:m-0 p-2 pl-4 pr-4`}
+              >
+                { createPage ? "Cancel creating" : "Create a post"}
+              </button>
+            </Tooltip>
           </div>
           {!createPage ? 
           <>
@@ -60,7 +83,7 @@ const Blog = () => {
             <BlogsDisplay refetchBlogs={refetchBlogs} blogs={blogs} loading={loading}/> : <CircularProgress color='warning' className='h-16 w-16'/>}
           </>
           : <CreateBlog setCreatePage={setCreatePage} user={user}/> }
-      </div>
+      </motion.div>
     </>
   )
 }
