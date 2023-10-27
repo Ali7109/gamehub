@@ -14,8 +14,6 @@ GameHub is an online platform designed for gamers and game enthusiasts. Our webs
 
 - **User Accounts**: Create your own GameHub account to unlock additional features. Save your favorite games, create personalized lists, and interact with the GameHub community.
 
-- **Favorites List**: Build your own favorite games list and easily access it whenever you want. Keep track of the games you love and quickly find information about them.
-
 - **Discussions**: Join the vibrant gaming community on our Discussions page. Engage in discussions, share your thoughts, and interact with fellow gamers. Stay updated with the latest gaming news and trends.
 
 - **Blog**: Dive into our gaming blog, where you'll find insightful articles, reviews, and editorials about the gaming industry. Learn about upcoming releases, gaming tips, and industry news.
@@ -24,8 +22,8 @@ GameHub is an online platform designed for gamers and game enthusiasts. Our webs
 
 - Frontend: React.js, Redux, Tailwind CSS
 - Backend: Firebase (Authentication, Firestore)
-- API Integration: Gaming API (provide the name of the specific API you're using)
-- Deployment: Netlify, [To Be Posted].
+- API Integration: Gaming API by RAWG
+- Deployment: Netlify
 
 ## Getting Started
 
