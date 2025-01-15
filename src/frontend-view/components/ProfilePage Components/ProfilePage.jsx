@@ -4,7 +4,15 @@ import { signInWithPopup } from "firebase/auth";
 import { setUser, setUserProfile } from "../../../StateManagement/actions";
 import { auth, db, provider } from "../../../Firebase/Firebase";
 import { CircularProgress } from "@mui/material";
-import { addUser, getImageByName, getUserById, userExists } from "../../../controller/HelperFetch";
+import {
+	addUser,
+	getImageByName,
+	getUserById,
+	userExists,
+} from "../../../controller/HelperFetch";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
+import UploadModal from "../UploadLogic/UploadModal";
 
 const ProfilePage = () => {
 	const authUser = useSelector((state) => state.user);
@@ -15,18 +23,22 @@ const ProfilePage = () => {
 	const [profilePic, setProfilePic] = useState(null);
 	const [coverPic, setCoverPic] = useState(null);
 
+	const [addingProfilePic, setAddingProfilePic] = useState(false);
+
+	const [editProfile, setEditProfile] = useState(false);
+
 	const handleLogin = async () => {
 		setLoading(true);
 		try {
 			const result = await signInWithPopup(auth, provider);
 			const user = result.user;
 			dispatch(setUser(user));
-	
+
 			const exists = await userExists(db, user.uid);
 			if (!exists) {
 				await addUser(db, user); // Add user if not exists
 			}
-	
+
 			const userProfile = await getUserById(db, user.uid);
 			dispatch(setUserProfile(userProfile));
 		} catch (error) {
@@ -35,65 +47,121 @@ const ProfilePage = () => {
 			setLoading(false);
 		}
 	};
-	
-	useEffect(() => {
-		const getUsersProfile = async () => {
-			const exists = await userExists(db, authUser.uid);
-			if (!exists) {
-				await addUser(db, authUser); // Add user if not exists
-			}
-	
-			const userProfile = await getUserById(db, authUser.uid);
-			dispatch(setUserProfile(userProfile));
-		}
-		const getMetaData = async () => {
-			if (!user.profPhotoUrl){
-				const profImg = await getImageByName('/profiles/profile-pics', 'stockProfPic.jpg');
-				setProfilePic(profImg);
-			} else {
-				const profImg = await getImageByName('/profiles/profile-pics', user.profPhotoUrl);
-				setProfilePic(profImg);
-			}
 
-			if(!user.coverPhoto){
-				const coverImg = await getImageByName('/profiles/cover-photos', 'stockCoverPic.jpg');
-				setCoverPic(coverImg);
-			} else {
-				const coverImg = await getImageByName('/profiles/cover-photos', user.coverPhoto);
-				setCoverPic(coverImg);
-			}
+	const getUsersProfile = async () => {
+		const exists = await userExists(db, authUser.uid);
+		if (!exists) {
+			await addUser(db, authUser); // Add user if not exists
 		}
+
+		const userProfile = await getUserById(db, authUser.uid);
+		dispatch(setUserProfile(userProfile));
+	};
+	const getMetaData = async () => {
+		if (!user.profPhotoUrl) {
+			const profImg = await getImageByName(
+				"/profiles/profile-pics",
+				"stockProfPic.jpg"
+			);
+			setProfilePic(profImg);
+		} else {
+			const profImg = await getImageByName(
+				"/profiles/profile-pics",
+				user.profPhotoUrl
+			);
+			setProfilePic(profImg);
+		}
+
+		if (!user.coverPhoto) {
+			const coverImg = await getImageByName(
+				"/profiles/cover-photos",
+				"stockCoverPic.jpg"
+			);
+			setCoverPic(coverImg);
+		} else {
+			const coverImg = await getImageByName(
+				"/profiles/cover-photos",
+				user.coverPhoto
+			);
+			setCoverPic(coverImg);
+		}
+	};
+
+	useEffect(() => {
 		if (authUser) {
-			if(!user){
+			if (!user) {
 				getUsersProfile();
 			}
 			getMetaData();
 		}
-	}, [user])
-	
+	}, [user]);
+
 	return (
 		<div className="rounded-xl w-full flex-col max-h-fit bg-gray-dark">
+			{addingProfilePic && (
+				<UploadModal
+					user={user}
+					getMetaData={getMetaData}
+					setAddingProfilePic={setAddingProfilePic}
+				/>
+			)}
 			{user ? (
 				<>
 					<div className="w-full rounded-t-xl flex items-center h-52 bg-orange">
 						<div className="w-full h-44 bg-stock-coverphoto bg-center bg-cover p-5">
 							<div className="flex-1 m-5 h-24 w-24 rounded-full">
-								<img
-									className="rounded-full object-cover"
-									src={profilePic}
-									alt="Profile account DP"
-								/>
+								{profilePic &&
+									(!editProfile ? (
+										<img
+											className="rounded-full object-cover"
+											src={profilePic}
+											alt="Profile account DP"
+										/>
+									) : (
+										<>
+											<div className="relative rounded-full overflow-hidden">
+												{/* The overlay */}
+												<div className="absolute top-0 left-0 w-full h-full flex bg-black bg-opacity-50 z-10">
+													<FontAwesomeIcon
+														onClick={() =>
+															setAddingProfilePic(
+																true
+															)
+														}
+														className="cursor-pointer rounded-full p-2 text-3xl m-auto text-white transition peer-hover:text-black hover:text-black hover:bg-orange"
+														icon={faPen}
+													/>
+												</div>
+
+												{/* The image */}
+												<img
+													className="w-full h-full object-cover rounded-full"
+													src={profilePic}
+													alt="Profile account DP"
+												/>
+											</div>
+										</>
+									))}
 							</div>
 						</div>
 					</div>
-					<div className="flex-col p-10 space-y-3 text-white">
+					<div className="flex p-10 space-y-3 text-white">
 						<div className="w-full flex justify-between">
-							<h1 className="text-3xl">{user.displayName}</h1>
-							<h2>{user.email}</h2>
+							<div className="w-2/3">
+								<h1 className="text-3xl">{user.displayName}</h1>
+								<button
+									className="mt-2 bg-white bg-opacity-50 px-3 rounded-lg text-black hover:bg-opacity-70"
+									onClick={() => setEditProfile(!editProfile)}
+								>
+									{editProfile
+										? "exit edit mode"
+										: "edit profile"}
+								</button>
+							</div>
+							<h2 onClick={() => console.log(addingProfilePic)}>
+								{user.email}
+							</h2>
 						</div>
-						<p className="text-center italic font-bold">
-							Feature under development
-						</p>
 					</div>
 				</>
 			) : (
@@ -101,11 +169,13 @@ const ProfilePage = () => {
 					<div className="w-full rounded-t-xl flex items-center h-52 bg-orange bg-opacity-50">
 						<div className="w-full h-44 bg-black bg-center bg-cover p-5">
 							<div className="flex-1 m-5 h-24 w-24 rounded-full">
-								<img
-									className="rounded-full"
-									src={coverPic}
-									alt="error loading DP"
-								/>
+								{coverPic && (
+									<img
+										className="rounded-full"
+										src={coverPic}
+										alt="error loading DP"
+									/>
+								)}
 							</div>
 						</div>
 					</div>
