@@ -88,18 +88,6 @@ const ProfilePage = () => {
 		}
 	};
 
-	// useEffect(() => {
-	// 	const setup = async () => {
-	// 		if (authUser) {
-	// 			if (!user) {
-	// 				await getUsersProfile();
-	// 			} else {
-	// 				await getMetaData();
-	// 			}
-	// 		}
-	// 	};
-	// 	setup();
-	// }, [user]);
 	useEffect(() => {
 		const setup = async () => {
 			if (authUser) {
