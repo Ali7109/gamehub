@@ -7,6 +7,7 @@ import { CircularProgress } from "@mui/material";
 import { addUser, getImageByName, getUserById, userExists } from "../../../controller/HelperFetch";
 
 const ProfilePage = () => {
+	const authUser = useSelector((state) => state.user);
 	const user = useSelector((state) => state.userProfile);
 
 	const dispatch = useDispatch();
@@ -36,6 +37,15 @@ const ProfilePage = () => {
 	};
 	
 	useEffect(() => {
+		const getUsersProfile = async () => {
+			const exists = await userExists(db, authUser.uid);
+			if (!exists) {
+				await addUser(db, authUser); // Add user if not exists
+			}
+	
+			const userProfile = await getUserById(db, authUser.uid);
+			dispatch(setUserProfile(userProfile));
+		}
 		const getMetaData = async () => {
 			if (!user.profPhotoUrl){
 				const profImg = await getImageByName('/profiles/profile-pics', 'stockProfPic.jpg');
@@ -53,7 +63,12 @@ const ProfilePage = () => {
 				setCoverPic(coverImg);
 			}
 		}
-		if (user) getMetaData();
+		if (authUser) {
+			if(!user){
+				getUsersProfile();
+			}
+			getMetaData();
+		}
 	}, [user])
 	
 	return (
@@ -88,7 +103,7 @@ const ProfilePage = () => {
 							<div className="flex-1 m-5 h-24 w-24 rounded-full">
 								<img
 									className="rounded-full"
-									src={require("../../images/StockImages/stockProfPic.jpg")}
+									src={coverPic}
 									alt="error loading DP"
 								/>
 							</div>
