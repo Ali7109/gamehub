@@ -1,28 +1,61 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { signInWithPopup } from "firebase/auth";
-import { setUser } from "../../../StateManagement/actions";
-import { auth, provider } from "../../../Firebase/Firebase";
+import { setUser, setUserProfile } from "../../../StateManagement/actions";
+import { auth, db, provider } from "../../../Firebase/Firebase";
 import { CircularProgress } from "@mui/material";
+import { addUser, getImageByName, getUserById, userExists } from "../../../controller/HelperFetch";
 
 const ProfilePage = () => {
-	const user = useSelector((state) => state.user);
+	const user = useSelector((state) => state.userProfile);
+
 	const dispatch = useDispatch();
 	const [loading, setLoading] = useState(false);
+	const [profilePic, setProfilePic] = useState(null);
+	const [coverPic, setCoverPic] = useState(null);
 
-	const handleLogin = () => {
+	const handleLogin = async () => {
 		setLoading(true);
-		signInWithPopup(auth, provider)
-			.then((result) => {
-				const user = result.user;
-				dispatch(setUser(user));
-				setLoading(false);
-			})
-			.catch((error) => {
-				console.log(error);
-				setLoading(false);
-			});
+		try {
+			const result = await signInWithPopup(auth, provider);
+			const user = result.user;
+			dispatch(setUser(user));
+	
+			const exists = await userExists(db, user.uid);
+			if (!exists) {
+				await addUser(db, user); // Add user if not exists
+			}
+	
+			const userProfile = await getUserById(db, user.uid);
+			dispatch(setUserProfile(userProfile));
+		} catch (error) {
+			console.error("Error during login:", error);
+		} finally {
+			setLoading(false);
+		}
 	};
+	
+	useEffect(() => {
+		const getMetaData = async () => {
+			if (!user.profPhotoUrl){
+				const profImg = await getImageByName('/profiles/profile-pics', 'stockProfPic.jpg');
+				setProfilePic(profImg);
+			} else {
+				const profImg = await getImageByName('/profiles/profile-pics', user.profPhotoUrl);
+				setProfilePic(profImg);
+			}
+
+			if(!user.coverPhoto){
+				const coverImg = await getImageByName('/profiles/cover-photos', 'stockCoverPic.jpg');
+				setCoverPic(coverImg);
+			} else {
+				const coverImg = await getImageByName('/profiles/cover-photos', user.coverPhoto);
+				setCoverPic(coverImg);
+			}
+		}
+		if (user) getMetaData();
+	}, [user])
+	
 	return (
 		<div className="rounded-xl w-full flex-col max-h-fit bg-gray-dark">
 			{user ? (
@@ -32,7 +65,7 @@ const ProfilePage = () => {
 							<div className="flex-1 m-5 h-24 w-24 rounded-full">
 								<img
 									className="rounded-full object-cover"
-									src={require("../../images/StockImages/stockProfPic.jpg")}
+									src={profilePic}
 									alt="Profile account DP"
 								/>
 							</div>

@@ -38,41 +38,35 @@ const Header = () => {
   }, [])
   // const {darkMode, toggleDarkMode} = useContext(DarkModeContext);
   
-  const handleLogin = () => {
-    setLoading(true);
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        const user = result.user;
-        dispatch(setUser(user));
-        setSignedIn(true);
-        setLoading(false);
+  const handleLogin = async () => {
+    try {
+      setLoading(true);
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      console.log('"USER -->>', user);
+      const exists = await userExists(db, user.uid);
+      if (!exists) {
+        await addUser(db, user); // Add user if not exists
+      }
+  
+      const userProfile = await getUserById(db, user.uid);
+      dispatch(setUserProfile(userProfile));
 
-        // userExists(db, user.uid).then(data => {
-        //   if(!data){
-        //     addUser(db, user).then(
-        //       getUserById(db, user.uid).then(data => {
-        //         dispatch(setUserProfile(data))
-        //       })
-        //     );
-        //   }
-        // })
-      })
-      .catch((error) => {
-        console.log(error);
-        setLoading(false);
-      });
+      dispatch(setUser(user));
+      setSignedIn(true);
+    } catch (error) {
+      console.error("Error during login:", error);
+    } finally {
+      setLoading(false);
+    }
   };
-
-  // const handleToggleDarkMode = () => {
-  //   console.log("Toggle Dark Mode button clicked"); // Add this line for debugging
-  //   toggleDarkMode();
-  // };
 
   const handleLogout = () => {
     setLoading(true);
     signOut(auth)
       .then(() => {
         dispatch(setUser(null));
+        dispatch(setUserProfile(null));
         setSignedIn(false);
         setLoading(false);
       })

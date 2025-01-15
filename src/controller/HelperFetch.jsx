@@ -1,8 +1,8 @@
-import {  addDoc, arrayUnion, doc, getDoc, orderBy, serverTimestamp,updateDoc } from "firebase/firestore"; 
+import {  addDoc, arrayUnion, doc, orderBy, serverTimestamp,updateDoc } from "firebase/firestore"; 
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { db } from "../Firebase/Firebase";
+import { db, storage } from "../Firebase/Firebase";
 import {v4 as uuidv4} from 'uuid';
-import { useNavigate } from "react-router-dom";
+import { getDownloadURL, ref } from "firebase/storage";
 
 // Add a discussion to the specified game's discussionList subcollection
 export async function createBlog( user, title, content) {
@@ -83,19 +83,22 @@ export async function addDiscussion(db, gameId, content, userId, userName) {
   }
 }
 
-//Adding users
-export async function addUser(db, user){
-  const userCollectionRef = collection(db, "users");
-  const userDocRef = await addDoc(userCollectionRef, {
-    displayName: user.displayName,
-    email: user.email,
-    id: user.uid,
-    profPhotoUrl: '../../images/StockImages/stockProfPic.jpg',
-    coverPhoto:  '../../images/StockImages/stockCoverPic.jpg'
-  })
-
-
+export async function addUser(db, user) {
+  try {
+    const userCollectionRef = collection(db, "users");
+    await addDoc(userCollectionRef, {
+      displayName: user.displayName,
+      email: user.email,
+      id: user.uid,
+      profPhotoUrl: null,
+      coverPhoto: null,
+    });
+  } catch (error) {
+    console.error("Error adding user:", error);
+    throw error;
+  }
 }
+
 
 export async function getUserById(db, userId) {
   const userCollectionRef = collection(db, "users");
@@ -114,7 +117,7 @@ export async function getUserById(db, userId) {
 
 export async function userExists(db, userId){
   const userCollectionRef = collection(db, "users");
-  const snap_query = query(userCollectionRef, where("userId","==",userId ));
+  const snap_query = query(userCollectionRef, where("id","==",userId ));
   const snapshot = await getDocs(snap_query);
   console.log(snapshot.empty)
   return !snapshot.empty;
@@ -155,3 +158,13 @@ export async function fetchDiscussions(db, gameId) {
 }
 
 
+export const getImageByName = async (folderName, imageName) => {
+  try {
+      const imageRef = ref(storage, `${folderName}/${imageName}`);
+      const url = await getDownloadURL(imageRef);
+      return url;
+  } catch (error) {
+      console.error("Error fetching image:", error);
+      throw error;
+  }
+};
