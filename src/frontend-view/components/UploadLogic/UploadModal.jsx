@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Compressor from "compressorjs"; // Import CompressorJS
 import {
 	updateUserProfilePic,
 	uploadImage,
@@ -11,23 +12,45 @@ const UploadModal = ({ user, getMetaData, setAddingProfilePic }) => {
 	const handleProfilePicChange = async (event) => {
 		const file = event.target.files[0]; // Get the file from input
 		const userId = user.id; // Get the logged-in user's ID
-		const fileName = file.name; // Using the original file name
 
 		if (!file) return;
 
 		setLoading(true); // Show loading while uploading
 
 		try {
-			const uploadedPicUrl = await uploadImage(file, userId, fileName);
-			// Now update the user's profilePicUrl in your database (e.g., Firebase Firestore)
-			await updateUserProfilePic(user.id, uploadedPicUrl);
+			// Check if the file size is greater than 50KB (50 * 1024 bytes)
+			if (file.size > 20 * 1024) {
+				// Compress the image before uploading if it's greater than 50KB
+				const compressedFile = await new Promise((resolve, reject) => {
+					new Compressor(file, {
+						quality: 0.8, // Adjust quality to your preference (0 to 1)
+						success(result) {
+							resolve(result);
+						},
+						error(err) {
+							reject(err);
+						},
+					});
+				});
+
+				// Use the compressed file for uploading
+				const uploadedPicUrl = await uploadImage(
+					compressedFile,
+					userId
+				);
+				await updateUserProfilePic(user.id, uploadedPicUrl); // Update profile picture URL in DB
+			} else {
+				// Upload without compression if the file is already smaller than 50KB
+				const uploadedPicUrl = await uploadImage(file, userId);
+				await updateUserProfilePic(user.id, uploadedPicUrl);
+			}
 		} catch (error) {
 			console.error("Error uploading profile picture:", error);
 			alert("Error uploading profile picture, please try again.");
 		} finally {
 			setLoading(false); // Hide loading
 			setAddingProfilePic(false); // Close the modal after upload
-			await getMetaData(); // Refresh the profile pictures
+			getMetaData(); // Fetch metadata after upload
 		}
 	};
 

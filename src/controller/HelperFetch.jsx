@@ -217,8 +217,8 @@ export const getImageByName = async (folderName, imageName) => {
 	}
 };
 
-export const uploadImage = async (file, userId, fileName) => {
-	const newFileName = `${userId}_${fileName}`;
+export const uploadImage = async (file, userId) => {
+	const newFileName = `${userId}_profilePic`;
 
 	const imageRef = ref(storage, `profiles/profile-pics/${newFileName}`);
 

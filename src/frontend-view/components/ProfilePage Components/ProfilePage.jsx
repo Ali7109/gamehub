@@ -58,6 +58,7 @@ const ProfilePage = () => {
 		dispatch(setUserProfile(userProfile));
 	};
 	const getMetaData = async () => {
+		console.log(user);
 		if (!user.profPhotoUrl) {
 			const profImg = await getImageByName(
 				"/profiles/profile-pics",
@@ -87,14 +88,30 @@ const ProfilePage = () => {
 		}
 	};
 
+	// useEffect(() => {
+	// 	const setup = async () => {
+	// 		if (authUser) {
+	// 			if (!user) {
+	// 				await getUsersProfile();
+	// 			} else {
+	// 				await getMetaData();
+	// 			}
+	// 		}
+	// 	};
+	// 	setup();
+	// }, [user]);
 	useEffect(() => {
-		if (authUser) {
-			if (!user) {
-				getUsersProfile();
+		const setup = async () => {
+			if (authUser) {
+				if (!user) {
+					await getUsersProfile();
+				} else {
+					await getMetaData();
+				}
 			}
-			getMetaData();
-		}
-	}, [user]);
+		};
+		setup();
+	}, [authUser, user]); // Add 'user' and 'authUser' to the dependencies to re-run when either changes
 
 	return (
 		<div className="rounded-xl w-full flex-col max-h-fit bg-gray-dark">
