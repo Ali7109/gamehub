@@ -118,13 +118,13 @@ const ProfilePage = () => {
 								{profilePic &&
 									(!editProfile ? (
 										<img
-											className="rounded-full object-cover"
+											className="rounded-full object-cover h-full w-full"
 											src={profilePic}
 											alt="Profile account DP"
 										/>
 									) : (
 										<>
-											<div className="relative rounded-full overflow-hidden">
+											<div className="relative rounded-full h-full w-full overflow-hidden">
 												{/* The overlay */}
 												<div className="absolute top-0 left-0 w-full h-full flex bg-black bg-opacity-50 z-10">
 													<FontAwesomeIcon
