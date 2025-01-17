@@ -102,7 +102,7 @@ const Header = () => {
 				) : (
 					<button
 						onClick={handleLogin}
-						className="p-2 rounded-xl text-base text-black mb-1 cursor-pointer bg-orange  transition hover:scale-110 hover:text-white"
+						className="p-2 rounded-xl text-base text-black mb-1 cursor-pointer bg-orange  transition hover:-translate-y-1 hover:text-white"
 					>
 						Sign In
 					</button>
@@ -148,7 +148,7 @@ const Header = () => {
 					) : (
 						<button
 							onClick={handleLogin}
-							className="p-2 rounded-xl text-base text-black mb-1 cursor-pointer bg-orange  transition hover:scale-110 hover:text-white"
+							className="p-2 rounded-xl text-base text-black mb-1 cursor-pointer bg-orange transition hover:-translate-y-1 hover:text-white"
 						>
 							Sign In
 						</button>

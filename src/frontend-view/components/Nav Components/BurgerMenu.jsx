@@ -27,6 +27,7 @@ const BurgerMenu = ({ setCollapsed, collapsed, page, setPage }) => {
 		{ path: "/", label: "Home" },
 		{ path: "/search", label: "Search" },
 		{ path: "/blog", label: "Blog" },
+		{ path: "/profile", label: "Profile" },
 	];
 	return (
 		<div

@@ -185,10 +185,14 @@ const ProfilePage = () => {
 						</div>
 					</div>
 					<div className="flex-col p-10 space-y-3 text-white">
-						<div className="w-full flex justify-around">
-							<h1 className="text-xl bg-black p-2 rounded-xl">
+						<div className="w-full md:flex justify-around">
+							<h1 className="hidden md:visible text-xl bg-black p-2 rounded-xl">
 								It appears you aren't signed in, let's change
 								that &#10145;
+							</h1>
+							<h1 className="text-center md:hidden text-xl bg-black p-2 rounded-xl">
+								It appears you aren't signed in, let's change
+								that &#11015;
 							</h1>
 							{loading ? (
 								<CircularProgress
@@ -199,7 +203,7 @@ const ProfilePage = () => {
 							) : (
 								<button
 									onClick={handleLogin}
-									className="p-2 rounded-xl text-base text-black mb-1 cursor-pointer bg-orange  transition hover:scale-110 hover:text-white"
+									className="p-2 mt-5 md:mt-0 w-full md:w-fit rounded-xl text-base text-black mb-1 cursor-pointer bg-orange transition hover:-translate-y-1 hover:text-white"
 								>
 									Sign In Now
 								</button>
