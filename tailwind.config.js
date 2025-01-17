@@ -24,6 +24,8 @@ module.exports = {
 					"url('/src/frontend-view/images/StockImages/stockProfPic.jpg')",
 				"stock-coverphoto":
 					"url('/src/frontend-view/images/StockImages/stockCoverPic.jpg')",
+				"sign-in-splash":
+					"url('/src/frontend-view/assets/Backgrounds/signInSplash.png')",
 			},
 		},
 	},
