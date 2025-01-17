@@ -22,6 +22,8 @@ const Header = () => {
 	const [loading, setLoading] = useState(false);
 	const [userName, setUserName] = useState("");
 
+	const [page, setPage] = useState(0);
+
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -157,7 +159,12 @@ const Header = () => {
 				</div>
 			</div>
 			{!collapsed && (
-				<BurgerMenu setCollapsed={setCollapsed} collapsed={collapsed} />
+				<BurgerMenu
+					setCollapsed={setCollapsed}
+					collapsed={collapsed}
+					page={page}
+					setPage={setPage}
+				/>
 			)}
 		</div>
 	);

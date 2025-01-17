@@ -3,8 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const BurgerMenu = ({ setCollapsed, collapsed }) => {
-	const [selected, setSelected] = useState(0);
+const BurgerMenu = ({ setCollapsed, collapsed, page, setPage }) => {
 	const [menuOpen, setMenuOpen] = useState(false);
 
 	const handleClose = () => {
@@ -12,6 +11,11 @@ const BurgerMenu = ({ setCollapsed, collapsed }) => {
 		setTimeout(() => {
 			setCollapsed(true);
 		}, 200);
+	};
+
+	const handleClick = (index) => {
+		setPage(index);
+		handleClose();
 	};
 
 	useEffect(() => {
@@ -45,11 +49,11 @@ const BurgerMenu = ({ setCollapsed, collapsed }) => {
 					<Link
 						to={item.path}
 						key={index}
-						onClick={() => setSelected(index)}
+						onClick={() => handleClick(index)}
 					>
 						<li
 							className={
-								(index === selected
+								(index === page
 									? "border-orange text-orange "
 									: "border-white ") +
 								` border-b-2 transition hover:border-orange hover:text-orange mb-5 pb-2`

@@ -61,10 +61,11 @@ function App() {
 	return (
 		<ThemeProvider theme={theme}>
 			{/* <DarkModeProvider> */}
-			<div className="App flex p-5 min-h-screen justify-center">
-				<VerticalNavbar />
-				<div className="flex flex-col  items-center md:p-5 gap-10 w-11/12 md:w-10/12">
+			<div className="App p-5 min-h-screen justify-center">
+				<div className="flex flex-col  items-center md:p-5 gap-10 w-full">
 					<Header />
+					<VerticalNavbar />
+
 					<ScrollToTop />
 					<Routes>
 						<Route path="/" element={<Dashboard />} />
@@ -85,7 +86,8 @@ function App() {
 						/>
 					</Routes>
 				</div>
-				<RightNavbar />
+
+				{/* <RightNavbar /> */}
 			</div>
 			<Footer />
 			{triggerUpButton && <BackToTop />}
