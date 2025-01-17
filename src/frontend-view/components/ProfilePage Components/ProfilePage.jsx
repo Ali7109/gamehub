@@ -102,7 +102,7 @@ const ProfilePage = () => {
 	}, [authUser, user]); // Add 'user' and 'authUser' to the dependencies to re-run when either changes
 
 	return (
-		<div className="rounded-xl w-full flex-col max-h-fit bg-gray-dark">
+		<div className="rounded-xl w-fit flex-col max-h-fit bg-gray-dark">
 			{addingProfilePic && (
 				<UploadModal
 					user={user}
@@ -171,28 +171,13 @@ const ProfilePage = () => {
 				</>
 			) : (
 				<>
-					<div className="w-full rounded-t-xl flex items-center h-52 bg-orange bg-opacity-50">
-						<div className="w-full h-44 bg-black bg-center bg-cover p-5">
-							<div className="flex-1 m-5 h-24 w-24 rounded-full">
-								{coverPic && (
-									<img
-										className="rounded-full"
-										src={coverPic}
-										alt="error loading DP"
-									/>
-								)}
-							</div>
-						</div>
-					</div>
-					<div className="flex-col p-10 space-y-3 text-white">
-						<div className="w-full md:flex justify-around">
-							<h1 className="hidden md:block text-xl bg-black p-2 rounded-xl">
-								It appears you aren't signed in, let's change
-								that &#10145;
-							</h1>
-							<h1 className="text-center md:hidden text-xl bg-black p-2 rounded-xl">
-								It appears you aren't signed in, let's change
-								that &#11015;
+					<div className="flex-col bg-sign-in-splash rounded-xl h-[170px] md:h-[200px] w-[550px] md:w-[650px] bg-contain bg-no-repeat bg-center bg-white p-10 space-y-3 text-white">
+						<div className="m-auto md:flex justify-around w-full h-full relative">
+							<h1 className="absolute bottom-0 left-0 text-2xl font-bold text-orange">
+								Uh Oh! <br />
+								<h3 className="text-sm text-white font-medium">
+									It appears you aren't signed in...
+								</h3>
 							</h1>
 							{loading ? (
 								<CircularProgress
@@ -203,9 +188,9 @@ const ProfilePage = () => {
 							) : (
 								<button
 									onClick={handleLogin}
-									className="p-2 mt-5 md:mt-0 w-full md:w-fit rounded-xl text-base text-black mb-1 cursor-pointer bg-orange transition hover:-translate-y-1 hover:text-white"
+									className="absolute bottom-0 right-0 w-[90px] h-[40px] md:w-[100px] md:h-[50px] rounded-xl text-sm md:text-base text-black cursor-pointer bg-orange transition hover:-translate-y-1 hover:text-white"
 								>
-									Sign In Now
+									Sign in now!
 								</button>
 							)}
 						</div>
