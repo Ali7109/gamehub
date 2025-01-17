@@ -16,6 +16,7 @@ import {
 	userExists,
 } from "../../../controller/HelperFetch";
 import BurgerMenu from "./BurgerMenu";
+import VerticalNavbar from "./VerticalNavbar";
 
 const Header = () => {
 	const [signedIn, setSignedIn] = useState(false);

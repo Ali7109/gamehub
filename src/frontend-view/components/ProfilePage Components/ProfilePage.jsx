@@ -186,7 +186,7 @@ const ProfilePage = () => {
 					</div>
 					<div className="flex-col p-10 space-y-3 text-white">
 						<div className="w-full md:flex justify-around">
-							<h1 className="hidden md:visible text-xl bg-black p-2 rounded-xl">
+							<h1 className="hidden md:block text-xl bg-black p-2 rounded-xl">
 								It appears you aren't signed in, let's change
 								that &#10145;
 							</h1>
