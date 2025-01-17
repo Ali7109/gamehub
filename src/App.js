@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "./frontend-view/App.css";
 import Dashboard from "./frontend-view/pages/Dashboard";
 import {
@@ -25,6 +25,7 @@ import GameDetailsPage from "./frontend-view/pages/GameDetailsPage";
 import DevDetailsPage from "./frontend-view/pages/DevDetailsPage";
 import Blog from "./frontend-view/components/Blog Components/Blog";
 import ViewBlog from "./frontend-view/components/Blog Components/ViewBlog";
+import ScrollToTop from "./scrollToTop";
 
 function App() {
 	const dispatch = useDispatch();
@@ -60,10 +61,12 @@ function App() {
 	return (
 		<ThemeProvider theme={theme}>
 			{/* <DarkModeProvider> */}
-			<div className="App flex p-5 min-h-screen justify-center">
-				<VerticalNavbar />
-				<div className="flex flex-col  items-center md:p-5 gap-10 w-11/12 md:w-10/12">
+			<div className="App p-5 min-h-screen justify-center">
+				<div className="flex flex-col  items-center md:p-5 gap-10 w-full">
 					<Header />
+					<VerticalNavbar />
+
+					<ScrollToTop />
 					<Routes>
 						<Route path="/" element={<Dashboard />} />
 						<Route path="/profile" element={<ProfilePage />} />
@@ -83,7 +86,8 @@ function App() {
 						/>
 					</Routes>
 				</div>
-				<RightNavbar />
+
+				{/* <RightNavbar /> */}
 			</div>
 			<Footer />
 			{triggerUpButton && <BackToTop />}

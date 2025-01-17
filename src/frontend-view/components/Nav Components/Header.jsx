@@ -16,11 +16,14 @@ import {
 	userExists,
 } from "../../../controller/HelperFetch";
 import BurgerMenu from "./BurgerMenu";
+import VerticalNavbar from "./VerticalNavbar";
 
 const Header = () => {
 	const [signedIn, setSignedIn] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [userName, setUserName] = useState("");
+
+	const [page, setPage] = useState(0);
 
 	const dispatch = useDispatch();
 
@@ -100,7 +103,7 @@ const Header = () => {
 				) : (
 					<button
 						onClick={handleLogin}
-						className="p-2 rounded-xl text-base text-black mb-1 cursor-pointer bg-orange  transition hover:scale-110 hover:text-white"
+						className="p-2 rounded-xl text-base text-black mb-1 cursor-pointer bg-orange  transition hover:-translate-y-1 hover:text-white"
 					>
 						Sign In
 					</button>
@@ -146,7 +149,7 @@ const Header = () => {
 					) : (
 						<button
 							onClick={handleLogin}
-							className="p-2 rounded-xl text-base text-black mb-1 cursor-pointer bg-orange  transition hover:scale-110 hover:text-white"
+							className="p-2 rounded-xl text-base text-black mb-1 cursor-pointer bg-orange transition hover:-translate-y-1 hover:text-white"
 						>
 							Sign In
 						</button>
@@ -157,7 +160,12 @@ const Header = () => {
 				</div>
 			</div>
 			{!collapsed && (
-				<BurgerMenu setCollapsed={setCollapsed} collapsed={collapsed} />
+				<BurgerMenu
+					setCollapsed={setCollapsed}
+					collapsed={collapsed}
+					page={page}
+					setPage={setPage}
+				/>
 			)}
 		</div>
 	);

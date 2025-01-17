@@ -1,42 +1,64 @@
-import React, 
-{useEffect, useState} from 'react'
+import React, { useEffect, useState } from "react";
 
-const DetailFooter = ({game}) => {
-  const metacriticImage = require('../../images/Metacritic.png');
-  const redditImage = require('../../images/reddit.png');
-  
-  const [showReddit, setShowReddit] = useState(false);
+const DetailFooter = ({ game }) => {
+	const metacriticImage = require("../../images/Metacritic.png");
+	const redditImage = require("../../images/reddit.png");
 
-  useEffect(() => {
-    setShowReddit(window.location.pathname !== "/");
-  }, [])
-  
-  return (
-    <div className="xs:flex-col md:flex w-full justify-between">
-    <div className="flex mr-10 gap-2 ">
-      <h4 className="transition m-auto min-w-fit bg-white bg-opacity-20 text-white hover:text-black bg-metayellow font-bold rounded-xl p-2 cursor-pointer">
-          <a className='flex items-center ' href={`https://www.metacritic.com/game/pc/${game.slug}`} target='_blank' rel="noopener noreferrer">
-            <img src={metacriticImage} alt="metacritic-icon" className="mr-2 h-6" />
-            {game.metacritic}
-          </a>
-      </h4>
-      {showReddit &&
-          <a className="cursor-pointer reddit m-auto bg-white bg-opacity-20 bg-red font-bold w-12 rounded-xl p-2 transition" href={game.reddit_url} target='_blank' rel="noopener noreferrer">
-            <img src={redditImage} alt="reddit-icon" className="m-auto h-6 w-6" />
-          </a>
-      }
-    </div>
-    <h4 className="mr-2 w-2/3 bg-black bg-opacity-20 text-white font-bold rounded-xl p-2">
-          {game.genres.map((genre, index) => {
-            let hyphen = " - ";
-            if(index+1 === game.genres.length) hyphen = "";
-            return (
-            <React.Fragment key={index}>{genre.name}{hyphen}</React.Fragment>
-            )
-})}
-    </h4>
-  </div>
-  )
-}
+	const [showReddit, setShowReddit] = useState(false);
 
-export default DetailFooter
+	useEffect(() => {
+		setShowReddit(window.location.pathname !== "/");
+	}, []);
+
+	const renderGenres = () => {
+		if (!game.genres || game.genres.length === 0) return "Unknown Genre";
+		return game.genres.map((genre) => genre.name).join(" - ");
+	};
+
+	return (
+		<div className="flex flex-col items-center w-full space-y-4">
+			{/* Metacritic and Reddit Section */}
+			<div className="flex flex-col items-center gap-4 w-full">
+				{/* Metacritic */}
+				<div className="bg-white bg-opacity-20 text-white hover:text-black bg-metayellow font-bold rounded-xl p-2 min-w-[120px] text-center transition-all">
+					<a
+						className="flex items-center justify-center"
+						href={`https://www.metacritic.com/game/pc/${game.slug}`}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<img
+							src={metacriticImage}
+							alt="Metacritic Icon"
+							className="mr-2 h-6"
+						/>
+						<span>{game.metacritic || "N/A"}</span>
+					</a>
+				</div>
+
+				{/* Reddit */}
+				{showReddit && game.reddit_url && (
+					<a
+						className="bg-white bg-opacity-20 bg-red text-center font-bold w-12 h-12 rounded-xl p-2 flex items-center justify-center transition-all"
+						href={game.reddit_url}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<img
+							src={redditImage}
+							alt="Reddit Icon"
+							className="h-6 w-6"
+						/>
+					</a>
+				)}
+			</div>
+
+			{/* Genres Section */}
+			<div className="bg-black bg-opacity-20 text-white font-bold rounded-xl p-2 w-full text-center">
+				{renderGenres()}
+			</div>
+		</div>
+	);
+};
+
+export default DetailFooter;
