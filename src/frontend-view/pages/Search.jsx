@@ -3,11 +3,11 @@ import { useEffect } from "react";
 import GameDataAPIController from "../../controller/GameDataAPIController";
 import GenreList from "../components/SearchPage Components/GenreList";
 import { CircularProgress, TextField } from "@mui/material";
-import { useSelector } from "react-redux";
 import SearchCard from "../components/SearchPage Components/SearchCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import {motion} from "framer-motion";
 
 const Search = () => {
 	const [loading, setloading] = useState(false);
@@ -88,7 +88,12 @@ const Search = () => {
 	}, []);
 
 	return (
-		<div className="rounded-xl w-full bg-gray-dark p-10 custom-scroll">
+		<motion.div 
+		initial={{opacity: 0, y:20}}
+		animate={{opacity: 1, y:0}}
+		exit={{opacity: 0, y:20}}
+		transition={{duration: 0.5}}
+		className="rounded-xl w-full bg-gray-dark p-10 custom-scroll">
 			<div className="w-full">
 				<TextField
 					InputProps={{
@@ -116,7 +121,12 @@ const Search = () => {
 					updateSelections={updatedSelections}
 				/>
 			) : (
-				<CircularProgress color="warning" className=" h-20" />
+				<div className="w-full flex">
+					<CircularProgress
+						color="warning"
+						className="m-auto mt-4 h-20"
+					/>
+				</div>
 			)}
 
 			{!loading ? (
@@ -140,7 +150,7 @@ const Search = () => {
 					<CircularProgress color="warning" className="m-auto h-20" />
 				</div>
 			)}
-		</div>
+		</motion.div>
 	);
 };
 

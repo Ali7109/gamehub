@@ -22,7 +22,7 @@ const VerticalNavbar = () => {
 		{ icon: faGamepad, path: "/profile" },
 	];
 	return (
-		<div className="hidden md:flex items-center justify-around bg-gray-dark p-3 rounded-xl flex-col z-10">
+		<div className="hidden md:flex items-center justify-around bg-gray-dark p-3 rounded-xl flex-col z-40">
 			<div className="flex justify-around gap-4">
 				{navIcons.map(({ icon, path }, index) => (
 					<NavIcon

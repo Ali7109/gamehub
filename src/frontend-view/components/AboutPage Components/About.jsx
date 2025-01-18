@@ -4,6 +4,7 @@ import newsSvg from "../../assets/SVG/news.svg";
 import searchSvg from "../../assets/SVG/search.svg";
 
 import AboutBox from "./AboutBox";
+import {motion} from "framer-motion";
 
 const About = () => {
 	const aboutBoxes = [
@@ -44,7 +45,12 @@ const About = () => {
 		},
 	];
 	return (
-		<div className="p-2 border-l-2 border-r-2 border-orange w-full h-full bg-black rounded-xl">
+		<motion.div
+		initial={{opacity: 0, y:20}}
+		animate={{opacity: 1, y:0}}
+		exit={{opacity: 0, y:20}}
+		transition={{duration: 0.5}}
+		className="p-2 border-l-2 border-r-2 border-orange w-full h-full bg-black rounded-xl">
 			<div className="w-full h-full text-white p-10 bg-gray-dark rounded-xl">
 				<div className="bg-black border-l-2 border-r-2 border-orange max-w-fit m-auto p-1 pl-3 pr-3 rounded-xl">
 					<h1 className="text-center text-3xl font-yb text-bgtrans bg-gradient-to-r font-extrabold">
@@ -76,7 +82,7 @@ const About = () => {
 					))}
 				</div>
 			</div>
-		</div>
+		</motion.div>
 	);
 };
 

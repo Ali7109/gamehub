@@ -1,6 +1,7 @@
 import { CircularProgress } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import {motion} from "framer-motion";
 
 const StatsPanel = () => {
 	const data = useSelector((state) => state.data);
@@ -44,13 +45,18 @@ const StatsPanel = () => {
 				() => incrementCounter(setPlatformsCount, 5, platforms, 10),
 				1000
 			);
-		}, 2000); // Trigger after 5 seconds
+		}, 500); // Trigger after 0.5 seconds
 
 		return () => clearTimeout(timer); // Cleanup timeout on unmount
 	}, [countOfTitles, countOfPublishers, platforms]);
 
 	return (
-		<div className="metr-cont space-y-16 md:space-y-0 md:flex gap-2 p-5 w-full justify-center items-center">
+		<motion.div
+		initial={{opacity: 0, y:10}}
+		animate={{opacity: 1, y:0}}
+		exit={{opacity: 0, y:10}}
+		transition={{duration: 1, delay: 1}}
+		 className="metr-cont space-y-16 md:space-y-0 md:flex gap-2 p-5 w-full justify-center items-center">
 			{[
 				{ label: "Titles", value: count, max: countOfTitles },
 				{
@@ -78,7 +84,7 @@ const StatsPanel = () => {
 					</div>
 				</div>
 			))}
-		</div>
+		</motion.div>
 	);
 };
 

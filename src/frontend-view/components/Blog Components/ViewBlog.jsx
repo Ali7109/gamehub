@@ -5,6 +5,7 @@ import { CircularProgress } from '@mui/material';
 import { faChevronLeft, faClock, faFeather } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import formatFirestoreTimestamp, { blogTimeStamp } from '../Functions/calculationFunctions';
+import {motion} from 'framer-motion';
 
 const ViewBlog = () => {
 
@@ -37,7 +38,11 @@ const ViewBlog = () => {
     
       }, []);
   return (
-        <div className="relative bg-gray-dark md:w-4/5 p-4 border-l-2 border-r-2 border-orange rounded-lg shadow-lg">
+        <motion.div
+        initial={{ opacity: 0, y:14}}   
+        animate={{ opacity: 1, y:0 }}
+        transition={{ duration: 1 }}
+        className="relative bg-gray-dark md:w-4/5 p-4 border-l-2 border-r-2 border-orange rounded-lg shadow-lg">
             <>
                 <Link to={'/blog'}>
                     <button className='bg-orange rounded-xl p-2 hover:text-orange hover:bg-black transition'><FontAwesomeIcon icon={faChevronLeft}/> back</button>
@@ -66,7 +71,7 @@ const ViewBlog = () => {
                 <CircularProgress color='warning' className='h-16 w-16' />
             </React.Fragment>
             }
-        </div>
+        </motion.div>
   )
 }
 

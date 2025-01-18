@@ -32,7 +32,7 @@ const BurgerMenu = ({ setCollapsed, collapsed, page, setPage }) => {
 	return (
 		<div
 			className={
-				`z-10 md:hidden transition duration-500 -translate-y-full absolute top-0 pb-8 min-h-fit w-full bg-gray-dark border-b-2 border-orange rounded-b-xl ` +
+				`z-30 md:hidden transition duration-500 -translate-y-full absolute top-0 pb-8 min-h-fit w-full bg-gray-dark border-b-2 border-orange rounded-b-xl ` +
 				(menuOpen ? "translate-y-0" : "")
 			}
 		>

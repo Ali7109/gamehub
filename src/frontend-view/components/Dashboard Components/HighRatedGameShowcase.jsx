@@ -5,6 +5,7 @@ import "@splidejs/react-splide/css";
 import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
 import { CircularProgress } from "@mui/material";
 import DetailFooter from "../GameDetail Components/DetailFooter";
+import {motion} from "framer-motion";
 
 const HighRatedGameShowcase = () => {
 	const highestRated = useSelector((state) => state.highestRated);
@@ -18,7 +19,12 @@ const HighRatedGameShowcase = () => {
 	}, [highestRated]);
 
 	return (
-		<div className="w-full flex-col">
+		<motion.div
+		initial={{opacity: 0, y:10}}
+		animate={{opacity: 1, y:0}}
+		exit={{opacity: 0, y:10}}
+		transition={{duration: 1, delay: 1.5}}
+		 className="w-full flex-col">
 			<h1 className="text-white text-3xl font-yb rounded-t-3xl font-bold p-6 text-center bg-gray-dark">
 				Highest Rated Titles
 			</h1>
@@ -79,7 +85,7 @@ const HighRatedGameShowcase = () => {
 					)}
 				</SplideTrack>
 			</Splide>
-		</div>
+		</motion.div>
 	);
 };
 

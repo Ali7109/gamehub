@@ -4,6 +4,7 @@ import {
 	updateUserProfilePic,
 	uploadImage,
 } from "../../../controller/HelperFetch";
+import { motion } from "framer-motion";	
 
 const UploadModal = ({ user, getMetaData, setAddingProfilePic }) => {
 	const [loading, setLoading] = useState(false);
@@ -56,13 +57,24 @@ const UploadModal = ({ user, getMetaData, setAddingProfilePic }) => {
 
 	return (
 		<>
-			<div className="">
+			<div
+
+
+			className="">
 				{/* The overlay */}
 				<div className="absolute top-0 left-0 w-full h-full flex bg-black opacity-80 z-50"></div>
 				<div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
-					<div className="w-96 bg-gray-dark rounded-xl p-5">
+					<motion.div			
+			initial={{ opacity: 0, y: 20}}
+			animate={{ opacity: 1, y: 0}}
+			exit={{ opacity: 0, y:20 }}
+			transition={{ duration: 0.5, type: "tween", ease: "easeInOut"}}
+			 className="w-96 bg-gray-dark rounded-xl p-5">
+						<button className="transition absolute top-5 right-5 text-white bg-red-600 px-2 rounded-lg hover:-translate-y-[2px] hover:bg-opacity-70"
+						onClick={() => setAddingProfilePic(false)}
+						>cancel</button>
 						<h1 className="text-2xl text-white font-bold">
-							Upload Image
+							Upload a avatar!
 						</h1>
 						<div className="flex justify-between items-center mt-5">
 							<input
@@ -74,7 +86,7 @@ const UploadModal = ({ user, getMetaData, setAddingProfilePic }) => {
 							/>
 							<label
 								htmlFor="file"
-								className="bg-orange text-white px-5 py-2 rounded-lg cursor-pointer"
+								className="bg-orange text-white px-5 py-2 rounded-lg cursor-pointer transition shadow-lg hover:-translate-y-[2px] hover:bg-opacity-70"
 							>
 								Select Image
 							</label>
@@ -82,7 +94,7 @@ const UploadModal = ({ user, getMetaData, setAddingProfilePic }) => {
 						{loading && (
 							<p className="text-white mt-3">Uploading...</p>
 						)}
-					</div>
+					</motion.div>
 				</div>
 			</div>
 		</>
