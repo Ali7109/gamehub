@@ -62,7 +62,7 @@ function App() {
 		<ThemeProvider theme={theme}>
 			{/* <DarkModeProvider> */}
 			<div className="App p-5 min-h-screen justify-center">
-				<div className="flex flex-col  items-center md:p-5 gap-10 w-full">
+				<div className="flex flex-col  items-center md:p-5 gap-10 w-full h-screen">
 					<Header />
 					<VerticalNavbar />
 

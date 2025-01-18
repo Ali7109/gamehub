@@ -44,7 +44,7 @@ const StatsPanel = () => {
 				() => incrementCounter(setPlatformsCount, 5, platforms, 10),
 				1000
 			);
-		}, 2000); // Trigger after 5 seconds
+		}, 500); // Trigger after 0.5 seconds
 
 		return () => clearTimeout(timer); // Cleanup timeout on unmount
 	}, [countOfTitles, countOfPublishers, platforms]);

@@ -116,7 +116,12 @@ const Search = () => {
 					updateSelections={updatedSelections}
 				/>
 			) : (
-				<CircularProgress color="warning" className=" h-20" />
+				<div className="w-full flex">
+					<CircularProgress
+						color="warning"
+						className="m-auto mt-4 h-20"
+					/>
+				</div>
 			)}
 
 			{!loading ? (
