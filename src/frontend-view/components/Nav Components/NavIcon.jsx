@@ -16,8 +16,8 @@ const NavIcon = ({ icon, path, index, setPage }) => {
 		>
 			<FontAwesomeIcon
 				className={
-					`m-auto p-2 rounded-xl text-gray-light transition hover:text-black hover:bg-orange ` +
-					(currentPage ? " bg-orange text-black " : "") +
+					`m-auto p-2 rounded-xl text-gray-light transition hover:bg-orange ` +
+					(currentPage ? " bg-orange text-white " : "") +
 					(path === "/about" ? " text-2xl" : " text-xl")
 				}
 				icon={icon}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {motion} from 'framer-motion';
 
 const GenreButton = ({ genre, isSelected, onToggleSelection }) => {
   const [hovered, setHovered] = useState(false);
@@ -17,6 +18,7 @@ const GenreButton = ({ genre, isSelected, onToggleSelection }) => {
 
   return (
     <button
+
       className='genre-button'
       style={backgroundStyle}
       onMouseEnter={handleHover}

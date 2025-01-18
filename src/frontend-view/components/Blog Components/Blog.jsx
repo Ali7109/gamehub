@@ -8,9 +8,9 @@ import {
 	faScroll,
 } from "@fortawesome/free-solid-svg-icons";
 import BlogsDisplay from "./BlogsDisplay";
-import { Link } from "react-router-dom";
 import CreateBlog from "./CreateBlog";
 import { useSelector } from "react-redux";
+import { motion } from "framer-motion";
 
 const Blog = () => {
 	const user = useSelector((state) => state.user);
@@ -29,12 +29,26 @@ const Blog = () => {
 	};
 	return (
 		<>
-			<div className="w-full bg-press-banner bg-center rounded-xl">
+			<motion.div
+				layout
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				transition={{ duration: 1 }}
+				className="w-full bg-press-banner bg-center rounded-xl"
+			>
 				<div className=" w-full flex items-center justify-around bg-black bg-opacity-80 rounded-xl p-3 md:pl-20 md:pr-20 text-center">
-					<div className="text-white text-5xl flex items-center justify-around">
+					<motion.div
+					initial={{ x:30, y: -50, opacity: 0 }}
+					animate={{ x:0, y: 0, opacity: 1 }}
+					transition={{ delay: 0.5, duration: 2, type: 'spring' }}
+					className="text-white text-5xl flex items-center justify-around">
 						<FontAwesomeIcon icon={faHeadset} />
-					</div>
-					<div className="">
+					</motion.div>
+					<motion.div
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					transition={{ delay: 0.5, duration: 1 }}
+					>
 						<FontAwesomeIcon
 							icon={faScroll}
 							className="text-white text-5xl"
@@ -45,14 +59,23 @@ const Blog = () => {
 						<p className="text-white">
 							Your daily dose of the gaming industry
 						</p>
-					</div>
-					<div className="text-white text-5xl flex items-center justify-around">
+					</motion.div>
+					<motion.div
+					initial={{ x:-30, y: 50, opacity: 0 }}
+					animate={{ x: 0, y: 0, opacity: 1 }}
+					transition={{ delay: 0.5, duration: 2, type: 'spring' }}
+					 className="text-white text-5xl flex items-center justify-around">
 						<FontAwesomeIcon icon={faGhost} />
-					</div>
+					</motion.div>
 				</div>
-			</div>
+			</motion.div>
 
-			<div className="relative w-full">
+			<motion.div
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				transition={{ delay: 0.5, duration: 1 }}
+				className="relative w-full"
+			>
 				<div className="absolute left-1/2 transform -translate-x-1/2 top-5 flex items-center">
 					<button
 						disabled={!user}
@@ -88,7 +111,7 @@ const Blog = () => {
 				) : (
 					<CreateBlog setCreatePage={setCreatePage} user={user} />
 				)}
-			</div>
+			</motion.div>
 		</>
 	);
 };

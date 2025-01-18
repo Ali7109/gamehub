@@ -13,6 +13,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import UploadModal from "../UploadLogic/UploadModal";
+import {motion} from "framer-motion";
 
 const ProfilePage = () => {
 	const authUser = useSelector((state) => state.user);
@@ -102,7 +103,15 @@ const ProfilePage = () => {
 	}, [authUser, user]); // Add 'user' and 'authUser' to the dependencies to re-run when either changes
 
 	return (
-		<div className="rounded-xl h-full flex-col w-full">
+		<motion.div
+		layout
+		initial={{opacity: 0, y:20}}
+		animate={{opacity: 1, y:0}}
+		exit={{opacity: 0, y:20}}
+		transition={{duration: 1, type: "spring", stiffness: 100}}
+
+		
+		className="rounded-xl h-full flex-col w-full">
 			{addingProfilePic && (
 				<UploadModal
 					user={user}
@@ -118,7 +127,13 @@ const ProfilePage = () => {
 						}
 					>
 						<div className="w-full h-44 bg-stock-coverphoto bg-center bg-cover p-5">
-							<div className="flex-1 m-5 h-24 w-24 rounded-full">
+							<motion.div
+							layout
+							initial={{opacity: 0}}
+							animate={{opacity: 1}}
+							transition={{duration: 1, delay: 0.5}}
+
+							className="flex-1 m-5 h-24 w-24 rounded-full">
 								{profilePic &&
 									(!editProfile ? (
 										<img
@@ -130,7 +145,12 @@ const ProfilePage = () => {
 										<>
 											<div className="relative rounded-full h-full w-full overflow-hidden">
 												{/* The overlay */}
-												<div className="absolute top-0 left-0 w-full h-full flex bg-black bg-opacity-50 z-10">
+												<motion.div
+												layout
+												initial={{opacity: 0}}
+												animate={{opacity: 1}}
+												transition={{duration: 1}}
+												className="absolute top-0 left-0 w-full h-full flex bg-black bg-opacity-50 z-10">
 													<FontAwesomeIcon
 														onClick={() =>
 															setAddingProfilePic(
@@ -140,7 +160,7 @@ const ProfilePage = () => {
 														className="cursor-pointer rounded-full p-2 text-3xl m-auto text-white transition peer-hover:text-black hover:text-black hover:bg-orange"
 														icon={faPen}
 													/>
-												</div>
+												</motion.div>
 
 												{/* The image */}
 												<img
@@ -151,7 +171,7 @@ const ProfilePage = () => {
 											</div>
 										</>
 									))}
-							</div>
+							</motion.div>
 						</div>
 					</div>
 					<div className="flex p-10 space-y-3 text-white bg-gray-dark rounded-b-xl">
@@ -211,7 +231,7 @@ const ProfilePage = () => {
 					</div>
 				</div>
 			)}
-		</div>
+		</motion.div>
 	);
 };
 
