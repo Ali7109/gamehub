@@ -52,7 +52,7 @@ function App() {
 		fetch();
 
 		// Create a random number of nodes
-		const numNodes = 10; // Number of nodes in the network
+		const numNodes = 15; // Number of nodes in the network
 		const nodes = [];
 
 		// Create nodes and add to the container

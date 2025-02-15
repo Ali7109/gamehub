@@ -16,7 +16,7 @@ const DetailFooter = ({ game }) => {
 	};
 
 	return (
-		<div className="flex flex-col items-center w-full space-y-4">
+		<div className="flex flex-col items-center w-full space-y-4 z-1">
 			{/* Metacritic and Reddit Section */}
 			<div className="flex flex-col items-center gap-4 w-full">
 				{/* Metacritic */}
