@@ -142,7 +142,7 @@ function App() {
 	return (
 		<ThemeProvider theme={theme}>
 			{/* <DarkModeProvider> */}
-			<div className="App p-5 min-h-screen justify-center ">
+			<div className="App p-5 min-h-screen justify-center z-1">
 				<motion.div
 					layout
 					initial={{ opacity: 0 }}

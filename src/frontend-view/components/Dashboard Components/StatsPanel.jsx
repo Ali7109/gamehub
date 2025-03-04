@@ -27,7 +27,9 @@ const StatsPanel = () => {
 			let currentValue = 0;
 			const interval = setInterval(() => {
 				currentValue += increment;
-				setter((prev) => (currentValue < maxNum ? currentValue : maxNum));
+				setter((prev) =>
+					currentValue < maxNum ? currentValue : maxNum
+				);
 				if (currentValue >= maxNum) {
 					clearInterval(interval);
 				}
@@ -36,12 +38,30 @@ const StatsPanel = () => {
 
 		const timer = setTimeout(() => {
 			incrementCounter(setCount, 10000, countOfTitles, 10);
-			setTimeout(() => incrementCounter(setPublishersCount, 1000, countOfPublishers, 10), 500);
-			setTimeout(() => incrementCounter(setPlatformsCount, 5, platforms, 10), 1000);
+			setTimeout(
+				() =>
+					incrementCounter(
+						setPublishersCount,
+						1000,
+						countOfPublishers,
+						10
+					),
+				500
+			);
+			setTimeout(
+				() => incrementCounter(setPlatformsCount, 5, platforms, 10),
+				1000
+			);
 		}, 500); // Trigger after 0.5 seconds
 
 		return () => clearTimeout(timer); // Cleanup timeout on unmount
-	}, [countOfTitles, countOfPublishers, platforms]);
+	}, [
+		countOfTitles,
+		countOfPublishers,
+		platforms,
+		data?.count,
+		publishers?.count,
+	]);
 
 	const baseVals = [800000, 70000, 50];
 
@@ -55,7 +75,11 @@ const StatsPanel = () => {
 		>
 			{[
 				{ label: "Titles", value: count, max: countOfTitles },
-				{ label: "Publishers", value: publishersCount, max: countOfPublishers },
+				{
+					label: "Publishers",
+					value: publishersCount,
+					max: countOfPublishers,
+				},
 				{ label: "Platforms", value: platformsCount, max: platforms },
 			].map(({ label, value, max }, index) => (
 				<div
@@ -68,7 +92,10 @@ const StatsPanel = () => {
 						) : (
 							<>
 								<h1 className="transition font-bold text-orange tracking-wide hover:scale-110">
-									{!isNaN(value) ? value.toLocaleString("en-US") : baseVals[index]}+
+									{!isNaN(value)
+										? value.toLocaleString("en-US")
+										: baseVals[index]}
+									+
 								</h1>
 								<h2>{label}</h2>
 							</>
